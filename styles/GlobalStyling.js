@@ -15,15 +15,24 @@ const GlobalStyling = () => {
           text-rendering: optimizeLegibility;
           background-color: ${lightGrey};
         }
-
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        body::-webkit-scrollbar {
+          display: none;
+        }
+        /* Hide scrollbar for IE and Edge */
+        body {
+          -ms-overflow-style: none;
+        }
         body,
         input,
         button {
-          font-size: 1.6rem;
+          font-size: 1.4rem;
           line-height: 1.9rem;
           color: ${darkBlue};
         }
-
+        main {
+          padding: 140px 20px 20px 20px;
+        }
         // TITLES
         h1 {
           color: ${darkBlue};

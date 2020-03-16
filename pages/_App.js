@@ -1,8 +1,5 @@
 // import App from 'next/app'
 import "../styles/reset.css";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-library.add(faSearch);
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />;

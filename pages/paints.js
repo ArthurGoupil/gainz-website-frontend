@@ -1,22 +1,13 @@
-import Link from "next/link";
+import { useState, useEffect } from "react";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 
 import Layout from "../components/Layout";
 
 const Paints = props => {
   return (
     <Layout>
-      <div className="is-main-padding d-flex flex-wrap space-between">
-        <Link href="/paint/[id]" as="/paint/123">
-          <div className="paint-container d-flex justify-center align-center">
-            <img className="paint" src="/images/paint1.jpg" alt="paint" />
-            <div className="paint-infos">
-              <span className="search-icon"></span>
-              HORIZON
-            </div>
-          </div>
-        </Link>
+      <div className="d-flex flex-wrap space-between">
         <div className="paint-container middle-column d-flex justify-center align-center">
           <img className="paint" src="/images/paint2.jpg" alt="paint" />
           <div className="paint-infos">
@@ -42,7 +33,7 @@ const Paints = props => {
           <img className="paint" src="/images/paint5.jpg" alt="paint" />
           <div className="paint-infos">
             <span className="search-icon"></span>
-            CONFINEMENT
+            BIG MESS
           </div>
         </div>
         <div className="paint-container d-flex justify-center align-center">

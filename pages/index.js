@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 const Home = props => {
   return (
     <Layout>
-      <div className="home no-main-padding d-flex justify-center">
+      <div className=" home no-main-padding d-flex justify-center">
         <div className="paint-container">
           <img className="canvas" src="/images/canvas.jpg" alt="canvas" />
           <img className="paint" src="/images/paint1.jpg" alt="paint" />
@@ -24,8 +24,8 @@ const Home = props => {
             background-image: url("/images/blank-canvas.jpg");
             background-size: cover;
             background-position: center;
-            height: 100vh;
-            width: 100vw;
+            height: calc(100vh - 160px);
+            width: calc(100vw - 40px);
              {
             }
           }
