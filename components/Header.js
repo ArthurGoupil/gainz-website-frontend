@@ -26,7 +26,6 @@ const Header = props => {
         {`
           header {
             width: 100%;
-
             letter-spacing: 2px;
             padding: 20px 40px;
             position: fixed;

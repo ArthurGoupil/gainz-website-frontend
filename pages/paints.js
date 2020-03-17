@@ -1,95 +1,48 @@
 import { useState, useEffect } from "react";
 
 import axios from "axios";
+import StackGrid from "react-stack-grid";
 
 import Layout from "../components/Layout";
+import PaintBloc from "../components/PaintBloc";
 
 const Paints = props => {
+  const [paints, setPaints] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPaints = async () => {
+      try {
+        const response = await axios.get("http://localhost:3100/paints");
+        setPaints(response.data);
+        setIsLoading(false);
+      } catch (e) {
+        console.error(e.message);
+      }
+    };
+    fetchPaints();
+  }, []);
+
   return (
     <Layout>
-      <div className="d-flex flex-wrap space-between">
-        <div className="paint-container middle-column d-flex justify-center align-center">
-          <img className="paint" src="/images/paint2.jpg" alt="paint" />
-          <div className="paint-infos">
-            <span className="search-icon"></span>
-            KINAHO'S CHIEF
-          </div>
+      {!isLoading ? (
+        <div className="grid-wrapper">
+          <StackGrid columnWidth="33.33333%" gutterWidth={0} gutterHeight={0}>
+            {paints.map(paint => {
+              return <PaintBloc key={paint._id} {...paint} />;
+            })}
+          </StackGrid>
+          <style jsx>
+            {`
+              .grid-wrapper {
+                width: 100%;
+              }
+            `}
+          </style>
         </div>
-        <div className="paint-container d-flex justify-center align-center">
-          <img className="paint" src="/images/paint3.jpg" alt="paint" />
-          <div className="paint-infos">
-            <span className="search-icon"></span>
-            PROFONDEUR
-          </div>
-        </div>
-        <div className="paint-container d-flex justify-center align-center">
-          <img className="paint" src="/images/paint4.jpg" alt="paint" />
-          <div className="paint-infos">
-            <span className="search-icon"></span>
-            HOMARD
-          </div>
-        </div>
-        <div className="paint-container middle-column d-flex justify-center align-center">
-          <img className="paint" src="/images/paint5.jpg" alt="paint" />
-          <div className="paint-infos">
-            <span className="search-icon"></span>
-            BIG MESS
-          </div>
-        </div>
-        <div className="paint-container d-flex justify-center align-center">
-          <img className="paint" src="/images/paint6.jpg" alt="paint" />
-          <div className="paint-infos">
-            <span className="search-icon"></span>
-            COCORICO
-          </div>
-        </div>
-        <div className="paint-container d-flex justify-center align-center">
-          <img className="paint" src="/images/paint7.jpg" alt="paint" />
-          <div className="paint-infos">
-            <span className="search-icon"></span>
-            TOUAREG
-          </div>
-        </div>
-      </div>
-      <style jsx>
-        {`
-          .paint-container {
-            width: calc((100% - 40px) / 3);
-            height: calc((100% - 40px) / 3);
-            margin-bottom: 20px;
-            position: relative;
-            cursor: pointer;
-            font-size: 2rem;
-          }
-          .paint {
-            width: 100%;
-            transition: 0.2s;
-          }
-          .paint-container:hover .paint {
-            filter: contrast(1.2) brightness(0.5);
-            transition: 0.2s;
-          }
-          .middle-column {
-            margin: 0 20px 20px 20px;
-          }
-          .paint-infos {
-            color: white;
-            font-weight: bold;
-            position: absolute;
-            padding: 10px;
-            border-radius: 5px;
-            opacity: 0;
-            transition: 0.2s;
-          }
-          .paint-container:hover .paint-infos {
-            opacity: 1;
-            transition: 0.2s;
-          }
-          .search-icon {
-            margin-right: 7px;
-          }
-        `}
-      </style>
+      ) : (
+        <span>test</span>
+      )}
     </Layout>
   );
 };
