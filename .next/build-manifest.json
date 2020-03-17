@@ -28,6 +28,10 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
+    "/paint/[id]": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
     "/paints": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"

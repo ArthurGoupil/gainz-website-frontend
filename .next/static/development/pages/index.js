@@ -5759,7 +5759,7 @@ miniRadius = "5px";
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /*!***********************************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2FArthurGoupil%2FDocuments%2FDevelopment%2FProjects%2FReact%2Fgainz-website%2Ffrontend%2Fpages%2Findex.js ***!
   \***********************************************************************************************************************************************************************************/
@@ -5782,5 +5782,5 @@ module.exports = dll_82519ec661270f7f484f;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]);
+},[[3,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map
