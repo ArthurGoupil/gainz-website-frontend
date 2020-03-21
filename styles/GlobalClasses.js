@@ -8,11 +8,6 @@ const GlobalClasses = () => {
           max-width: ${container};
         }
 
-        // MAIN
-        .is-main-padding {
-          margin: 100px 20px 20px 20px;
-        }
-
         // FLEXBOX
         .d-flex {
           display: flex;

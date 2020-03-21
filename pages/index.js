@@ -1,62 +1,60 @@
+import { useState, useEffect } from "react";
+
 import Layout from "../components/Layout";
+import Carousel from "nuka-carousel";
 
 const Home = props => {
+  const [isHover, setIsHover] = useState(false);
+
   return (
     <Layout>
-      <div className=" home no-main-padding d-flex justify-center">
-        <div className="paint-container">
-          <img className="canvas" src="/images/canvas.jpg" alt="canvas" />
-          <img className="paint" src="/images/paint1.jpg" alt="paint" />
-        </div>
-        <div className="paint-container">
-          <img className="canvas" src="/images/canvas.jpg" alt="canvas" />
-          <img className="paint" src="/images/paint2.jpg" alt="paint" />
-        </div>
-        <div className="paint-container">
-          <img className="canvas" src="/images/canvas.jpg" alt="canvas" />
-          <img className="paint" src="/images/paint3.jpg" alt="paint" />
+      <div className="home d-flex justify-center">
+        <div className="paints-container">
+          <Carousel
+            vertical={true}
+            wrapAround={true}
+            renderCenterRightControls={({ nextSlide }) => (
+              <div className="button-carousel" onMouseEnter={nextSlide}></div>
+            )}
+            renderCenterLeftControls={() => <></>}
+            renderBottomCenterControls={() => <></>}
+            transitionMode="fade"
+          >
+            <img className="paint" src="/images/paint1.jpg" alt="" />
+            <img className="paint" src="/images/paint2.jpg" alt="" />
+            <img className="paint" src="/images/paint3.jpg" alt="" />
+            <img className="paint" src="/images/paint4.jpg" alt="" />
+          </Carousel>
         </div>
       </div>
-      {/* <h1>Hello world</h1> */}
       <style jsx>
         {`
           .home {
-            background-image: url("/images/blank-canvas.jpg");
+            background-image: url("/images/home5-empty.jpg");
             background-size: cover;
             background-position: center;
             height: calc(100vh - 160px);
             width: calc(100vw - 40px);
-             {
-            }
+            position: fixed;
+            top: 140px;
+            z-index: -1;
           }
-          .paint-container {
-            position: relative;
-            width: 323px;
-            height: 323px;
-            top: 20%;
 
-            margin-left: 60px;
+          .paints-container {
+            width: 191px;
+            height: 191px;
+            margin-top: 90px;
             border-radius: 3px;
-          }
-          .canvas {
-            width: 323px;
-            height: 323px;
-            position: absolute;
-            top: 0;
-            box-shadow: 0px 10px 8px 2px #aa967d;
+            box-shadow: 3px 3px 2px 1px #2a2a2a;
           }
           .paint {
-            width: 323px;
-            height: 323px;
-            position: absolute;
-            top: 0;
-            opacity: 0;
-            transition: 0.2s;
-            border-radius: 3px;
+            width: 191px;
+            height: 191px;
+            filter: saturate(0.6) brightness(0.9);
           }
-          .paint:hover {
-            opacity: 1;
-            transition: 0.2s;
+          .button-carousel {
+            width: 191px;
+            height: 191px;
           }
         `}
       </style>

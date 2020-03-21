@@ -2,23 +2,32 @@ import Link from "next/link";
 
 const Header = props => {
   return (
-    <header className="d-flex flex-column align-center">
-      <Link href="/" passHref>
-        <a>
-          <div className="logo-container d-flex justify-center align-center">
-            <img className="logo" src="/logo/logo-gainz.png" alt="logo-gainz" />
-            <div className="gainz-text d-flex justify-center">GAINZ</div>
-          </div>
-        </a>
-      </Link>
-      <nav className="d-flex">
+    <>
+      <header className="d-flex flex-column align-center">
+        <Link href="/" passHref>
+          <a className="d-flex justify-center align-center">
+            <div className="logo-container d-flex justify-center align-center">
+              <img
+                className="logo"
+                src="/logo/logo-gainz.png"
+                alt="logo-gainz"
+              />
+              <div className="gainz-text d-flex justify-center">GAINZ</div>
+            </div>
+          </a>
+        </Link>
+      </header>
+      <nav className="d-flex justify-center align-center">
         <Link href="/">
           <a>
             <b>home</b>
           </a>
         </Link>
-        <Link href="/paints">
-          <a>art</a>
+        <Link href="/paintings">
+          <a>paintings</a>
+        </Link>
+        <Link href="/">
+          <a>work on paper</a>
         </Link>
         <a>about</a>
       </nav>
@@ -27,9 +36,15 @@ const Header = props => {
           header {
             width: 100%;
             letter-spacing: 2px;
-            padding: 20px 40px;
-            position: fixed;
+            z-index: 1;
+            padding-top: 20px;
+          }
+          nav {
+            height: 60px;
+            background-color: rgba(255, 255, 255, 1);
+            position: sticky;
             top: 0;
+            z-index: 2;
           }
           nav a:not(:last-child) {
             margin-right: 60px;
@@ -38,7 +53,6 @@ const Header = props => {
             position: relative;
             width: 180px;
             height: 55px;
-            margin-bottom: 20px;
           }
           .logo {
             width: 65%;
@@ -63,7 +77,7 @@ const Header = props => {
           }
         `}
       </style>
-    </header>
+    </>
   );
 };
 

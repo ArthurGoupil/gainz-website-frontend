@@ -13,7 +13,6 @@ const GlobalStyling = () => {
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
           text-rendering: optimizeLegibility;
-          background-color: ${lightGrey};
         }
         /* Hide scrollbar for Chrome, Safari and Opera */
         body::-webkit-scrollbar {
@@ -31,7 +30,7 @@ const GlobalStyling = () => {
           color: ${darkBlue};
         }
         main {
-          padding: 140px 20px 20px 20px;
+          padding: 5px 20px 20px 20px;
         }
         // TITLES
         h1 {
