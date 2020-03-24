@@ -1,5 +1,5 @@
 // SPACING
-container = "100vw";
+container = "1024px";
 spaceBetweenSections = "30px";
 spaceBetweenBlocks = "20px";
 

@@ -7,7 +7,8 @@ const GlobalStyling = () => {
           box-sizing: border-box;
         }
         @import url("https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap");
-        html {
+        html,
+        button {
           font-size: 62.5%;
           font-family: "Quicksand", sans-serif;
           -webkit-font-smoothing: antialiased;
@@ -30,7 +31,7 @@ const GlobalStyling = () => {
           color: ${darkBlue};
         }
         main {
-          padding: 5px 20px 20px 20px;
+          padding: 0 20px 20px 20px;
         }
         // TITLES
         h1 {

@@ -1,35 +1,44 @@
 import Link from "next/link";
 
-const Header = props => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import ActiveLink from "./ActiveLink";
+
+const Header = ({ backButtonLink }) => {
   return (
     <>
-      <header className="d-flex flex-column align-center">
-        <Link href="/" passHref>
-          <a className="d-flex justify-center align-center">
-            <div className="logo-container d-flex justify-center align-center">
-              <img
-                className="logo"
-                src="/logo/logo-gainz.png"
-                alt="logo-gainz"
-              />
-              <div className="gainz-text d-flex justify-center">GAINZ</div>
-            </div>
-          </a>
-        </Link>
+      <header className="d-flex flex-column align-center justify-center">
+        <ActiveLink href="/">
+          <div className="logo-container d-flex justify-center align-center">
+            <img className="logo" src="/logo/logo-gainz.png" alt="logo-gainz" />
+            <div className="gainz-text d-flex justify-center">GAINZ</div>
+          </div>
+        </ActiveLink>
       </header>
       <nav className="d-flex justify-center align-center">
-        <Link href="/">
-          <a>
-            <b>home</b>
-          </a>
-        </Link>
-        <Link href="/paintings">
-          <a>paintings</a>
-        </Link>
-        <Link href="/">
-          <a>work on paper</a>
-        </Link>
-        <a>about</a>
+        {backButtonLink && (
+          <Link href={`${backButtonLink}`}>
+            <a className="d-flex justify-center align-center">
+              <div className="back-icon">
+                <FontAwesomeIcon icon="arrow-left" />
+              </div>
+            </a>
+          </Link>
+        )}
+        <div className="nav-elements d-flex space-between">
+          <ActiveLink activeClassName="active-link" href="/">
+            <span>home</span>
+          </ActiveLink>
+          <ActiveLink activeClassName="active-link" href="/paintings">
+            <span>paintings</span>
+          </ActiveLink>
+          <ActiveLink activeClassName="active-link" href="/papers">
+            <span>work on paper</span>
+          </ActiveLink>
+          <ActiveLink activeClassName="active-link" href="/about">
+            <span>about</span>
+          </ActiveLink>
+        </div>
       </nav>
       <style jsx>
         {`
@@ -37,6 +46,7 @@ const Header = props => {
             width: 100%;
             letter-spacing: 2px;
             z-index: 1;
+            height: 80px;
             padding-top: 20px;
           }
           nav {
@@ -44,10 +54,19 @@ const Header = props => {
             background-color: rgba(255, 255, 255, 1);
             position: sticky;
             top: 0;
+            position: relative;
             z-index: 2;
           }
-          nav a:not(:last-child) {
-            margin-right: 60px;
+          .nav-elements {
+            width: 400px;
+          }
+          .active-link {
+            font-weight: bold;
+          }
+          .back-icon {
+            position: absolute;
+            left: 30px;
+            font-size: 2rem;
           }
           .logo-container {
             position: relative;
@@ -60,6 +79,7 @@ const Header = props => {
             opacity: 0;
             position: absolute;
             transition: 0.4s;
+            filter: blur(2px);
           }
           .gainz-text {
             width: 100%;
@@ -74,6 +94,7 @@ const Header = props => {
           .logo-container:hover .logo {
             opacity: 1;
             transition: 0.4s;
+            filter: blur(0px);
           }
         `}
       </style>

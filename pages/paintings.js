@@ -4,7 +4,7 @@ import axios from "axios";
 import Gallery from "react-photo-gallery";
 
 import Layout from "../components/Layout";
-import PaintingBloc from "../components/PaintingBloc";
+import ArtBloc from "../components/ArtBloc";
 
 const Paintings = props => {
   const [paintings, setPaintings] = useState([]);
@@ -43,12 +43,13 @@ const Paintings = props => {
           limitNodeSearch={3}
           targetRowHeight={450}
           renderImage={({ index, photo, margin }) => (
-            <PaintingBloc
+            <ArtBloc
               key={paintings[index]._id}
               index={index}
               photo={photo}
               margin={margin}
               {...paintings[index]}
+              artType="paint"
             />
           )}
         />

@@ -4,10 +4,10 @@ import GlobalStyling from "../styles/GlobalStyling";
 
 import Header from "./Header";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, backButtonLink }) => {
   return (
     <>
-      <Header />
+      <Header backButtonLink={backButtonLink} />
       <main>{children}</main>
       <GlobalClasses />
       <GlobalStyling />
