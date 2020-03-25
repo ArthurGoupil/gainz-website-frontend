@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 const ActiveLink = ({ children, ...props }) => {
   const router = useRouter();
   const child = React.Children.only(children);
-  console.log(props);
 
   let className = child.props.className || "";
   if (router.pathname === "/" && props.href === "/" && props.activeClassName) {

@@ -5,6 +5,7 @@ import Gallery from "react-photo-gallery";
 
 import Layout from "../components/Layout";
 import ArtBloc from "../components/ArtBloc";
+import Loader from "../components/Loader";
 
 const Paintings = props => {
   const [paintings, setPaintings] = useState([]);
@@ -14,7 +15,7 @@ const Paintings = props => {
 
   const fetchPaintings = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:3100/paintings");
+      const response = await axios.get(`${process.env.BACKEND_URL}/paintings`);
       setPaintings(response.data);
       response.data.forEach(painting => {
         paintingsArr.push({
@@ -54,7 +55,7 @@ const Paintings = props => {
           )}
         />
       ) : (
-        <span>test</span>
+        <Loader />
       )}
     </Layout>
   );

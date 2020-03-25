@@ -16,7 +16,7 @@ const Paintings = props => {
     if (id) {
       try {
         const response = await axios.get(
-          `http://localhost:3100/paintings/${id}`
+          `${process.env.BACKEND_URL}/paintings/${id}`
         );
         setPainting(response.data);
         setIsLoading(false);
@@ -32,7 +32,7 @@ const Paintings = props => {
 
   return (
     <Layout backButtonLink="/paintings">
-      {!isLoading ? <CompleteArtBloc art={painting} /> : <span>test</span>}
+      <CompleteArtBloc art={painting} isLoading={isLoading} />
     </Layout>
   );
 };

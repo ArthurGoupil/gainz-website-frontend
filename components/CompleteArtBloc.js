@@ -1,6 +1,8 @@
 import { useState } from "react";
 
-const CompleteArtBloc = ({ art }) => {
+import Loader from "./Loader";
+
+const CompleteArtBloc = ({ art, isLoading }) => {
   const [displayModal, setDisplayModal] = useState(false);
 
   const getArtMaxWidth = (format, displayModal) => {
@@ -18,6 +20,8 @@ const CompleteArtBloc = ({ art }) => {
       } else return "90%";
     }
   };
+
+  console.log(isLoading);
 
   const getArtShadow = (format, displayModal) => {
     if (!displayModal) {
@@ -106,6 +110,7 @@ const CompleteArtBloc = ({ art }) => {
           border-radius: 3px;
           transition: 0.5s;
           cursor: pointer;
+          opacity: ${!isLoading ? 1 : 0};
           z-index: 3;
         }
         .scnd-art,
@@ -136,9 +141,17 @@ const CompleteArtBloc = ({ art }) => {
           max-width: 90vh;
         }
         .text-container {
-          width: ${container};
+          width: 70%;
           height: 25vh;
           padding: 20px 0;
+          opacity: ${!isLoading ? 1 : 0};
+        }
+        .art-info {
+          width: 200px;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          margin-bottom: 5px;
         }
         .name {
           font-size: 2rem;

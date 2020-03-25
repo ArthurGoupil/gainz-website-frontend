@@ -27,38 +27,34 @@ const Home = props => {
 
   return (
     <Layout>
-      {!isLoading ? (
-        <div className="home d-flex justify-center">
-          <div
-            className="paints-container"
-            onMouseEnter={() => {
-              setFirstImgOn(!firstImgOn);
-              if (!firstImgOn) {
-                if (secondPainting !== homePaintingsArr.length - 1) {
-                  setFirstPainting(secondPainting + 1);
-                } else setFirstPainting(0);
-              } else {
-                if (firstPainting !== homePaintingsArr.length - 1) {
-                  setSecondPainting(firstPainting + 1);
-                } else setSecondPainting(0);
-              }
-            }}
-          >
-            <img
-              className="second-paint"
-              src={homePaintingsArr[firstPainting]}
-              alt="second-paint"
-            />
-            <img
-              className="first-paint"
-              src={homePaintingsArr[secondPainting]}
-              alt="first-paint"
-            />
-          </div>
+      <div className="home d-flex justify-center">
+        <div
+          className="paints-container"
+          onMouseEnter={() => {
+            setFirstImgOn(!firstImgOn);
+            if (!firstImgOn) {
+              if (secondPainting !== homePaintingsArr.length - 1) {
+                setFirstPainting(secondPainting + 1);
+              } else setFirstPainting(0);
+            } else {
+              if (firstPainting !== homePaintingsArr.length - 1) {
+                setSecondPainting(firstPainting + 1);
+              } else setSecondPainting(0);
+            }
+          }}
+        >
+          <img
+            className="second-paint"
+            src={homePaintingsArr[firstPainting]}
+            alt="second-paint"
+          />
+          <img
+            className="first-paint"
+            src={homePaintingsArr[secondPainting]}
+            alt="first-paint"
+          />
         </div>
-      ) : (
-        <span>test</span>
-      )}
+      </div>
       <style jsx>
         {`
           .home {
@@ -67,6 +63,7 @@ const Home = props => {
             background-position: center;
             height: calc(100vh - 160px);
             width: calc(100vw - 40px);
+            position: relative;
           }
           .paints-container {
             width: 191px;
@@ -74,6 +71,8 @@ const Home = props => {
             margin-top: 90px;
             box-shadow: 3px 3px 2px 1px #2a2a2a;
             position: relative;
+            opacity: ${!isLoading ? 1 : 0};
+            transition: 0.5s;
           }
           .first-paint {
             width: 191px;

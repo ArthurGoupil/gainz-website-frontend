@@ -16,7 +16,9 @@ const Papers = props => {
   const fetchPaper = useCallback(async () => {
     if (id) {
       try {
-        const response = await axios.get(`http://localhost:3100/papers/${id}`);
+        const response = await axios.get(
+          `${process.env.BACKEND_URL}/papers/${id}`
+        );
         setPaper(response.data);
         setIsLoading(false);
       } catch (e) {
@@ -31,7 +33,7 @@ const Papers = props => {
 
   return (
     <Layout backButtonLink="/papers">
-      {!isLoading ? <CompleteArtBloc art={paper} /> : <span>test</span>}
+      <CompleteArtBloc art={paper} isLoading={isLoading} />
     </Layout>
   );
 };

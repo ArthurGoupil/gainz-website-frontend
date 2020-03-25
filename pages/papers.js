@@ -5,6 +5,7 @@ import Gallery from "react-photo-gallery";
 
 import Layout from "../components/Layout";
 import ArtBloc from "../components/ArtBloc";
+import Loader from "../components/Loader";
 
 const Papers = props => {
   const [papers, setPapers] = useState([]);
@@ -14,7 +15,7 @@ const Papers = props => {
 
   const fetchPapers = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:3100/papers");
+      const response = await axios.get(`${process.env.BACKEND_URL}/papers`);
       setPapers(response.data);
       response.data.forEach(paper => {
         papersArr.push({
@@ -54,7 +55,7 @@ const Papers = props => {
           )}
         />
       ) : (
-        <span>test</span>
+        <Loader />
       )}
     </Layout>
   );

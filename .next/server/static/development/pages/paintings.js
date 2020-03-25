@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -129,7 +129,6 @@ const ActiveLink = (_ref) => {
 
   const router = Object(next_router__WEBPACK_IMPORTED_MODULE_2__["useRouter"])();
   const child = react__WEBPACK_IMPORTED_MODULE_0___default.a.Children.only(children);
-  console.log(props);
   let className = child.props.className || "";
 
   if (router.pathname === "/" && props.href === "/" && props.activeClassName) {
@@ -144,13 +143,13 @@ const ActiveLink = (_ref) => {
   return __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, _extends({}, props, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 24
     },
     __self: undefined
   }), __jsx("a", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 25
     },
     __self: undefined
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(child, {
@@ -479,6 +478,61 @@ const Layout = ({
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Layout);
+
+/***/ }),
+
+/***/ "./components/Loader.js":
+/*!******************************!*\
+  !*** ./components/Loader.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-jsx/style */ "styled-jsx/style");
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_spinners_DotLoader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-spinners/DotLoader */ "react-spinners/DotLoader");
+/* harmony import */ var react_spinners_DotLoader__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_spinners_DotLoader__WEBPACK_IMPORTED_MODULE_2__);
+var _jsxFileName = "/Users/ArthurGoupil/Documents/Development/Projects/React/gainz-website/frontend/components/Loader.js";
+
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
+
+const Loader = ({
+  marginTop,
+  color,
+  width,
+  height
+}) => {
+  return __jsx("div", {
+    className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a.dynamic([["2803697451", [width ? width : "100%", height ? height : "calc(100vh - 140px)", marginTop ? marginTop : "0px"]]]) + " " + "loader-container d-flex justify-center align-center",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    },
+    __self: undefined
+  }, __jsx(react_spinners_DotLoader__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    size: 50,
+    color: color ? color : darkBlue,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 6
+    },
+    __self: undefined
+  }), __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {
+    id: "2803697451",
+    dynamic: [width ? width : "100%", height ? height : "calc(100vh - 140px)", marginTop ? marginTop : "0px"],
+    __self: undefined
+  }, `.loader-container.__jsx-style-dynamic-selector{width:${width ? width : "100%"};height:${height ? height : "calc(100vh - 140px)"};margin-top:${marginTop ? marginTop : "0px"};}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9BcnRodXJHb3VwaWwvRG9jdW1lbnRzL0RldmVsb3BtZW50L1Byb2plY3RzL1JlYWN0L2dhaW56LXdlYnNpdGUvZnJvbnRlbmQvY29tcG9uZW50cy9Mb2FkZXIuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBTWtCLEFBRzhDLG1DQUNDLG9DQUNJLHdDQUMxQyIsImZpbGUiOiIvVXNlcnMvQXJ0aHVyR291cGlsL0RvY3VtZW50cy9EZXZlbG9wbWVudC9Qcm9qZWN0cy9SZWFjdC9nYWluei13ZWJzaXRlL2Zyb250ZW5kL2NvbXBvbmVudHMvTG9hZGVyLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IERvdExvYWRlciBmcm9tIFwicmVhY3Qtc3Bpbm5lcnMvRG90TG9hZGVyXCI7XG5cbmNvbnN0IExvYWRlciA9ICh7IG1hcmdpblRvcCwgY29sb3IsIHdpZHRoLCBoZWlnaHQgfSkgPT4ge1xuICByZXR1cm4gKFxuICAgIDxkaXYgY2xhc3NOYW1lPVwibG9hZGVyLWNvbnRhaW5lciBkLWZsZXgganVzdGlmeS1jZW50ZXIgYWxpZ24tY2VudGVyXCI+XG4gICAgICA8RG90TG9hZGVyIHNpemU9ezUwfSBjb2xvcj17Y29sb3IgPyBjb2xvciA6IGRhcmtCbHVlfSAvPlxuICAgICAgPHN0eWxlIGpzeD57YFxuICAgICAgICAubG9hZGVyLWNvbnRhaW5lciB7XG4gICAgICAgICAgd2lkdGg6ICR7d2lkdGggPyB3aWR0aCA6IFwiMTAwJVwifTtcbiAgICAgICAgICBoZWlnaHQ6ICR7aGVpZ2h0ID8gaGVpZ2h0IDogXCJjYWxjKDEwMHZoIC0gMTQwcHgpXCJ9O1xuICAgICAgICAgIG1hcmdpbi10b3A6ICR7bWFyZ2luVG9wID8gbWFyZ2luVG9wIDogXCIwcHhcIn07XG4gICAgICAgIH1cbiAgICAgIGB9PC9zdHlsZT5cbiAgICA8L2Rpdj5cbiAgKTtcbn07XG5cbmV4cG9ydCBkZWZhdWx0IExvYWRlcjtcbiJdfQ== */
+/*@ sourceURL=/Users/ArthurGoupil/Documents/Development/Projects/React/gainz-website/frontend/components/Loader.js */`));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Loader);
 
 /***/ }),
 
@@ -2174,11 +2228,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_photo_gallery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_photo_gallery__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.js");
 /* harmony import */ var _components_ArtBloc__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/ArtBloc */ "./components/ArtBloc.js");
+/* harmony import */ var _components_Loader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Loader */ "./components/Loader.js");
 var _jsxFileName = "/Users/ArthurGoupil/Documents/Development/Projects/React/gainz-website/frontend/pages/paintings.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 
 
 
@@ -2202,7 +2258,7 @@ const Paintings = props => {
   const paintingsArr = [];
   const fetchPaintings = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(async () => {
     try {
-      const response = await axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://localhost:3100/paintings");
+      const response = await axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(`${"https://gainz-website.herokuapp.com"}/paintings`);
       setPaintings(response.data);
       response.data.forEach(painting => {
         paintingsArr.push({
@@ -2223,7 +2279,7 @@ const Paintings = props => {
   return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 38
+      lineNumber: 39
     },
     __self: undefined
   }, !isLoading ? __jsx(react_photo_gallery__WEBPACK_IMPORTED_MODULE_2___default.a, {
@@ -2244,22 +2300,22 @@ const Paintings = props => {
       artType: "paint",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 46
+        lineNumber: 47
       },
       __self: undefined
     })),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 40
+      lineNumber: 41
     },
     __self: undefined
-  }) : __jsx("span", {
+  }) : __jsx(_components_Loader__WEBPACK_IMPORTED_MODULE_5__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 57
+      lineNumber: 58
     },
     __self: undefined
-  }, "test"));
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Paintings);
@@ -2347,7 +2403,7 @@ miniRadius = "5px";
 
 /***/ }),
 
-/***/ 7:
+/***/ 4:
 /*!**********************************!*\
   !*** multi ./pages/paintings.js ***!
   \**********************************/
@@ -2444,6 +2500,17 @@ module.exports = require("react-is");
 /***/ (function(module, exports) {
 
 module.exports = require("react-photo-gallery");
+
+/***/ }),
+
+/***/ "react-spinners/DotLoader":
+/*!*******************************************!*\
+  !*** external "react-spinners/DotLoader" ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-spinners/DotLoader");
 
 /***/ }),
 
