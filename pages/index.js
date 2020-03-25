@@ -77,8 +77,8 @@ const Home = props => {
             transition: 0.5s;
           }
           .first-paint {
-            width: 191px;
-            height: 191px;
+            width: 100%;
+            height: 100%;
             filter: saturate(0.6) brightness(0.9);
             border-radius: 3px;
             position: absolute;
@@ -90,8 +90,8 @@ const Home = props => {
             transition: opacity 0.5s ease-in-out;
           }
           .second-paint {
-            width: 191px;
-            height: 191px;
+            width: 100%;
+            height: 100%;
             filter: saturate(0.6) brightness(0.9);
             border-radius: 3px;
             position: absolute;
