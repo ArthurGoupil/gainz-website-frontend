@@ -42,7 +42,7 @@ const Paintings = props => {
           margin={10}
           photos={paintingsGrid}
           limitNodeSearch={3}
-          targetRowHeight={450}
+          targetRowHeight={400}
           renderImage={({ index, photo, margin }) => (
             <ArtBloc
               key={paintings[index]._id}
