@@ -15,8 +15,8 @@
     "react-spinners": "^0.8.1"
   },
   "scripts": {
+    "dev": "next",
     "build": "next build",
-    "export": "next export",
-    "deploy": "yarn run build && yarn run export"
+    "start": "next start"
   }
 }
