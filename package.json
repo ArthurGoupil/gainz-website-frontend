@@ -15,8 +15,8 @@
     "react-spinners": "^0.8.1"
   },
   "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "build": "rm -rf .next out && next build && next export",
+    "dev": "export $(cat .env | xargs) && next -p $NPM_PACKAGE_PORT"
   }
 }
