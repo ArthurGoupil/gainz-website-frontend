@@ -13,7 +13,9 @@ const Home = props => {
 
   const fetchPaintings = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:3100/paintings/home`);
+      const response = await axios.get(
+        `${process.env.BACKEND_URL}/paintings/home`
+      );
       setHomePaintingsArr(response.data);
       setIsLoading(false);
     } catch (e) {
