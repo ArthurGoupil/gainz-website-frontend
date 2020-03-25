@@ -68,21 +68,21 @@ const Home = props => {
             position: relative;
           }
           .paints-container {
-            width: 191px;
-            height: 191px;
-            margin-top: 90px;
+            height: 24vh;
+            width: 24vh;
+            margin-top: 10vh;
             box-shadow: 3px 3px 2px 1px #2a2a2a;
             position: relative;
             opacity: ${!isLoading ? 1 : 0};
             transition: 0.5s;
+            border-radius: 3px;
+            overflow: hidden;
           }
+
           .first-paint {
             width: 100%;
             height: 100%;
             filter: saturate(0.6) brightness(0.9);
-            border-radius: 3px;
-            position: absolute;
-            top: 0;
             opacity: ${!firstImgOn ? 1 : 0};
             -webkit-transition: opacity 0.5s ease-in-out;
             -moz-transition: opacity 0.5s ease-in-out;
@@ -93,7 +93,6 @@ const Home = props => {
             width: 100%;
             height: 100%;
             filter: saturate(0.6) brightness(0.9);
-            border-radius: 3px;
             position: absolute;
             top: 0;
             opacity: ${!firstImgOn ? 0 : 1};
@@ -105,6 +104,12 @@ const Home = props => {
           .button-carousel {
             width: 191px;
             height: 191px;
+          }
+          @media only screen and (max-width: 769px) {
+            .paints-container {
+              height: 20vh;
+              width: 20vh;
+            }
           }
         `}
       </style>
