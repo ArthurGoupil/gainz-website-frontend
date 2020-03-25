@@ -1,14 +1,13 @@
-import DotLoader from "react-spinners/DotLoader";
+import BarLoader from "react-spinners/BarLoader";
 
 const Loader = ({ marginTop, color, width, height }) => {
   return (
     <div className="loader-container d-flex justify-center align-center">
-      <DotLoader size={50} color={color ? color : darkBlue} />
+      <BarLoader size={60} color={color ? color : middleBlue} />
       <style jsx>{`
         .loader-container {
           width: ${width ? width : "100%"};
-          height: ${height ? height : "calc(100vh - 140px)"};
-          margin-top: ${marginTop ? marginTop : "0px"};
+          height: ${height ? height : "calc(60vh)"};
         }
       `}</style>
     </div>

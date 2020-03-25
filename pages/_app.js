@@ -17,6 +17,8 @@ function MyApp({ Component, pageProps }) {
           }
           @import url("https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap");
           html,
+          input,
+          textarea,
           button {
             font-size: 62.5%;
             font-family: "Quicksand", sans-serif;
@@ -34,7 +36,8 @@ function MyApp({ Component, pageProps }) {
           }
           body,
           input,
-          button {
+          button,
+          textarea {
             font-size: 1.4rem;
             line-height: 1.9rem;
             color: ${darkBlue};

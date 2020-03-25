@@ -1,6 +1,5 @@
 import { useState } from "react";
-
-import Loader from "./Loader";
+import Link from "next/link";
 
 const CompleteArtBloc = ({ art, isLoading }) => {
   const [displayModal, setDisplayModal] = useState(false);
@@ -20,8 +19,6 @@ const CompleteArtBloc = ({ art, isLoading }) => {
       } else return "90%";
     }
   };
-
-  console.log(isLoading);
 
   const getArtShadow = (format, displayModal) => {
     if (!displayModal) {
@@ -90,9 +87,11 @@ const CompleteArtBloc = ({ art, isLoading }) => {
           <span className="art-info">{art.price}&nbsp;€</span>
         </div>
         {!art.isSold && (
-          <button className="more">
-            <a href="#">Interested ? Contact us.</a>
-          </button>
+          <Link href="/more-infos/[id]" as={`/more-infos/${art._id}`}>
+            <a>
+              <button className="more">Interested ? Contact us.</button>
+            </a>
+          </Link>
         )}
       </div>
       <style jsx>{`
@@ -180,6 +179,7 @@ const CompleteArtBloc = ({ art, isLoading }) => {
         }
         .more:hover {
           background-color: ${lightGrey};
+          cursor: pointer;
         }
       `}</style>
     </div>

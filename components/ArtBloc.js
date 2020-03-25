@@ -2,10 +2,7 @@ import Link from "next/link";
 
 const ArtBloc = ({ _id, name, photo, margin, artType, width }) => {
   return (
-    <Link
-      href={artType === "paint" ? "/paintings/[id]" : "/papers/[id]"}
-      as={artType === "paint" ? `/paintings/${_id}` : `/papers/${_id}`}
-    >
+    <Link href={`/${artType}/[id]`} as={`/${artType}/${_id}`}>
       <div className="art-container d-flex d-flex justify-center align-center">
         <img className="art" {...photo} alt={name} />
         <div className="art-infos d-flex flex-column align-center">

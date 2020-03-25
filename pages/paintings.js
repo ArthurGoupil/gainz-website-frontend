@@ -50,7 +50,7 @@ const Paintings = props => {
               photo={photo}
               margin={margin}
               {...paintings[index]}
-              artType="paint"
+              artType="paintings"
             />
           )}
         />
