@@ -17,7 +17,6 @@ const MoreInfos = props => {
           background-image: url("/images/home5-empty-nogainz.jpg");
           background-size: cover;
           background-position: center;
-          height: calc(100vh - 160px);
           width: calc(100vw - 40px);
         }
       `}</style>

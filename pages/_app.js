@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
       <style jsx global>
         {`
-          // MAIN
+          /* MAIN */
           * {
             box-sizing: border-box;
           }
@@ -40,14 +40,14 @@ function MyApp({ Component, pageProps }) {
           textarea {
             font-size: 1.4rem;
             line-height: 1.9rem;
-            color: ${darkBlue};
+            color: ${middleBlue};
           }
           main {
             padding: 0 20px 20px 20px;
           }
-          // TITLES
+          /* TITLES */
           h1 {
-            color: ${darkBlue};
+            color: ${middleBlue};
             display: block;
             font-size: 2.4rem;
             line-height: 2.8rem;
@@ -55,27 +55,27 @@ function MyApp({ Component, pageProps }) {
             margin-bottom: 10px;
           }
           h2 {
-            color: ${darkBlue};
+            color: ${middleBlue};
             display: block;
-            font-size: 2rem;
-            line-height: 2.4rem;
+            font-size: 1.6rem;
+            line-height: 2rem;
           }
           h3 {
-            color: ${darkBlue};
+            color: ${middleBlue};
             display: block;
             font-size: 1.6rem;
             line-height: 1.8rem;
             font-weight: bold;
           }
           h4 {
-            color: ${darkBlue};
+            color: ${middleBlue};
             display: block;
             font-size: 1.4rem;
             line-height: 1.7rem;
             font-weight: bold;
           }
 
-          // LINKS
+          /* LINKS */
           a {
             text-decoration: none;
           }
@@ -86,18 +86,51 @@ function MyApp({ Component, pageProps }) {
             color: inherit;
           }
 
-          // FONTS
+          /* FONTS */
           b {
             font-weight: bold;
           }
 
-          // CONTAINER
+          /* INPUTS */
+          input:not(.submit),
+          textarea {
+            border-radius: ${miniRadius};
+            border: none;
+            margin: 5px 0 10px 0;
+            padding: 10px 10px;
+            background-color: ${lightGrey};
+          }
+          input {
+            width: 100%;
+            height: 40px;
+            padding: 10px 10px;
+          }
+          textarea {
+            min-width: 400px;
+            max-width: 400px;
+            min-height: 100px;
+          }
+          input:-webkit-autofill,
+          input:-webkit-autofill:hover,
+          input:-webkit-autofill:focus,
+          textarea:-webkit-autofill,
+          textarea:-webkit-autofill:hover,
+          textarea:-webkit-autofill:focus,
+          select:-webkit-autofill,
+          select:-webkit-autofill:hover,
+          select:-webkit-autofill:focus {
+            border: 2px solid ${middleBlue};
+            -webkit-box-shadow: 0 0 0px 1000px ${lightGrey} inset;
+            transition: background-color 5000s ease-in-out 0s;
+          }
+
+          /* CONTAINER */
           .container {
             width: 96vw;
             max-width: ${container};
           }
 
-          // FLEXBOX
+          /* FLEXBOX */
           .d-flex {
             display: flex;
           }
