@@ -1,6 +1,8 @@
 // import App from 'next/app'
 import "../styles/reset.css";
 
+import Head from "next/head";
+
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 library.add(faArrowLeft);
@@ -8,6 +10,10 @@ library.add(faArrowLeft);
 function MyApp({ Component, pageProps }) {
   return (
     <>
+      <Head>
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <title>Gainz</title>
+      </Head>
       <Component {...pageProps} />
       <style jsx global>
         {`
@@ -78,12 +84,19 @@ function MyApp({ Component, pageProps }) {
           /* LINKS */
           a {
             text-decoration: none;
+            cursor: pointer;
+          }
+          a:hover {
+            color: ${darkBlue};
           }
           a:link {
             color: inherit;
           }
           a:visited {
-            color: inherit;
+            color: ${middleBlue};
+          }
+          a:visited:hover {
+            color: ${darkBlue};
           }
 
           /* FONTS */
@@ -99,6 +112,19 @@ function MyApp({ Component, pageProps }) {
             margin: 5px 0 10px 0;
             padding: 10px 10px;
             background-color: ${lightGrey};
+          }
+          button.submit {
+            height: 40px;
+            margin-top: 10px;
+            background-color: ${middleBlue};
+            color: white;
+            font-weight: bold;
+            border-radius: ${miniRadius};
+            border: none;
+            padding: 10px 10px;
+          }
+          button.submit:hover {
+            background-color: ${darkBlue};
           }
           input {
             width: 100%;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-const CompleteArtBloc = ({ art, isLoading }) => {
+const CompleteArtBloc = ({ art, artType, isLoading }) => {
   const [displayModal, setDisplayModal] = useState(false);
 
   const getArtMaxWidth = (format, displayModal) => {
@@ -16,7 +16,7 @@ const CompleteArtBloc = ({ art, isLoading }) => {
     } else {
       if (displayModal) {
         return "90vw";
-      } else return "90%";
+      } else return "75%";
     }
   };
 
@@ -87,7 +87,10 @@ const CompleteArtBloc = ({ art, isLoading }) => {
           <span className="art-info">{art.price}&nbsp;€</span>
         </div>
         {!art.isSold && (
-          <Link href="/more-infos/[id]" as={`/more-infos/${art._id}`}>
+          <Link
+            href="/more-infos/[id]"
+            as={`/more-infos/${artType}-${art._id}`}
+          >
             <a>
               <button className="more">Interested ? Contact us.</button>
             </a>

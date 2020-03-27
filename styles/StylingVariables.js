@@ -4,8 +4,9 @@ spaceBetweenSections = "30px";
 spaceBetweenBlocks = "20px";
 
 // COLOURS
-middleBlue = "#0A243C";
+darkBlue = "#0B132B";
 middleBlue = "#1C2541";
+greyBlue = "#70778d";
 lightGrey = "#EDF2F4";
 
 // STYLING

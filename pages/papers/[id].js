@@ -33,7 +33,7 @@ const Papers = props => {
 
   return (
     <Layout backButtonLink="/papers">
-      <CompleteArtBloc art={paper} isLoading={isLoading} />
+      <CompleteArtBloc art={paper} artType="papers" isLoading={isLoading} />
     </Layout>
   );
 };

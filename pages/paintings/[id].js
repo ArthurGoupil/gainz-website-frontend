@@ -32,7 +32,11 @@ const Paintings = props => {
 
   return (
     <Layout backButtonLink="/paintings">
-      <CompleteArtBloc art={painting} isLoading={isLoading} />
+      <CompleteArtBloc
+        art={painting}
+        artType="paintings"
+        isLoading={isLoading}
+      />
     </Layout>
   );
 };

@@ -24,7 +24,7 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/papers/[id]": [
+    "/paintings/[id]": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

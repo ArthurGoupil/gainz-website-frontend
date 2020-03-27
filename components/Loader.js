@@ -1,9 +1,12 @@
-import BarLoader from "react-spinners/BarLoader";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
-const Loader = ({ marginTop, color, width, height }) => {
+const Loader = ({ color, width, height, size }) => {
   return (
     <div className="loader-container d-flex justify-center align-center">
-      <BarLoader size={60} color={color ? color : middleBlue} />
+      <ScaleLoader
+        height={size ? size : 15}
+        color={color ? color : middleBlue}
+      />
       <style jsx>{`
         .loader-container {
           width: ${width ? width : "100%"};
