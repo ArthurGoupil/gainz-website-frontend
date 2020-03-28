@@ -2,11 +2,16 @@ import "../styles/StylingVariables";
 
 import Header from "./Header";
 
-const Layout = ({ children, backButtonLink }) => {
+const Layout = ({ children, padding }) => {
   return (
     <>
-      <Header backButtonLink={backButtonLink} />
+      <Header />
       <main>{children}</main>
+      <style jsx>{`
+        main {
+          padding: ${padding ? padding : "0 20px 20px 20px"};
+        }
+      `}</style>
     </>
   );
 };

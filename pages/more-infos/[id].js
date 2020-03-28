@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 
 import axios from "axios";
 
-import Layout from "../../components/Layout";
 import ContactForm from "../../components/ContactForm";
 
 const MoreInfos = props => {
@@ -37,7 +36,7 @@ const MoreInfos = props => {
   }, [artTypeId, id, artType]);
 
   return (
-    <Layout>
+    <>
       <div className="more-infos d-flex justify-center">
         <div className="form-container">
           <ContactForm art={art} isLoading={isLoading} artType={artType} />
@@ -56,7 +55,7 @@ const MoreInfos = props => {
           transition: 0.5s;
         }
       `}</style>
-    </Layout>
+    </>
   );
 };
 

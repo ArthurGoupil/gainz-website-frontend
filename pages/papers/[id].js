@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 
 import axios from "axios";
 
-import Layout from "../../components/Layout";
 import CompleteArtBloc from "../../components/CompleteArtBloc";
 
 const Papers = props => {
@@ -31,11 +30,7 @@ const Papers = props => {
     fetchPaper();
   }, [id]);
 
-  return (
-    <Layout backButtonLink="/papers">
-      <CompleteArtBloc art={paper} artType="papers" isLoading={isLoading} />
-    </Layout>
-  );
+  return <CompleteArtBloc art={paper} artType="papers" isLoading={isLoading} />;
 };
 
 export default Papers;

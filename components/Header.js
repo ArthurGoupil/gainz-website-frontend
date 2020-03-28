@@ -1,10 +1,6 @@
-import Link from "next/link";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import ActiveLink from "./ActiveLink";
 
-const Header = ({ backButtonLink }) => {
+const Header = () => {
   return (
     <>
       <header className="d-flex flex-column align-center justify-center">
@@ -16,15 +12,6 @@ const Header = ({ backButtonLink }) => {
         </ActiveLink>
       </header>
       <nav className="d-flex justify-center align-center">
-        {backButtonLink && (
-          <Link href={`${backButtonLink}`}>
-            <a className="d-flex justify-center align-center">
-              <div className="back-icon">
-                <FontAwesomeIcon icon="arrow-left" />
-              </div>
-            </a>
-          </Link>
-        )}
         <div className="nav-elements d-flex space-between">
           <ActiveLink activeClassName="active-link" href="/">
             <span>home</span>
@@ -54,7 +41,6 @@ const Header = ({ backButtonLink }) => {
             background-color: rgba(255, 255, 255, 1);
             position: sticky;
             top: 0;
-            position: relative;
             z-index: 2;
           }
           .nav-elements {
@@ -62,11 +48,6 @@ const Header = ({ backButtonLink }) => {
           }
           .active-link {
             font-weight: bold;
-          }
-          .back-icon {
-            position: absolute;
-            left: 30px;
-            font-size: 2rem;
           }
           .logo-container {
             position: relative;

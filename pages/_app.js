@@ -1,20 +1,22 @@
-// import App from 'next/app'
-import "../styles/reset.css";
-
 import Head from "next/head";
+import { useRouter } from "next/router";
 
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-library.add(faArrowLeft);
+import { PageTransition } from "next-page-transitions";
+
+import "../styles/reset.css";
+import Layout from "../components/Layout";
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
   return (
-    <>
+    <Layout>
       <Head>
         <link rel="shortcut icon" href="/favicon.ico" />
         <title>Gainz</title>
       </Head>
-      <Component {...pageProps} />
+      <PageTransition timeout={300} classNames="page-transition">
+        <Component {...pageProps} key={router.pathname} />
+      </PageTransition>
       <style jsx global>
         {`
           /* MAIN */
@@ -47,9 +49,6 @@ function MyApp({ Component, pageProps }) {
             font-size: 1.4rem;
             line-height: 1.9rem;
             color: ${middleBlue};
-          }
-          main {
-            padding: 0 20px 20px 20px;
           }
           /* TITLES */
           h1 {
@@ -122,6 +121,7 @@ function MyApp({ Component, pageProps }) {
             border-radius: ${miniRadius};
             border: none;
             padding: 10px 10px;
+            cursor: pointer;
           }
           button.submit:hover {
             background-color: ${darkBlue};
@@ -178,10 +178,25 @@ function MyApp({ Component, pageProps }) {
           .flex-wrap {
             flex-wrap: wrap;
           }
+
+          /* PAGE TRANSITIONS */
+          .page-transition-enter {
+            opacity: 0;
+          }
+          .page-transition-enter-active {
+            opacity: 1;
+            transition: opacity 200ms;
+          }
+          .page-transition-exit {
+            opacity: 1;
+          }
+          .page-transition-exit-active {
+            opacity: 0;
+            transition: opacity 200ms;
+          }
         `}
       </style>
-      ;
-    </>
+    </Layout>
   );
 }
 

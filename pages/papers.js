@@ -1,11 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
 
 import axios from "axios";
-import Gallery from "react-photo-gallery";
 
-import Layout from "../components/Layout";
-import ArtBloc from "../components/ArtBloc";
 import Loader from "../components/Loader";
+import Filters from "../components/Filters";
+import ArtsGrid from "../components/ArtsGrid";
 
 const Papers = props => {
   const [papers, setPapers] = useState([]);
@@ -19,6 +18,9 @@ const Papers = props => {
       setPapers(response.data);
       response.data.forEach(paper => {
         papersArr.push({
+          _id: paper._id,
+          name: paper.name,
+          isSold: paper.isSold,
           src: paper.smallImage,
           width: paper.width,
           height: paper.height
@@ -36,28 +38,14 @@ const Papers = props => {
   }, []);
 
   return (
-    <Layout>
+    <>
+      <Filters arts={papers} setArtsGrid={setPapersGrid} />
       {!isLoading ? (
-        <Gallery
-          margin={10}
-          photos={papersGrid}
-          limitNodeSearch={5}
-          targetRowHeight={300}
-          renderImage={({ index, photo, margin }) => (
-            <ArtBloc
-              key={papers[index]._id}
-              index={index}
-              photo={photo}
-              margin={margin}
-              {...papers[index]}
-              artType="papers"
-            />
-          )}
-        />
+        <ArtsGrid artsGrid={papersGrid} arts={papers} artType="papers" />
       ) : (
         <Loader />
       )}
-    </Layout>
+    </>
   );
 };
 

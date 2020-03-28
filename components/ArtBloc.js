@@ -1,13 +1,21 @@
 import Link from "next/link";
 
-const ArtBloc = ({ _id, name, photo, margin, artType, width }) => {
+const ArtBloc = ({ photo, margin, artType }) => {
+  const { _id, name, isSold } = photo;
   return (
     <Link href={`/${artType}/[id]`} as={`/${artType}/${_id}`}>
       <div className="art-container d-flex d-flex justify-center align-center">
-        <img className="art" {...photo} alt={name} />
+        <img
+          className="art"
+          src={photo.src}
+          width={photo.width}
+          height={photo.height}
+          alt={name}
+        />
         <div className="art-infos d-flex flex-column align-center">
           <div className="art-name">{name.toUpperCase()}</div>
         </div>
+        <div className="tag"></div>
         <style jsx>
           {`
             .art-container {
@@ -36,6 +44,15 @@ const ArtBloc = ({ _id, name, photo, margin, artType, width }) => {
             .art-container:hover .art-name {
               opacity: 1;
               transition: 0.2s;
+            }
+            .tag {
+              width: 10px;
+              height: 10px;
+              border-radius: 10px;
+              position: absolute;
+              bottom: 20px;
+              right: 20px;
+              background-color: ${isSold ? "red" : "green"};
             }
           `}
         </style>

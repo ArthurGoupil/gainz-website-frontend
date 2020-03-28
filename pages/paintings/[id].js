@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 
 import axios from "axios";
 
-import Layout from "../../components/Layout";
 import CompleteArtBloc from "../../components/CompleteArtBloc";
 
 const Paintings = props => {
@@ -31,13 +30,7 @@ const Paintings = props => {
   }, [id]);
 
   return (
-    <Layout backButtonLink="/paintings">
-      <CompleteArtBloc
-        art={painting}
-        artType="paintings"
-        isLoading={isLoading}
-      />
-    </Layout>
+    <CompleteArtBloc art={painting} artType="paintings" isLoading={isLoading} />
   );
 };
 

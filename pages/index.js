@@ -2,8 +2,6 @@ import { useState, useEffect, useCallback } from "react";
 
 import axios from "axios";
 
-import Layout from "../components/Layout";
-
 const Home = props => {
   const [homePaintingsArr, setHomePaintingsArr] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +26,7 @@ const Home = props => {
   }, []);
 
   return (
-    <Layout>
+    <>
       <div className="home d-flex justify-center">
         <div
           className="paints-container"
@@ -113,7 +111,7 @@ const Home = props => {
           }
         `}
       </style>
-    </Layout>
+    </>
   );
 };
 

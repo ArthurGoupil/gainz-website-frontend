@@ -1,11 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
 
 import axios from "axios";
-import Gallery from "react-photo-gallery";
 
-import Layout from "../components/Layout";
-import ArtBloc from "../components/ArtBloc";
 import Loader from "../components/Loader";
+import Filters from "../components/Filters";
+import ArtsGrid from "../components/ArtsGrid";
 
 const Paintings = props => {
   const [paintings, setPaintings] = useState([]);
@@ -19,6 +18,9 @@ const Paintings = props => {
       setPaintings(response.data);
       response.data.forEach(painting => {
         paintingsArr.push({
+          _id: painting._id,
+          name: painting.name,
+          isSold: painting.isSold,
           src: painting.smallImage,
           width: painting.width,
           height: painting.height
@@ -36,28 +38,18 @@ const Paintings = props => {
   }, []);
 
   return (
-    <Layout>
+    <>
+      <Filters arts={paintings} setArtsGrid={setPaintingsGrid} />
       {!isLoading ? (
-        <Gallery
-          margin={10}
-          photos={paintingsGrid}
-          limitNodeSearch={3}
-          targetRowHeight={400}
-          renderImage={({ index, photo, margin }) => (
-            <ArtBloc
-              key={paintings[index]._id}
-              index={index}
-              photo={photo}
-              margin={margin}
-              {...paintings[index]}
-              artType="paintings"
-            />
-          )}
+        <ArtsGrid
+          artsGrid={paintingsGrid}
+          arts={paintings}
+          artType="paintings"
         />
       ) : (
         <Loader />
       )}
-    </Layout>
+    </>
   );
 };
 
