@@ -1,21 +1,21 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 const ArtBloc = ({ photo, margin, artType }) => {
   const { _id, name, isSold } = photo;
   return (
     <Link href={`/${artType}/[id]`} as={`/${artType}/${_id}`}>
-      <div className="art-container d-flex d-flex justify-center align-center">
+      <div className='art-container d-flex d-flex justify-center align-center'>
         <img
-          className="art"
+          className='art'
           src={photo.src}
           width={photo.width}
           height={photo.height}
           alt={name}
         />
-        <div className="art-infos d-flex flex-column align-center">
-          <div className="art-name">{name.toUpperCase()}</div>
+        <div className='art-infos d-flex flex-column align-center'>
+          <div className='art-name'>{name.toUpperCase()}</div>
         </div>
-        <div className="tag"></div>
+        <div className='tag'></div>
         <style jsx>
           {`
             .art-container {
@@ -52,7 +52,7 @@ const ArtBloc = ({ photo, margin, artType }) => {
               position: absolute;
               bottom: 20px;
               right: 20px;
-              background-color: ${isSold ? "red" : "green"};
+              background-color: ${isSold ? 'red' : 'green'};
             }
           `}
         </style>

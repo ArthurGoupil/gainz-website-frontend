@@ -1,9 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
-import { useRouter } from "next/router";
+import { useState, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/router';
 
-import axios from "axios";
+import axios from 'axios';
 
-import CompleteArtBloc from "../../components/CompleteArtBloc";
+import CompleteArtBloc from '../../components/CompleteArtBloc';
 
 const Paintings = props => {
   const router = useRouter();
@@ -30,7 +30,7 @@ const Paintings = props => {
   }, [id]);
 
   return (
-    <CompleteArtBloc art={painting} artType="paintings" isLoading={isLoading} />
+    <CompleteArtBloc art={painting} artType='paintings' isLoading={isLoading} />
   );
 };
 

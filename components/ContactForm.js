@@ -1,21 +1,21 @@
-import { useState, useEffect, useCallback } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { useState, useEffect, useCallback } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-import axios from "axios";
+import axios from 'axios';
 
-import Loader from "./Loader";
+import Loader from './Loader';
 
 const ContactForm = ({ art, artType, isLoading }) => {
   const router = useRouter();
   const [formStep, setFormStep] = useState(1);
   const [formLoading, setFormLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [tel, setTel] = useState("");
-  const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [tel, setTel] = useState('');
+  const [message, setMessage] = useState('');
   const [counter, setCounter] = useState(null);
 
   const handleLastNameChange = event => {
@@ -58,13 +58,13 @@ const ContactForm = ({ art, artType, isLoading }) => {
         console.error(e.message);
       }
     } else if (!email && !message) {
-      setErrorMessage("Please fill in email and message fields.");
+      setErrorMessage('Please fill in email and message fields.');
     } else if (!message) {
       setErrorMessage(
-        "Please write a short message to explain us what do you need."
+        'Please write a short message to explain us what do you need.'
       );
     } else if (!email) {
-      setErrorMessage("Please fill in the email field.");
+      setErrorMessage('Please fill in the email field.');
     }
   };
 
@@ -78,94 +78,94 @@ const ContactForm = ({ art, artType, isLoading }) => {
   }, [counter]);
 
   return (
-    <div className="form-container">
+    <div className='form-container'>
       {formStep === 1
         ? !isLoading && (
-            <form onSubmit={handleSubmit} className="d-flex flex-column">
-              <div className="titles-container d-flex space-between align-center">
+            <form onSubmit={handleSubmit} className='d-flex flex-column'>
+              <div className='titles-container d-flex space-between align-center'>
                 <div>
                   <h1>About "{art.name}"</h1>
                   <h2>Please tell us a bit more about what you need.</h2>
                 </div>
                 <img
-                  className="art-preview"
+                  className='art-preview'
                   src={art.smallImage}
                   alt={art.name}
                 />
               </div>
-              <div className="d-flex space-between">
-                <div className="input-50 d-flex flex-column">
-                  <label htmlFor="last-name">Last name (optionnal)</label>
+              <div className='d-flex space-between'>
+                <div className='input-50 d-flex flex-column'>
+                  <label htmlFor='last-name'>Last name (optionnal)</label>
                   <input
-                    type="text"
-                    placeholder="Dupont"
-                    name="last-name"
-                    autoComplete="family-name"
+                    type='text'
+                    placeholder='Dupont'
+                    name='last-name'
+                    autoComplete='family-name'
                     value={lastName}
                     onChange={handleLastNameChange}
                   />
                 </div>
-                <div className="input-50 d-flex flex-column">
-                  <label htmlFor="name">Name (optionnal)</label>
+                <div className='input-50 d-flex flex-column'>
+                  <label htmlFor='name'>Name (optionnal)</label>
                   <input
-                    type="text"
-                    placeholder="Martin"
-                    name="name"
-                    autoComplete="given-name"
+                    type='text'
+                    placeholder='Martin'
+                    name='name'
+                    autoComplete='given-name'
                     value={name}
                     onChange={handleNameChange}
                   />
                 </div>
               </div>
-              <div className="d-flex space-between">
-                <div className="input-50 d-flex flex-column">
-                  <label htmlFor="email">Email</label>
+              <div className='d-flex space-between'>
+                <div className='input-50 d-flex flex-column'>
+                  <label htmlFor='email'>Email</label>
                   <input
-                    type="email"
-                    placeholder="martindupont@mail.com"
-                    name="email"
-                    autoComplete="email"
+                    type='email'
+                    placeholder='martindupont@mail.com'
+                    name='email'
+                    autoComplete='email'
                     value={email}
                     onChange={handleEmailChange}
                   />
                 </div>
-                <div className="input-50 d-flex flex-column">
-                  <label htmlFor="tel">Phone number (optionnal)</label>
+                <div className='input-50 d-flex flex-column'>
+                  <label htmlFor='tel'>Phone number (optionnal)</label>
                   <input
-                    type="tel"
-                    placeholder="06 12 34 56 78"
-                    name="tel"
-                    autoComplete="tel"
+                    type='tel'
+                    placeholder='06 12 34 56 78'
+                    name='tel'
+                    autoComplete='tel'
                     value={tel}
                     onChange={handleTelChange}
                   />
                 </div>
               </div>
-              <label htmlFor="message">Your message</label>
+              <label htmlFor='message'>Your message</label>
               <textarea
-                placeholder="message"
-                name="message"
+                placeholder='message'
+                name='message'
                 value={message}
                 onChange={handleMessageChange}
               />
-              <div className="error-message">{errorMessage}</div>
-              <button className="submit" type="submit">
+              <div className='error-message'>{errorMessage}</div>
+              <button className='submit' type='submit'>
                 {!formLoading ? (
-                  "Send"
+                  'Send'
                 ) : (
-                  <Loader height="100%" color="white" size={8} />
+                  <Loader height='100%' color='white' size={8} />
                 )}
               </button>
             </form>
           )
         : formStep === 2 && (
-            <div className="scnd-step-message d-flex flex-column">
+            <div className='scnd-step-message d-flex flex-column'>
               <span>
                 <b>Your message has been sent.</b>
               </span>
               <span>Thanks for your interest in Gainz work.</span>
-              <div className="counter-text">
-                Back to "{artType === "papers" ? "work on paper" : "paintings"}"
+              <div className='counter-text'>
+                Back to "{artType === 'papers' ? 'work on paper' : 'paintings'}"
                 page in ... <b>{counter} sec</b>
               </div>
             </div>

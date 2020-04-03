@@ -1,9 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
-import { useRouter } from "next/router";
+import { useState, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/router';
 
-import axios from "axios";
+import axios from 'axios';
 
-import CompleteArtBloc from "../../components/CompleteArtBloc";
+import CompleteArtBloc from '../../components/CompleteArtBloc';
 
 const Papers = props => {
   const router = useRouter();
@@ -30,7 +30,7 @@ const Papers = props => {
     fetchPaper();
   }, [id]);
 
-  return <CompleteArtBloc art={paper} artType="papers" isLoading={isLoading} />;
+  return <CompleteArtBloc art={paper} artType='papers' isLoading={isLoading} />;
 };
 
 export default Papers;

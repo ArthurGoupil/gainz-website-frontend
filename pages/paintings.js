@@ -1,10 +1,10 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from 'react';
 
-import axios from "axios";
+import axios from 'axios';
 
-import Loader from "../components/Loader";
-import Filters from "../components/Filters";
-import ArtsGrid from "../components/ArtsGrid";
+import Loader from '../components/Loader';
+import Filters from '../components/Filters';
+import ArtsGrid from '../components/ArtsGrid';
 
 const Paintings = props => {
   const [paintings, setPaintings] = useState([]);
@@ -44,7 +44,7 @@ const Paintings = props => {
         <ArtsGrid
           artsGrid={paintingsGrid}
           arts={paintings}
-          artType="paintings"
+          artType='paintings'
         />
       ) : (
         <Loader />

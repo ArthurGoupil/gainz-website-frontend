@@ -1,28 +1,28 @@
-import ActiveLink from "./ActiveLink";
+import ActiveLink from './ActiveLink';
 
 const Header = () => {
   return (
     <>
-      <header className="d-flex flex-column align-center justify-center">
-        <ActiveLink href="/">
-          <div className="logo-container d-flex justify-center align-center">
-            <img className="logo" src="/logo/logo-gainz.png" alt="logo-gainz" />
-            <div className="gainz-text d-flex justify-center">GAINZ</div>
+      <header className='d-flex flex-column align-center justify-center'>
+        <ActiveLink href='/'>
+          <div className='logo-container d-flex justify-center align-center'>
+            <img className='logo' src='/logo/logo-gainz.svg' alt='logo-gainz' />
+            <div className='gainz-text d-flex justify-center'>GAINZ</div>
           </div>
         </ActiveLink>
       </header>
-      <nav className="d-flex justify-center align-center">
-        <div className="nav-elements d-flex space-between">
-          <ActiveLink activeClassName="active-link" href="/">
+      <nav className='d-flex justify-center align-center'>
+        <div className='nav-elements d-flex space-between'>
+          <ActiveLink activeClassName='active-link' href='/'>
             <span>home</span>
           </ActiveLink>
-          <ActiveLink activeClassName="active-link" href="/paintings">
+          <ActiveLink activeClassName='active-link' href='/paintings'>
             <span>paintings</span>
           </ActiveLink>
-          <ActiveLink activeClassName="active-link" href="/papers">
+          <ActiveLink activeClassName='active-link' href='/papers'>
             <span>work on paper</span>
           </ActiveLink>
-          <ActiveLink activeClassName="active-link" href="/about">
+          <ActiveLink activeClassName='active-link' href='/about'>
             <span>about</span>
           </ActiveLink>
         </div>

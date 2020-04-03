@@ -1,20 +1,20 @@
-import Head from "next/head";
-import { useRouter } from "next/router";
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 
-import { PageTransition } from "next-page-transitions";
+import { PageTransition } from 'next-page-transitions';
 
-import "../styles/reset.css";
-import Layout from "../components/Layout";
+import '../styles/reset.css';
+import Layout from '../components/Layout';
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   return (
     <Layout>
       <Head>
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel='shortcut icon' href='/favicon.ico' />
         <title>Gainz</title>
       </Head>
-      <PageTransition timeout={300} classNames="page-transition">
+      <PageTransition timeout={300} classNames='page-transition'>
         <Component {...pageProps} key={router.pathname} />
       </PageTransition>
       <style jsx global>
@@ -23,13 +23,13 @@ function MyApp({ Component, pageProps }) {
           * {
             box-sizing: border-box;
           }
-          @import url("https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap");
+          @import url('https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap');
           html,
           input,
           textarea,
           button {
             font-size: 62.5%;
-            font-family: "Quicksand", sans-serif;
+            font-family: 'Quicksand', sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;

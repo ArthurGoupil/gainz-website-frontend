@@ -1,9 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
-import { useRouter } from "next/router";
+import { useState, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/router';
 
-import axios from "axios";
+import axios from 'axios';
 
-import ContactForm from "../../components/ContactForm";
+import ContactForm from '../../components/ContactForm';
 
 const MoreInfos = props => {
   const router = useRouter();
@@ -15,8 +15,8 @@ const MoreInfos = props => {
 
   const fetchArt = useCallback(async () => {
     if (artTypeId) {
-      setArtType(artTypeId.substr(0, artTypeId.indexOf("-")));
-      setId(artTypeId.substr(artTypeId.indexOf("-") + 1, artTypeId.length - 1));
+      setArtType(artTypeId.substr(0, artTypeId.indexOf('-')));
+      setId(artTypeId.substr(artTypeId.indexOf('-') + 1, artTypeId.length - 1));
       if (id && artType) {
         try {
           const response = await axios.get(
@@ -37,14 +37,14 @@ const MoreInfos = props => {
 
   return (
     <>
-      <div className="more-infos d-flex justify-center">
-        <div className="form-container">
+      <div className='more-infos d-flex justify-center'>
+        <div className='form-container'>
           <ContactForm art={art} isLoading={isLoading} artType={artType} />
         </div>
       </div>
       <style jsx>{`
         .more-infos {
-          background-image: url("/images/home5-empty-nogainz.jpg");
+          background-image: url('/images/home5-empty-nogainz.jpg');
           background-size: cover;
           background-position: center;
           width: calc(100vw - 40px);

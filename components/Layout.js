@@ -1,6 +1,6 @@
-import "../styles/StylingVariables";
+import '../styles/StylingVariables';
 
-import Header from "./Header";
+import Header from './Header';
 
 const Layout = ({ children, padding }) => {
   return (
@@ -9,7 +9,7 @@ const Layout = ({ children, padding }) => {
       <main>{children}</main>
       <style jsx>{`
         main {
-          padding: ${padding ? padding : "0 20px 20px 20px"};
+          padding: ${padding ? padding : '0 20px 20px 20px'};
         }
       `}</style>
     </>
