@@ -1,16 +1,33 @@
+import { useState } from 'react';
 import Link from 'next/link';
 
 const ArtBloc = ({ photo, margin, artType }) => {
-  const { _id, name, isSold } = photo;
+  const [imgIsLoading, setImgIsLoading] = useState(true);
+  const [previewImgIsLoading, setPreviewImgIsLoading] = useState(true);
+
+  const { _id, name, isSold, src, previewImage, width, height } = photo;
   return (
     <Link href={`/${artType}/[id]`} as={`/${artType}/${_id}`}>
       <div className='art-container d-flex d-flex justify-center align-center'>
+        <div className='art-preview-container'>
+          <img
+            className='art-preview'
+            src={previewImage}
+            alt={name + '-preview'}
+            onLoad={() => {
+              setPreviewImgIsLoading(false);
+            }}
+          />
+        </div>
         <img
           className='art'
-          src={photo.src}
-          width={photo.width}
-          height={photo.height}
+          src={src}
+          width={width}
+          height={height}
           alt={name}
+          onLoad={() => {
+            setImgIsLoading(false);
+          }}
         />
         <div className='art-infos d-flex flex-column align-center'>
           <div className='art-name'>{name.toUpperCase()}</div>
@@ -18,13 +35,27 @@ const ArtBloc = ({ photo, margin, artType }) => {
         <div className='tag'></div>
         <style jsx>
           {`
+            .art-preview-container {
+              height: 100%;
+              opacity: ${imgIsLoading && !previewImgIsLoading ? 1 : 0};
+              transition: opacity ease-in 0.5s;
+              pointer-events: ${!imgIsLoading && 'none'};
+              z-index: 4;
+              position: absolute;
+            }
+            .art-preview {
+              height: 100%;
+              filter: blur(5px);
+              z-index: 4;
+            }
             .art-container {
               cursor: pointer;
               margin: ${margin}px;
               position: relative;
             }
             .art {
-              transition: 0.2s;
+              opacity: ${!imgIsLoading && !previewImgIsLoading ? 1 : 0};
+              transition: 0.5s;
             }
             .art-container:hover .art {
               filter: contrast(1.2) brightness(0.5);

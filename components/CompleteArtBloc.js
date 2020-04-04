@@ -1,13 +1,20 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-import { usePalette } from 'react-palette';
-
 const CompleteArtBloc = ({ art, artType, isLoading }) => {
   const [displayModal, setDisplayModal] = useState(false);
-  const [imgIsLoading, setImgIsLoading] = useState(true);
+  const [numberOfLoadedImg, setNumberOfLoadedImg] = useState(0);
   const [previewImgIsLoading, setPreviewImgIsLoading] = useState(true);
-  const { data, loading, error } = usePalette(art.previewImage);
+
+  const getImgQty = (format) => {
+    if (format === 'triptyque') {
+      return 3;
+    } else if (format === 'diptyque') {
+      return 2;
+    } else {
+      return 1;
+    }
+  };
 
   const getArtMaxWidth = (format, displayModal) => {
     if (format === 'triptyque') {
@@ -52,7 +59,7 @@ const CompleteArtBloc = ({ art, artType, isLoading }) => {
           src={art.bigImage}
           alt='art'
           onClick={() => setDisplayModal(!displayModal)}
-          onLoad={() => setImgIsLoading(false)}
+          onLoad={() => setNumberOfLoadedImg(numberOfLoadedImg + 1)}
         />
         {(art.format === 'diptyque' || art.format === 'triptyque') && (
           <img
@@ -60,6 +67,7 @@ const CompleteArtBloc = ({ art, artType, isLoading }) => {
             src={art.scndBigImage}
             alt='art'
             onClick={() => setDisplayModal(!displayModal)}
+            onLoad={() => setNumberOfLoadedImg(numberOfLoadedImg + 1)}
           />
         )}
         {art.format === 'triptyque' && (
@@ -68,6 +76,7 @@ const CompleteArtBloc = ({ art, artType, isLoading }) => {
             src={art.thrdBigImage}
             alt='art'
             onClick={() => setDisplayModal(!displayModal)}
+            onLoad={() => setNumberOfLoadedImg(numberOfLoadedImg + 1)}
           />
         )}
       </div>
@@ -128,27 +137,33 @@ const CompleteArtBloc = ({ art, artType, isLoading }) => {
           box-shadow: ${getArtShadow(art.format, displayModal)};
           border-radius: 3px;
           cursor: pointer;
-          opacity: ${!imgIsLoading && !previewImgIsLoading ? 1 : 0};
+          opacity: ${numberOfLoadedImg === getImgQty(art.format) &&
+          !previewImgIsLoading
+            ? 1
+            : 0};
           transition: 0.5s;
           z-index: 3;
         }
         .art-preview-container {
           height: 75%;
-          opacity: ${imgIsLoading && !previewImgIsLoading ? 1 : 0};
+          opacity: ${numberOfLoadedImg !== getImgQty(art.format) &&
+          !previewImgIsLoading
+            ? 1
+            : 0};
           transition: opacity ease-in 0.5s;
-          box-shadow: ${getArtShadow(art.format, displayModal)};
-          position: absolute;
-          pointer-events: ${!imgIsLoading && 'none'};
+          pointer-events: ${numberOfLoadedImg === getImgQty(art.format) &&
+          'none'};
           z-index: 4;
-          background-color: ${data.vibrant};
+          position: absolute;
         }
         .art-preview {
           height: 100%;
-          filter: blur(7px);
+          filter: blur(5px);
           z-index: 4;
         }
         .scnd-art,
-        .thrd-art {
+        .thrd-art,
+        .scnd-art-container {
           margin-left: ${displayModal ? '15px' : '10px'};
         }
         .art:hover {

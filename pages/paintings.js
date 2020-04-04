@@ -6,7 +6,7 @@ import Loader from '../components/Loader';
 import Filters from '../components/Filters';
 import ArtsGrid from '../components/ArtsGrid';
 
-const Paintings = props => {
+const Paintings = (props) => {
   const [paintings, setPaintings] = useState([]);
   const [paintingsGrid, setPaintingsGrid] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -16,14 +16,15 @@ const Paintings = props => {
     try {
       const response = await axios.get(`${process.env.BACKEND_URL}/paintings`);
       setPaintings(response.data);
-      response.data.forEach(painting => {
+      response.data.forEach((painting) => {
         paintingsArr.push({
           _id: painting._id,
           name: painting.name,
           isSold: painting.isSold,
           src: painting.smallImage,
+          previewImage: painting.previewImage,
           width: painting.width,
-          height: painting.height
+          height: painting.height,
         });
       });
       setPaintingsGrid(paintingsArr);

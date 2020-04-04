@@ -8,7 +8,7 @@ const Filters = ({ arts, setArtsGrid }) => {
   const [yearFilterType, setYearFilterType] = useState('desc');
   const [showArts, setShowArts] = useState('all');
 
-  const handleIsSoldWhenYearSort = showArts => {
+  const handleIsSoldWhenYearSort = (showArts) => {
     if (showArts === 'all') {
       return;
     } else if (showArts === 'available') {
@@ -25,14 +25,15 @@ const Filters = ({ arts, setArtsGrid }) => {
       [sortType]
     );
     const sortedArtsGrid = [];
-    sortedArts.forEach(art => {
+    sortedArts.forEach((art) => {
       sortedArtsGrid.push({
         _id: art._id,
         name: art.name,
         isSold: art.isSold,
         src: art.smallImage,
+        previewImage: art.previewImage,
         width: art.width,
-        height: art.height
+        height: art.height,
       });
     });
     setYearFilterType(`${sortType}`);
@@ -43,14 +44,15 @@ const Filters = ({ arts, setArtsGrid }) => {
     if (sortType === 'all') {
       const sortedArts = _.orderBy(arts, ['creationYear'], [yearFilterType]);
       const sortedArtsGrid = [];
-      sortedArts.forEach(art => {
+      sortedArts.forEach((art) => {
         sortedArtsGrid.push({
           _id: art._id,
           name: art.name,
           isSold: art.isSold,
           src: art.smallImage,
+          previewImage: art.previewImage,
           width: art.width,
-          height: art.height
+          height: art.height,
         });
       });
       setShowArts('all');
@@ -62,14 +64,15 @@ const Filters = ({ arts, setArtsGrid }) => {
         [yearFilterType]
       );
       const sortedArtsGrid = [];
-      sortedArts.forEach(art => {
+      sortedArts.forEach((art) => {
         sortedArtsGrid.push({
           _id: art._id,
           name: art.name,
           isSold: art.isSold,
           src: art.smallImage,
+          previewImage: art.previewImage,
           width: art.width,
-          height: art.height
+          height: art.height,
         });
       });
       setShowArts('available');
@@ -81,14 +84,15 @@ const Filters = ({ arts, setArtsGrid }) => {
         [yearFilterType]
       );
       const sortedArtsGrid = [];
-      sortedArts.forEach(art => {
+      sortedArts.forEach((art) => {
         sortedArtsGrid.push({
           _id: art._id,
           name: art.name,
           isSold: art.isSold,
           src: art.smallImage,
+          previewImage: art.previewImage,
           width: art.width,
-          height: art.height
+          height: art.height,
         });
       });
       setShowArts('sold');
