@@ -83,7 +83,7 @@ const ContactForm = ({ art, artType, isLoading }) => {
         ? !isLoading && (
             <form onSubmit={handleSubmit} className='d-flex flex-column'>
               <div className='titles-container d-flex space-between align-center'>
-                <div>
+                <div className='titles'>
                   <h1>About "{art.name}"</h1>
                   <h2>Please tell us a bit more about what you need.</h2>
                 </div>
@@ -93,7 +93,7 @@ const ContactForm = ({ art, artType, isLoading }) => {
                   alt={art.name}
                 />
               </div>
-              <div className='d-flex space-between'>
+              <div className='names d-flex space-between'>
                 <div className='input-50 d-flex flex-column'>
                   <label htmlFor='last-name'>Last name (optionnal)</label>
                   <input
@@ -117,7 +117,7 @@ const ContactForm = ({ art, artType, isLoading }) => {
                   />
                 </div>
               </div>
-              <div className='d-flex space-between'>
+              <div className='contact d-flex space-between'>
                 <div className='input-50 d-flex flex-column'>
                   <label htmlFor='email'>Email</label>
                   <input
@@ -174,8 +174,7 @@ const ContactForm = ({ art, artType, isLoading }) => {
         .form-container {
           width: 490px;
           padding: 45px;
-          margin-top: 40px;
-          margin-bottom: 40px;
+          margin: 20px 0;
           background-color: white;
           border-radius: ${radius};
           box-shadow: 3px 3px 10px 4px rgba(42, 42, 42, 0.2);
@@ -186,7 +185,6 @@ const ContactForm = ({ art, artType, isLoading }) => {
           margin-left: 10px;
           border-radius: 3px;
         }
-
         .titles-container {
           margin-bottom: 40px;
         }
@@ -204,6 +202,25 @@ const ContactForm = ({ art, artType, isLoading }) => {
         .counter-text {
           color: ${greyBlue};
           margin-top: 20px;
+        }
+        @media only screen and (max-width: 600px) {
+          .form-container {
+            width: calc(100% - 40px);
+          }
+          .titles-container {
+            flex-direction: column;
+            text-align: center;
+          }
+          .titles {
+            margin-bottom: 20px;
+          }
+          .names,
+          .contact {
+            flex-direction: column;
+          }
+          .input-50 {
+            width: 100%;
+          }
         }
       `}</style>
     </div>

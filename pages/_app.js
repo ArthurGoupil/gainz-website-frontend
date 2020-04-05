@@ -135,8 +135,8 @@ function MyApp({ Component, pageProps }) {
             padding: 10px 10px;
           }
           textarea {
-            min-width: 400px;
-            max-width: 400px;
+            min-width: 100%;
+            max-width: 100%;
             min-height: 100px;
           }
           input:-webkit-autofill,

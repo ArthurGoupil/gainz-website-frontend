@@ -38,7 +38,7 @@ const MoreInfos = (props) => {
   return (
     <>
       <div className='more-infos extra-margin d-flex justify-center'>
-        <div className='form-container'>
+        <div className='contact-form-container d-flex justify-center'>
           <ContactForm art={art} isLoading={isLoading} artType={artType} />
         </div>
       </div>
@@ -50,7 +50,8 @@ const MoreInfos = (props) => {
           width: calc(100vw - 40px);
           min-height: calc(100vh - 160px);
         }
-        .form-container {
+        .contact-form-container {
+          width: 100%;
           opacity: ${isLoading ? 0 : 1};
           transition: 0.5s;
         }
