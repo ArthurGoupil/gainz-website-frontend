@@ -143,7 +143,7 @@ const ContactForm = ({ art, artType, isLoading }) => {
               </div>
               <label htmlFor='message'>Your message</label>
               <textarea
-                placeholder='message'
+                placeholder='Write here'
                 name='message'
                 value={message}
                 onChange={handleMessageChange}

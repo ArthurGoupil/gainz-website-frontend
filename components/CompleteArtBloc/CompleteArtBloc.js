@@ -41,6 +41,7 @@ const CompleteArtBloc = ({ art, artType, isLoading }) => {
           setPreviewImgIsLoading={setPreviewImgIsLoading}
           previewImage={art.previewImage}
           previewIsOn={previewIsOn}
+          contain={true}
         />
       </div>
       <TextDisplay art={art} isLoading={isLoading} artType={artType} />

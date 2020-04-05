@@ -4,6 +4,7 @@ const ArtPreview = ({
   previewIsOn,
   width,
   height,
+  contain,
 }) => {
   return (
     <>
@@ -18,7 +19,7 @@ const ArtPreview = ({
       <style jsx>{`
         .art-preview {
           background-image: url(${previewImage});
-          background-size: contain;
+          background-size: ${contain ? 'contain' : '100% 100%'};
           background-repeat: no-repeat;
           background-position: center;
           position: absolute;

@@ -1,5 +1,10 @@
 import { useState } from 'react';
 import Link from 'next/link';
+
+import 'lazysizes';
+// import a plugin
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
+
 import ArtPreview from '../Utils/ArtPreview';
 
 const ArtBloc = ({ photo, margin, artType }) => {
@@ -16,37 +21,31 @@ const ArtBloc = ({ photo, margin, artType }) => {
   return (
     <Link href={`/${artType}/[id]`} as={`/${artType}/${_id}`}>
       <div className='art-container d-flex d-flex justify-center align-center'>
-        {/* <LazyLoad
-          width='100%'
-          height='100%'
-          onContentVisible={() => setHasToLoad(true)}
-        >
-          <div>
-            {hasToLoad && ( */}
-        <ArtPreview
-          setPreviewImgIsLoading={setPreviewImgIsLoading}
-          previewImage={previewImage}
-          previewIsOn={previewIsOn}
-          width='100%'
-          height='100%'
-        />
-        <img
-          className='art'
-          src={src}
-          width={width}
-          height={height}
-          alt={name}
-          onLoad={() => {
-            setImgIsLoading(false);
-          }}
-        />
-        {/* )}
-          </div>
-        </LazyLoad> */}
+        <div>
+          <ArtPreview
+            setPreviewImgIsLoading={setPreviewImgIsLoading}
+            previewImage={previewImage}
+            previewIsOn={previewIsOn}
+            width='100%'
+            height='100%'
+            contain={false}
+          />
+          <img
+            className='lazyload art'
+            data-sizes='auto'
+            data-src={src}
+            width={width}
+            height={height}
+            alt={name}
+            onLoad={() => {
+              setImgIsLoading(false);
+            }}
+          />
+        </div>
         <div className='art-infos d-flex flex-column align-center'>
           <div className='art-name'>{name.toUpperCase()}</div>
         </div>
-        <div className='tag'></div>
+        {!imgIsLoading && <div className='tag'></div>}
         <style jsx>
           {`
             .art-container {
