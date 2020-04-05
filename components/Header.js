@@ -38,6 +38,7 @@ const Header = () => {
           }
           nav {
             height: 60px;
+            margin: 0 20px;
             background-color: rgba(255, 255, 255, 1);
             position: sticky;
             top: 0;
