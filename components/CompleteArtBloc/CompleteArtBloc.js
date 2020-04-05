@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import ArtPreview from '../Utils/ArtPreview';
+import ArtsDisplay from './ArtsDisplay';
 
 const CompleteArtBloc = ({ art, artType, isLoading }) => {
   const [displayModal, setDisplayModal] = useState(false);
@@ -16,69 +18,29 @@ const CompleteArtBloc = ({ art, artType, isLoading }) => {
     }
   };
 
-  const getArtMaxWidth = (format, displayModal) => {
-    if (format === 'triptyque') {
-      if (displayModal) {
-        return '30vw';
-      } else return '25%';
-    } else if (format === 'diptyque') {
-      if (displayModal) {
-        return '60vw';
-      } else return '50%';
-    } else {
-      if (displayModal) {
-        return '90vw';
-      } else return '75%';
-    }
-  };
+  const previewIsOn =
+    numberOfLoadedImg !== getImgQty(art.format) && !previewImgIsLoading;
 
-  const getArtShadow = (format, displayModal) => {
-    if (!displayModal) {
-      if (format === 'diptyque' || format === 'triptyque') {
-        return '3px 3px 2px 1px rgba(42,42,42, 0.5)';
-      } else return '3px 3px 2px 1px rgba(42,42,42, 0.8)';
-    } else return '0px 0px 20px 10px rgba(42,42,42, 0.7)';
-  };
+  const imgIsOn =
+    numberOfLoadedImg === getImgQty(art.format) && !previewImgIsLoading;
 
   return (
-    <div className='d-flex flex-column align-center'>
+    <div className='extra-margin d-flex flex-column align-center'>
       <div className='main-background d-flex justify-center align-center'>
         <div className='modal' onClick={() => setDisplayModal(false)}></div>
-        <div className='art-preview-container'>
-          <img
-            className='art-preview'
-            src={art.previewImage}
-            alt={art.name + '-preview'}
-            onLoad={() => {
-              setPreviewImgIsLoading(false);
-            }}
-          />
-        </div>
-        <img
-          className='art'
-          src={art.bigImage}
-          alt='art'
-          onClick={() => setDisplayModal(!displayModal)}
-          onLoad={() => setNumberOfLoadedImg(numberOfLoadedImg + 1)}
+        <ArtsDisplay
+          art={art}
+          setDisplayModal={setDisplayModal}
+          displayModal={displayModal}
+          setNumberOfLoadedImg={setNumberOfLoadedImg}
+          numberOfLoadedImg={numberOfLoadedImg}
+          imgIsOn={imgIsOn}
         />
-        {(art.format === 'diptyque' || art.format === 'triptyque') && (
-          <img
-            className='art scnd-art'
-            src={art.scndBigImage}
-            alt='art'
-            onClick={() => setDisplayModal(!displayModal)}
-            onLoad={() => setNumberOfLoadedImg(numberOfLoadedImg + 1)}
-          />
-        )}
-        {art.format === 'triptyque' && (
-          <img
-            className='art thrd-art'
-            src={art.thrdBigImage}
-            alt='art'
-            onClick={() => setDisplayModal(!displayModal)}
-            onLoad={() => setNumberOfLoadedImg(numberOfLoadedImg + 1)}
-          />
-        )}
+        <ArtPreview
+          setPreviewImgIsLoading={setPreviewImgIsLoading}
+          previewImage={art.previewImage}
+          previewIsOn={previewIsOn}
+        />
       </div>
       <div className='text-container d-flex flex-column align-center space-around'>
         <div className='d-flex flex-column align-center'>
@@ -128,47 +90,8 @@ const CompleteArtBloc = ({ art, artType, isLoading }) => {
           background-size: cover;
           background-position: center;
           height: calc(75vh - 140px);
-          width: calc(100vw - 40px);
+          width: 100%;
           position: relative;
-        }
-        .art {
-          max-width: ${getArtMaxWidth(art.format, displayModal)};
-          max-height: ${displayModal ? '90vh' : '75%'};
-          box-shadow: ${getArtShadow(art.format, displayModal)};
-          border-radius: 3px;
-          cursor: pointer;
-          opacity: ${numberOfLoadedImg === getImgQty(art.format) &&
-          !previewImgIsLoading
-            ? 1
-            : 0};
-          transition: 0.5s;
-          z-index: 3;
-        }
-        .art-preview-container {
-          height: 75%;
-          opacity: ${numberOfLoadedImg !== getImgQty(art.format) &&
-          !previewImgIsLoading
-            ? 1
-            : 0};
-          transition: opacity ease-in 0.5s;
-          pointer-events: ${numberOfLoadedImg === getImgQty(art.format) &&
-          'none'};
-          z-index: 4;
-          position: absolute;
-        }
-        .art-preview {
-          height: 100%;
-          filter: blur(5px);
-          z-index: 4;
-        }
-        .scnd-art,
-        .thrd-art,
-        .scnd-art-container {
-          margin-left: ${displayModal ? '15px' : '10px'};
-        }
-        .art:hover {
-          transform: ${!displayModal ? 'scale(1.02)' : 'none'};
-          transition: 0.5s;
         }
         .modal {
           width: 100vw;
@@ -184,10 +107,6 @@ const CompleteArtBloc = ({ art, artType, isLoading }) => {
           -moz-transition: opacity 0.4s ease-in-out;
           -o-transition: opacity 0.4s ease-in-out;
           transition: opacity 0.4s ease-in-out;
-        }
-        .art-modal {
-          max-height: 90vh;
-          max-width: 90vh;
         }
         .text-container {
           width: 70%;

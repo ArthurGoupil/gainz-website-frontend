@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import ContactForm from '../../components/ContactForm';
 
-const MoreInfos = props => {
+const MoreInfos = (props) => {
   const router = useRouter();
   const artTypeId = router.query.id;
   const [art, setArt] = useState(null);
@@ -37,7 +37,7 @@ const MoreInfos = props => {
 
   return (
     <>
-      <div className='more-infos d-flex justify-center'>
+      <div className='more-infos extra-margin d-flex justify-center'>
         <div className='form-container'>
           <ContactForm art={art} isLoading={isLoading} artType={artType} />
         </div>

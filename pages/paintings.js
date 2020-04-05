@@ -2,9 +2,9 @@ import { useState, useEffect, useCallback } from 'react';
 
 import axios from 'axios';
 
-import Loader from '../components/Loader';
-import Filters from '../components/Filters';
-import ArtsGrid from '../components/ArtsGrid';
+import Loader from '../components/Utils/Loader';
+import Filters from '../components/Utils/Filters';
+import ArtsGrid from '../components/ArtsGrid/ArtsGrid';
 
 const Paintings = (props) => {
   const [paintings, setPaintings] = useState([]);

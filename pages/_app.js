@@ -50,6 +50,9 @@ function MyApp({ Component, pageProps }) {
             line-height: 1.9rem;
             color: ${middleBlue};
           }
+          .extra-margin {
+            margin: 0 10px 0 10px;
+          }
           /* TITLES */
           h1 {
             color: ${middleBlue};

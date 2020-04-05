@@ -9,7 +9,7 @@ const Layout = ({ children, padding }) => {
       <main>{children}</main>
       <style jsx>{`
         main {
-          padding: ${padding ? padding : '0 20px 20px 20px'};
+          padding: ${padding ? padding : '0 10px 20px 10px'};
         }
       `}</style>
     </>

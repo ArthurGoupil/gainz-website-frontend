@@ -1,24 +1,35 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import ArtPreview from '../Utils/ArtPreview';
 
 const ArtBloc = ({ photo, margin, artType }) => {
   const [imgIsLoading, setImgIsLoading] = useState(true);
   const [previewImgIsLoading, setPreviewImgIsLoading] = useState(true);
+  const [hasToLoad, setHasToLoad] = useState(false);
 
   const { _id, name, isSold, src, previewImage, width, height } = photo;
+
+  const previewIsOn = imgIsLoading && !previewImgIsLoading;
+
+  const imgIsOn = !imgIsLoading && !previewImgIsLoading;
+
   return (
     <Link href={`/${artType}/[id]`} as={`/${artType}/${_id}`}>
       <div className='art-container d-flex d-flex justify-center align-center'>
-        <div className='art-preview-container'>
-          <img
-            className='art-preview'
-            src={previewImage}
-            alt={name + '-preview'}
-            onLoad={() => {
-              setPreviewImgIsLoading(false);
-            }}
-          />
-        </div>
+        {/* <LazyLoad
+          width='100%'
+          height='100%'
+          onContentVisible={() => setHasToLoad(true)}
+        >
+          <div>
+            {hasToLoad && ( */}
+        <ArtPreview
+          setPreviewImgIsLoading={setPreviewImgIsLoading}
+          previewImage={previewImage}
+          previewIsOn={previewIsOn}
+          width='100%'
+          height='100%'
+        />
         <img
           className='art'
           src={src}
@@ -29,32 +40,22 @@ const ArtBloc = ({ photo, margin, artType }) => {
             setImgIsLoading(false);
           }}
         />
+        {/* )}
+          </div>
+        </LazyLoad> */}
         <div className='art-infos d-flex flex-column align-center'>
           <div className='art-name'>{name.toUpperCase()}</div>
         </div>
         <div className='tag'></div>
         <style jsx>
           {`
-            .art-preview-container {
-              height: 100%;
-              opacity: ${imgIsLoading && !previewImgIsLoading ? 1 : 0};
-              transition: opacity ease-in 0.5s;
-              pointer-events: ${!imgIsLoading && 'none'};
-              z-index: 4;
-              position: absolute;
-            }
-            .art-preview {
-              height: 100%;
-              filter: blur(5px);
-              z-index: 4;
-            }
             .art-container {
               cursor: pointer;
               margin: ${margin}px;
               position: relative;
             }
             .art {
-              opacity: ${!imgIsLoading && !previewImgIsLoading ? 1 : 0};
+              opacity: ${imgIsOn ? 1 : 0};
               transition: 0.5s;
             }
             .art-container:hover .art {

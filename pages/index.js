@@ -1,8 +1,8 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from 'react';
 
-import axios from "axios";
+import axios from 'axios';
 
-const Home = props => {
+const Home = (props) => {
   const [homePaintingsArr, setHomePaintingsArr] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [firstPainting, setFirstPainting] = useState(0);
@@ -27,9 +27,9 @@ const Home = props => {
 
   return (
     <>
-      <div className="home d-flex justify-center">
+      <div className='home extra-margin d-flex justify-center'>
         <div
-          className="paints-container"
+          className='paints-container'
           onMouseEnter={() => {
             setFirstImgOn(!firstImgOn);
             if (!firstImgOn) {
@@ -44,21 +44,21 @@ const Home = props => {
           }}
         >
           <img
-            className="second-paint"
+            className='second-paint'
             src={homePaintingsArr[firstPainting]}
-            alt="second-paint"
+            alt='second-paint'
           />
           <img
-            className="first-paint"
+            className='first-paint'
             src={homePaintingsArr[secondPainting]}
-            alt="first-paint"
+            alt='first-paint'
           />
         </div>
       </div>
       <style jsx>
         {`
           .home {
-            background-image: url("/images/home5-empty.jpg");
+            background-image: url('/images/home5-empty.jpg');
             background-size: cover;
             background-position: center;
             height: calc(100vh - 160px);

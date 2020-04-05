@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 
 import axios from 'axios';
 
-import CompleteArtBloc from '../../components/CompleteArtBloc';
+import CompleteArtBloc from '../../components/CompleteArtBloc/CompleteArtBloc';
 
-const Paintings = props => {
+const Paintings = (props) => {
   const router = useRouter();
   const [painting, setPainting] = useState({});
   const [isLoading, setIsLoading] = useState(true);

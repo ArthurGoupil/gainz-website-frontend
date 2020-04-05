@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import axios from 'axios';
 
-import Loader from './Loader';
+import Loader from './Utils/Loader';
 
 const ContactForm = ({ art, artType, isLoading }) => {
   const router = useRouter();
@@ -18,22 +18,22 @@ const ContactForm = ({ art, artType, isLoading }) => {
   const [message, setMessage] = useState('');
   const [counter, setCounter] = useState(null);
 
-  const handleLastNameChange = event => {
+  const handleLastNameChange = (event) => {
     setLastName(event.target.value);
   };
-  const handleNameChange = event => {
+  const handleNameChange = (event) => {
     setName(event.target.value);
   };
-  const handleEmailChange = event => {
+  const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
-  const handleTelChange = event => {
+  const handleTelChange = (event) => {
     setTel(event.target.value);
   };
-  const handleMessageChange = event => {
+  const handleMessageChange = (event) => {
     setMessage(event.target.value);
   };
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (email && message) {
       try {
@@ -47,7 +47,7 @@ const ContactForm = ({ art, artType, isLoading }) => {
             tel,
             message,
             artType,
-            artName: art.name
+            artName: art.name,
           }
         );
         console.log(response.data);

@@ -102,7 +102,7 @@ const Filters = ({ arts, setArtsGrid }) => {
 
   return (
     <div className='filters d-flex'>
-      <div className='sort-container d-flex space-between'>
+      <div className='sort-container d-flex'>
         <div className='sort'>
           <b>sort&nbsp;&nbsp;</b>|
         </div>
@@ -133,7 +133,7 @@ const Filters = ({ arts, setArtsGrid }) => {
           oldest
         </div>
       </div>
-      <div className='sort-container d-flex space-between'>
+      <div className='sort-container d-flex'>
         <div className='show'>
           <b>show&nbsp;&nbsp;</b>|
         </div>
@@ -226,6 +226,16 @@ const Filters = ({ arts, setArtsGrid }) => {
           }
           .icon-sold {
             color: red;
+          }
+          @media only screen and (max-width: 600px) {
+            .filters {
+              flex-direction: column;
+              justify-conter: flex-start;
+            }
+            .show {
+              margin-right: 20px;
+              margin-left: 0px;
+            }
           }
         `}
       </style>

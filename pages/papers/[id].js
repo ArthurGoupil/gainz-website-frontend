@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 
 import axios from 'axios';
 
-import CompleteArtBloc from '../../components/CompleteArtBloc';
+import CompleteArtBloc from '../../components/CompleteArtBloc/CompleteArtBloc';
 
-const Papers = props => {
+const Papers = (props) => {
   const router = useRouter();
   const [paper, setPaper] = useState({});
   const [isLoading, setIsLoading] = useState(true);
