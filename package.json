@@ -13,6 +13,7 @@
     "next": "^9.3.0",
     "next-page-transitions": "^1.0.0-beta.2",
     "react": "^16.13.0",
+    "react-burger-menu": "^2.6.13",
     "react-dom": "^16.13.0",
     "react-icons": "^3.9.0",
     "react-photo-gallery": "^8.0.0",

@@ -1,6 +1,12 @@
+import { useState } from 'react';
 import ActiveLink from './Utils/ActiveLink';
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleMobileMenuClick = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
       <header className='d-flex flex-column align-center justify-center'>
@@ -35,14 +41,15 @@ const Header = () => {
             z-index: 1;
             height: 80px;
             padding-top: 20px;
+            background-color: white;
           }
           nav {
             height: 60px;
-            margin: 0 20px;
             background-color: rgba(255, 255, 255, 1);
             position: sticky;
             top: 0;
             z-index: 2;
+            background-color: white;
           }
           .nav-elements {
             width: 400px;
@@ -77,6 +84,14 @@ const Header = () => {
             opacity: 1;
             transition: 0.4s;
             filter: blur(0px);
+          }
+          @media only screen and (max-width: 769px) {
+            nav {
+              display: none;
+            }
+            header {
+              padding-bottom: 20px;
+            }
           }
         `}
       </style>

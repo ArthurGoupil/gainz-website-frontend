@@ -104,6 +104,9 @@ const Home = (props) => {
             height: 191px;
           }
           @media only screen and (max-width: 769px) {
+            .home {
+              height: calc(100vh - 100px);
+            }
             .paints-container {
               height: 20vh;
               width: 20vh;
