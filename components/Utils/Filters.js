@@ -230,7 +230,6 @@ const Filters = ({ arts, setArtsGrid }) => {
           @media only screen and (max-width: 600px) {
             .filters {
               flex-direction: column;
-              justify-conter: flex-start;
             }
             .show {
               margin-right: 20px;

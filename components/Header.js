@@ -91,6 +91,8 @@ const Header = () => {
             }
             header {
               padding-bottom: 20px;
+              position: sticky;
+              top: 0;
             }
           }
         `}
