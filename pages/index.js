@@ -80,7 +80,7 @@ const Home = (props) => {
           .first-paint {
             width: 100%;
             height: 100%;
-            filter: saturate(0.6) brightness(0.9);
+            filter: saturate(0.7) brightness(0.9);
             opacity: ${!firstImgOn ? 1 : 0};
             -webkit-transition: opacity 0.5s ease-in-out;
             -moz-transition: opacity 0.5s ease-in-out;
