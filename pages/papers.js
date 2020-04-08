@@ -22,6 +22,7 @@ const Papers = (props) => {
           name: paper.name,
           isSold: paper.isSold,
           src: paper.smallImage,
+          previewImage: paper.previewImage,
           width: paper.width,
           height: paper.height,
         });
@@ -36,6 +37,8 @@ const Papers = (props) => {
   useEffect(() => {
     fetchPapers();
   }, []);
+
+  console.log(papers);
 
   return (
     <>

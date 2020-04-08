@@ -31,7 +31,7 @@ const TextDisplay = ({ art, artType, isLoading }) => {
           <div className='sold-tag'></div>
           {art.isSold ? 'Already sold' : 'Available'}
         </span>
-        <span className='art-info'>{art.price}&nbsp;€</span>
+        {!art.isSold && <span className='art-info'>{art.price}&nbsp;€</span>}
       </div>
       {!art.isSold && (
         <Link href='/more-infos/[id]' as={`/more-infos/${artType}-${art._id}`}>
@@ -47,7 +47,7 @@ const TextDisplay = ({ art, artType, isLoading }) => {
           opacity: ${!isLoading ? 1 : 0};
         }
         .art-info {
-          width: 200px;
+          width: 150px;
           text-align: center;
           display: flex;
           justify-content: center;
@@ -83,6 +83,12 @@ const TextDisplay = ({ art, artType, isLoading }) => {
         .more:hover {
           background-color: ${lightGrey};
           cursor: pointer;
+        }
+        @media only screen and (max-width: 920px) {
+          .sub-text-container {
+            flex-direction: column;
+            align-items: center;
+          }
         }
       `}</style>
     </div>

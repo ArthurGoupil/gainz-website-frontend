@@ -7,7 +7,7 @@ const ArtsGrid = ({ artsGrid, arts, artType }) => {
     <Gallery
       margin={10}
       photos={artsGrid}
-      limitNodeSearch={artType === 'paintings' ? 3 : 5}
+      limitNodeSearch={artType === 'paintings' ? 3 : 4}
       targetRowHeight={artType === 'paintings' ? 400 : 300}
       renderImage={({ index, photo, margin }) => (
         <ArtBloc
