@@ -1,3 +1,5 @@
+import { useState, useEffect, useCallback } from 'react';
+
 const ArtsDisplay = ({
   art,
   setDisplayModal,
@@ -6,6 +8,18 @@ const ArtsDisplay = ({
   numberOfLoadedImg,
   imgIsOn,
 }) => {
+  const [formatIsLoading, setFormatIsLoading] = useState(true);
+
+  const setFormat = useCallback((format) => {
+    if (format) {
+      setFormatIsLoading(false);
+    }
+  });
+
+  useEffect(() => {
+    setFormat(art.format);
+  }, [art.format]);
+
   const getArtMaxWidth = (format, displayModal) => {
     if (format === 'triptyque') {
       if (displayModal) {
@@ -32,31 +46,36 @@ const ArtsDisplay = ({
 
   return (
     <>
-      <img
-        className='art'
-        src={art.bigImage}
-        alt={art.name}
-        onClick={() => setDisplayModal(!displayModal)}
-        onLoad={() => setNumberOfLoadedImg(numberOfLoadedImg + 1)}
-      />
-      {(art.format === 'diptyque' || art.format === 'triptyque') && (
-        <img
-          className='art scnd-art'
-          src={art.scndBigImage}
-          alt={'scnd-' + art.name}
-          onClick={() => setDisplayModal(!displayModal)}
-          onLoad={() => setNumberOfLoadedImg(numberOfLoadedImg + 1)}
-        />
+      {!formatIsLoading && (
+        <>
+          <img
+            className='art'
+            src={art.bigImage}
+            alt={art.name}
+            onClick={() => setDisplayModal(!displayModal)}
+            onLoad={() => setNumberOfLoadedImg(numberOfLoadedImg + 1)}
+          />
+          {(art.format === 'diptyque' || art.format === 'triptyque') && (
+            <img
+              className='art scnd-art'
+              src={art.scndBigImage}
+              alt={'scnd-' + art.name}
+              onClick={() => setDisplayModal(!displayModal)}
+              onLoad={() => setNumberOfLoadedImg(numberOfLoadedImg + 1)}
+            />
+          )}
+          {art.format === 'triptyque' && (
+            <img
+              className='art thrd-art'
+              src={art.thrdBigImage}
+              alt={'thrd-' + art.name}
+              onClick={() => setDisplayModal(!displayModal)}
+              onLoad={() => setNumberOfLoadedImg(numberOfLoadedImg + 1)}
+            />
+          )}
+        </>
       )}
-      {art.format === 'triptyque' && (
-        <img
-          className='art thrd-art'
-          src={art.thrdBigImage}
-          alt={'thrd-' + art.name}
-          onClick={() => setDisplayModal(!displayModal)}
-          onLoad={() => setNumberOfLoadedImg(numberOfLoadedImg + 1)}
-        />
-      )}
+
       <style jsx>{`
         .art {
           max-width: ${getArtMaxWidth(art.format, displayModal)};

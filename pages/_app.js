@@ -92,7 +92,7 @@ function MyApp({ Component, pageProps }) {
             color: ${darkBlue};
           }
           a:link {
-            color: inherit;
+            color: ${middleBlue};
           }
           a:visited {
             color: ${middleBlue};

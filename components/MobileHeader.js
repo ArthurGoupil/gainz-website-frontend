@@ -6,7 +6,6 @@ import ActiveLink from './Utils/ActiveLink';
 
 const MobileHeader = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen);
 
   return (
     <Menu
@@ -43,7 +42,8 @@ const MobileHeader = (props) => {
           font-weight: bold;
         }
         .link {
-          margin-bottom: 10px;
+          margin-bottom: 20px;
+          font-size: 2rem;
         }
       `}</style>
     </Menu>
