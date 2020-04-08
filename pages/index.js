@@ -23,6 +23,9 @@ const Home = (props) => {
 
   useEffect(() => {
     fetchPaintings();
+    if (window) {
+      console.log(window.innerHeight);
+    }
   }, []);
 
   return (
@@ -31,15 +34,31 @@ const Home = (props) => {
         <div
           className='paints-container'
           onMouseEnter={() => {
-            setFirstImgOn(!firstImgOn);
-            if (!firstImgOn) {
-              if (secondPainting !== homePaintingsArr.length - 1) {
-                setFirstPainting(secondPainting + 1);
-              } else setFirstPainting(0);
-            } else {
-              if (firstPainting !== homePaintingsArr.length - 1) {
-                setSecondPainting(firstPainting + 1);
-              } else setSecondPainting(0);
+            if (window.innerWidth > 769) {
+              setFirstImgOn(!firstImgOn);
+              if (!firstImgOn) {
+                if (secondPainting !== homePaintingsArr.length - 1) {
+                  setFirstPainting(secondPainting + 1);
+                } else setFirstPainting(0);
+              } else {
+                if (firstPainting !== homePaintingsArr.length - 1) {
+                  setSecondPainting(firstPainting + 1);
+                } else setSecondPainting(0);
+              }
+            }
+          }}
+          onClick={() => {
+            if (window.innerWidth < 769) {
+              setFirstImgOn(!firstImgOn);
+              if (!firstImgOn) {
+                if (secondPainting !== homePaintingsArr.length - 1) {
+                  setFirstPainting(secondPainting + 1);
+                } else setFirstPainting(0);
+              } else {
+                if (firstPainting !== homePaintingsArr.length - 1) {
+                  setSecondPainting(firstPainting + 1);
+                } else setSecondPainting(0);
+              }
             }
           }}
         >
