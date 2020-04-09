@@ -149,12 +149,11 @@ const ContactForm = ({ art, artType, isLoading }) => {
                 onChange={handleMessageChange}
               />
               <div className='error-message'>{errorMessage}</div>
-              <button className='submit' type='submit'>
-                {!formLoading ? (
-                  'Send'
-                ) : (
-                  <Loader height='100%' color='white' size={8} />
-                )}
+              <button
+                className='submit d-flex justify-center align-center'
+                type='submit'
+              >
+                {!formLoading ? 'Send' : <Loader width='30px' height='30px' />}
               </button>
             </form>
           )

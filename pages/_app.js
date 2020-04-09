@@ -123,7 +123,6 @@ function MyApp({ Component, pageProps }) {
             font-weight: bold;
             border-radius: ${miniRadius};
             border: none;
-            padding: 10px 10px;
             cursor: pointer;
           }
           button.submit:hover {
