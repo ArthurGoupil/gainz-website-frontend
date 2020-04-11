@@ -10,6 +10,7 @@ const Paintings = (props) => {
   const [paintings, setPaintings] = useState([]);
   const [paintingsGrid, setPaintingsGrid] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [filtersAreChanging, setFiltersAreChanging] = useState(false);
   const paintingsArr = [];
 
   const fetchPaintings = useCallback(async () => {
@@ -40,13 +41,20 @@ const Paintings = (props) => {
 
   return (
     <>
-      <Filters arts={paintings} setArtsGrid={setPaintingsGrid} />
+      <Filters
+        arts={paintings}
+        setArtsGrid={setPaintingsGrid}
+        setIsLoading={setIsLoading}
+        setFiltersAreChanging={setFiltersAreChanging}
+      />
       {!isLoading ? (
-        <ArtsGrid
-          artsGrid={paintingsGrid}
-          arts={paintings}
-          artType='paintings'
-        />
+        !filtersAreChanging && (
+          <ArtsGrid
+            artsGrid={paintingsGrid}
+            arts={paintings}
+            artType='paintings'
+          />
+        )
       ) : (
         <Loader />
       )}

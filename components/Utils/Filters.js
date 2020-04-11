@@ -1,10 +1,11 @@
 import { useState } from 'react';
+import Router from 'next/router';
 
 import _ from 'lodash';
 
 import { MdAdjust, MdRadioButtonUnchecked } from 'react-icons/md';
 
-const Filters = ({ arts, setArtsGrid }) => {
+const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
   const [yearFilterType, setYearFilterType] = useState('desc');
   const [showArts, setShowArts] = useState('all');
 
@@ -19,6 +20,7 @@ const Filters = ({ arts, setArtsGrid }) => {
   };
 
   const sortArtsByYear = (arts, sortType) => {
+    setFiltersAreChanging(true);
     const sortedArts = _.orderBy(
       _.filter(arts, handleIsSoldWhenYearSort(showArts)),
       ['creationYear'],
@@ -38,9 +40,11 @@ const Filters = ({ arts, setArtsGrid }) => {
     });
     setYearFilterType(`${sortType}`);
     setArtsGrid(sortedArtsGrid);
+    setTimeout(() => setFiltersAreChanging(false), 100);
   };
 
   const handleShowArts = (arts, sortType) => {
+    setFiltersAreChanging(true);
     if (sortType === 'all') {
       const sortedArts = _.orderBy(arts, ['creationYear'], [yearFilterType]);
       const sortedArtsGrid = [];
@@ -98,6 +102,7 @@ const Filters = ({ arts, setArtsGrid }) => {
       setShowArts('sold');
       setArtsGrid(sortedArtsGrid);
     }
+    setTimeout(() => setFiltersAreChanging(false), 100);
   };
 
   return (
@@ -139,7 +144,9 @@ const Filters = ({ arts, setArtsGrid }) => {
         </div>
         <div
           className='sort-element all d-flex align-center'
-          onClick={() => handleShowArts(arts, 'all')}
+          onClick={() => {
+            handleShowArts(arts, 'all');
+          }}
         >
           <div className='icons d-flex align-center'>
             {showArts === 'all' ? <MdAdjust /> : <MdRadioButtonUnchecked />}
@@ -148,7 +155,9 @@ const Filters = ({ arts, setArtsGrid }) => {
         </div>
         <div
           className='sort-element available d-flex align-center'
-          onClick={() => handleShowArts(arts, 'available')}
+          onClick={() => {
+            handleShowArts(arts, 'available');
+          }}
         >
           <div className='icon-available d-flex align-center'>
             {showArts === 'available' ? (

@@ -10,7 +10,6 @@ import ArtPreview from '../Utils/ArtPreview';
 const ArtBloc = ({ photo, margin, artType }) => {
   const [imgIsLoading, setImgIsLoading] = useState(true);
   const [previewImgIsLoading, setPreviewImgIsLoading] = useState(true);
-  const [hasToLoad, setHasToLoad] = useState(false);
 
   const { _id, name, isSold, src, previewImage, width, height } = photo;
 
@@ -32,7 +31,6 @@ const ArtBloc = ({ photo, margin, artType }) => {
           />
           <img
             className='lazyload art'
-            data-sizes='auto'
             data-src={src}
             width={width}
             height={height}

@@ -10,6 +10,7 @@ const Papers = (props) => {
   const [papers, setPapers] = useState([]);
   const [papersGrid, setPapersGrid] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [filtersAreChanging, setFiltersAreChanging] = useState(false);
   const papersArr = [];
 
   const fetchPapers = useCallback(async () => {
@@ -38,13 +39,22 @@ const Papers = (props) => {
     fetchPapers();
   }, []);
 
-  console.log(papers);
-
   return (
     <>
-      <Filters arts={papers} setArtsGrid={setPapersGrid} />
+      <Filters
+        arts={papers}
+        setArtsGrid={setPapersGrid}
+        setFiltersAreChanging={setFiltersAreChanging}
+      />
       {!isLoading ? (
-        <ArtsGrid artsGrid={papersGrid} arts={papers} artType='papers' />
+        !filtersAreChanging && (
+          <ArtsGrid
+            artsGrid={papersGrid}
+            arts={papers}
+            artType='papers'
+            filtersAreChanging={filtersAreChanging}
+          />
+        )
       ) : (
         <Loader />
       )}
