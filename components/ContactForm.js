@@ -1,4 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import LangContext from '../contexts/LangContext';
+import data from '../languages/data.json';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -7,6 +9,7 @@ import axios from 'axios';
 import Loader from './Utils/Loader';
 
 const ContactForm = ({ art, artType, isLoading }) => {
+  const lang = useContext(LangContext);
   const router = useRouter();
   const [formStep, setFormStep] = useState(1);
   const [formLoading, setFormLoading] = useState(false);
@@ -58,13 +61,11 @@ const ContactForm = ({ art, artType, isLoading }) => {
         console.error(e.message);
       }
     } else if (!email && !message) {
-      setErrorMessage('Please fill in email and message fields.');
+      setErrorMessage(data[lang].moreInfos.emailMessageError);
     } else if (!message) {
-      setErrorMessage(
-        'Please write a short message to explain us what do you need.'
-      );
+      setErrorMessage(data[lang].moreInfos.messageError);
     } else if (!email) {
-      setErrorMessage('Please fill in the email field.');
+      setErrorMessage(data[lang].moreInfos.emailError);
     }
   };
 
@@ -84,8 +85,10 @@ const ContactForm = ({ art, artType, isLoading }) => {
             <form onSubmit={handleSubmit} className='d-flex flex-column'>
               <div className='titles-container d-flex space-between align-center'>
                 <div className='titles'>
-                  <h1>About "{art.name}"</h1>
-                  <h2>Please tell us a bit more about what you need.</h2>
+                  <h1>
+                    {data[lang].moreInfos.about} "{art.name}"
+                  </h1>
+                  <h2>{data[lang].moreInfos.subtitle}</h2>
                 </div>
                 <img
                   className='art-preview'
@@ -95,7 +98,9 @@ const ContactForm = ({ art, artType, isLoading }) => {
               </div>
               <div className='names d-flex space-between'>
                 <div className='input-50 d-flex flex-column'>
-                  <label htmlFor='last-name'>Last name (optionnal)</label>
+                  <label htmlFor='last-name'>
+                    {data[lang].moreInfos.lastName}
+                  </label>
                   <input
                     type='text'
                     placeholder='Dupont'
@@ -106,7 +111,7 @@ const ContactForm = ({ art, artType, isLoading }) => {
                   />
                 </div>
                 <div className='input-50 d-flex flex-column'>
-                  <label htmlFor='name'>Name (optionnal)</label>
+                  <label htmlFor='name'>{data[lang].moreInfos.name}</label>
                   <input
                     type='text'
                     placeholder='Martin'
@@ -119,7 +124,7 @@ const ContactForm = ({ art, artType, isLoading }) => {
               </div>
               <div className='contact d-flex space-between'>
                 <div className='input-50 d-flex flex-column'>
-                  <label htmlFor='email'>Email</label>
+                  <label htmlFor='email'>{data[lang].moreInfos.email}</label>
                   <input
                     type='email'
                     placeholder='martindupont@mail.com'
@@ -130,7 +135,7 @@ const ContactForm = ({ art, artType, isLoading }) => {
                   />
                 </div>
                 <div className='input-50 d-flex flex-column'>
-                  <label htmlFor='tel'>Phone number (optionnal)</label>
+                  <label htmlFor='tel'>{data[lang].moreInfos.phone}</label>
                   <input
                     type='tel'
                     placeholder='06 12 34 56 78'
@@ -141,7 +146,7 @@ const ContactForm = ({ art, artType, isLoading }) => {
                   />
                 </div>
               </div>
-              <label htmlFor='message'>Your message</label>
+              <label htmlFor='message'>{data[lang].moreInfos.message}</label>
               <textarea
                 placeholder='Write here'
                 name='message'
@@ -153,19 +158,35 @@ const ContactForm = ({ art, artType, isLoading }) => {
                 className='submit d-flex justify-center align-center'
                 type='submit'
               >
-                {!formLoading ? 'Send' : <Loader width='30px' height='30px' />}
+                {!formLoading ? (
+                  data[lang].moreInfos.send
+                ) : (
+                  <Loader width='30px' height='30px' />
+                )}
               </button>
             </form>
           )
         : formStep === 2 && (
             <div className='scnd-step-message d-flex flex-column'>
               <span>
-                <b>Your message has been sent.</b>
+                <b>{data[lang].moreInfos.sent}</b>
               </span>
-              <span>Thanks for your interest in Gainz work.</span>
+              <span>{data[lang].moreInfos.interest}</span>
               <div className='counter-text'>
-                Back to "{artType === 'papers' ? 'work on paper' : 'paintings'}"
-                page in ... <b>{counter} sec</b>
+                {lang === 'fr' ? (
+                  `${data[lang].moreInfos.back} ${data[lang].moreInfos.page} "${
+                    artType === 'papers'
+                      ? data[lang].moreInfos.papers
+                      : data[lang].moreInfos.paintings
+                  }" ${data[lang].moreInfos.in} ... `
+                ) : (
+                  <>
+                    Back to "
+                    {artType === 'papers' ? 'work on paper' : 'paintings'}" page
+                    in ...&nbsp;
+                  </>
+                )}
+                <b>{counter} sec</b>
               </div>
             </div>
           )}

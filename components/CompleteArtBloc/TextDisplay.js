@@ -1,6 +1,12 @@
+import { useContext } from 'react';
+import LangContext from '../../contexts/LangContext';
+import data from '../../languages/data.json';
+
 import Link from 'next/link';
 
 const TextDisplay = ({ art, artType, isLoading }) => {
+  const lang = useContext(LangContext);
+
   return (
     <div className='text-container d-flex flex-column align-center'>
       <div className='d-flex flex-column align-center'>
@@ -29,14 +35,14 @@ const TextDisplay = ({ art, artType, isLoading }) => {
         </span>
         <span className='art-info d-flex align-center'>
           <div className='sold-tag'></div>
-          {art.isSold ? 'Already sold' : 'Available'}
+          {art.isSold ? data[lang].art.sold : data[lang].art.available}
         </span>
         {!art.isSold && <span className='art-info'>{art.price}&nbsp;€</span>}
       </div>
       {!art.isSold && (
         <Link href='/more-infos/[id]' as={`/more-infos/${artType}-${art._id}`}>
           <a>
-            <button className='more'>Interested ? Contact us.</button>
+            <button className='more'>{data[lang].art.interested}</button>
           </a>
         </Link>
       )}

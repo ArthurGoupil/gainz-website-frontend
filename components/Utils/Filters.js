@@ -1,11 +1,13 @@
-import { useState } from 'react';
-import Router from 'next/router';
+import { useState, useContext } from 'react';
+import LangContext from '../../contexts/LangContext';
+import data from '../../languages/data.json';
 
 import _ from 'lodash';
 
 import { MdAdjust, MdRadioButtonUnchecked } from 'react-icons/md';
 
 const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
+  const lang = useContext(LangContext);
   const [yearFilterType, setYearFilterType] = useState('desc');
   const [showArts, setShowArts] = useState('all');
 
@@ -109,7 +111,7 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
     <div className='filters d-flex'>
       <div className='sort-container d-flex'>
         <div className='sort'>
-          <b>sort&nbsp;&nbsp;</b>|
+          <b>{data[lang].filters.sort}&nbsp;&nbsp;</b>|
         </div>
         <div
           className='sort-element desc d-flex align-center'
@@ -122,7 +124,7 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
               <MdRadioButtonUnchecked />
             )}
           </div>
-          <span>newest</span>
+          <span>{data[lang].filters.newest}</span>
         </div>
         <div
           className='sort-element asc d-flex align-center'
@@ -135,12 +137,12 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
               <MdRadioButtonUnchecked />
             )}
           </div>
-          oldest
+          {data[lang].filters.oldest}
         </div>
       </div>
       <div className='sort-container d-flex'>
         <div className='show'>
-          <b>show&nbsp;&nbsp;</b>|
+          <b>{data[lang].filters.show}&nbsp;&nbsp;</b>|
         </div>
         <div
           className='sort-element all d-flex align-center'
@@ -151,7 +153,7 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
           <div className='icons d-flex align-center'>
             {showArts === 'all' ? <MdAdjust /> : <MdRadioButtonUnchecked />}
           </div>
-          all
+          {data[lang].filters.all}
         </div>
         <div
           className='sort-element available d-flex align-center'
@@ -166,7 +168,7 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
               <MdRadioButtonUnchecked />
             )}
           </div>
-          available
+          {data[lang].filters.available}
         </div>
         <div
           className='sort-element sold d-flex align-center'
@@ -175,7 +177,7 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
           <div className='icon-sold d-flex align-center'>
             {showArts === 'sold' ? <MdAdjust /> : <MdRadioButtonUnchecked />}
           </div>
-          sold
+          {data[lang].filters.sold}
         </div>
       </div>
       <style jsx>
