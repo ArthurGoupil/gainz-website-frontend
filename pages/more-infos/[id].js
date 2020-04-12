@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import axios from 'axios';
@@ -12,6 +13,8 @@ const MoreInfos = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [artType, setArtType] = useState(null);
   const [id, setId] = useState(null);
+  const backgroundSrc =
+    'https://res.cloudinary.com/goupil/image/upload/v1586641448/gainz/home5-empty-nogainz_ckhcwa.jpg';
 
   const fetchArt = useCallback(async () => {
     if (artTypeId) {
@@ -37,6 +40,7 @@ const MoreInfos = (props) => {
 
   return (
     <>
+      <Head>{!isLoading && <title>Gainz - {art.name}</title>}</Head>
       <div className='more-infos extra-margin d-flex justify-center'>
         <div className='contact-form-container d-flex justify-center'>
           <ContactForm art={art} isLoading={isLoading} artType={artType} />
@@ -44,7 +48,7 @@ const MoreInfos = (props) => {
       </div>
       <style jsx>{`
         .more-infos {
-          background-image: url('/images/home5-empty-nogainz.jpg');
+          background-image: url(${backgroundSrc});
           background-size: cover;
           background-position: center;
           width: calc(100vw - 40px);

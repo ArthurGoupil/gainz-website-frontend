@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
+import Head from 'next/head';
 
 import axios from 'axios';
 
 import BackgroundPreview from '../components/Utils/ArtPreview';
-import PaintingPreview from '../components/Utils/ArtPreview';
 
 const Home = (props) => {
   const [homePaintingsArr, setHomePaintingsArr] = useState([]);
@@ -11,25 +11,11 @@ const Home = (props) => {
   const [firstPainting, setFirstPainting] = useState(0);
   const [secondPainting, setSecondPainting] = useState(1);
   const [firstImgOn, setFirstImgOn] = useState(true);
-  const [backgroundIsLoading, setBackgroundIsLoading] = useState(true);
-  const [backgroundPreviewIsLoading, setBackgroundPreviewIsLoading] = useState(
-    true
-  );
-  const [paintingIsLoading, setPaintingIsLoading] = useState(true);
-  const [paintingPreviewIsLoading, setPaintingPreviewIsLoading] = useState(
-    true
-  );
 
   const homeBackground =
     'https://res.cloudinary.com/goupil/image/upload/v1586641442/gainz/home5-empty_ridqzp.jpg';
   const homeBackgroundPreview =
     'https://res.cloudinary.com/goupil/image/upload/v1586641442/gainz/home5-empty-preview_rkzcqe.jpg';
-
-  const backgroundPreviewIsOn =
-    backgroundIsLoading && !backgroundPreviewIsLoading;
-  const backgroundIsOn = !backgroundIsLoading && !backgroundPreviewIsLoading;
-  const paintingPreviewIsOn = paintingIsLoading && !paintingPreviewIsLoading;
-  const paintingIsOn = !paintingIsLoading && !paintingPreviewIsLoading;
 
   const fetchPaintings = useCallback(async () => {
     try {
@@ -47,25 +33,12 @@ const Home = (props) => {
     fetchPaintings();
   }, []);
 
-  console.log(backgroundPreviewIsLoading);
-
   return (
     <>
+      <Head>
+        <title>Gainz</title>
+      </Head>
       <div className='home extra-margin d-flex justify-center'>
-        <BackgroundPreview
-          setPreviewImgIsLoading={setBackgroundPreviewIsLoading}
-          previewImage={homeBackgroundPreview}
-          previewIsOn={backgroundPreviewIsOn}
-          width='100%'
-          height='100%'
-          backgroundSize='cover'
-        />
-        <img
-          src={homeBackground}
-          alt='home-background-preload'
-          className='home-background-preload'
-          onLoad={() => setBackgroundIsLoading(false)}
-        />
         <div
           className='paints-container'
           onMouseEnter={() => {
@@ -99,14 +72,6 @@ const Home = (props) => {
         >
           {!isLoading && (
             <>
-              <PaintingPreview
-                setPreviewImgIsLoading={setPaintingPreviewIsLoading}
-                previewImage={homePaintingsArr[firstPainting].previewImage}
-                previewIsOn={paintingPreviewIsOn}
-                width='100%'
-                height='100%'
-                backgroundSize='cover'
-              />
               <img
                 className='second-paint'
                 src={homePaintingsArr[firstPainting].smallImage}
@@ -116,7 +81,6 @@ const Home = (props) => {
                 className='first-paint'
                 src={homePaintingsArr[secondPainting].smallImage}
                 alt='first-paint'
-                onLoad={() => setPaintingIsLoading(false)}
               />
             </>
           )}
@@ -135,7 +99,7 @@ const Home = (props) => {
             width: calc(100vw - 40px);
             position: relative;
             overflow: hidden;
-            opacity: ${backgroundIsOn ? 1 : 0};
+            opacity: 1;
           }
           .paints-container {
             height: 24vh;
@@ -143,9 +107,10 @@ const Home = (props) => {
             margin-top: 10vh;
             box-shadow: 3px 3px 2px 1px #2a2a2a;
             position: relative;
-            opacity: ${paintingIsOn ? 1 : 0};
+            opacity: ${!isLoading ? 1 : 0};
             transition: 0.5s;
             border-radius: 3px;
+            overflow: hidden;
           }
 
           .first-paint {

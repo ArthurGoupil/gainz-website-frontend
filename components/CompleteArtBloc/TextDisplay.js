@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import LangContext from '../../contexts/LangContext';
 import data from '../../languages/data.json';
-
 import Link from 'next/link';
 
 const TextDisplay = ({ art, artType, isLoading }) => {

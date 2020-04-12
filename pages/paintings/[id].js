@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import axios from 'axios';
@@ -9,7 +10,11 @@ const Paintings = (props) => {
   const router = useRouter();
   const [painting, setPainting] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const id = router.query.id;
+  const slugAndId = router.query.id;
+  let id;
+  if (slugAndId) {
+    id = slugAndId.slice(slugAndId.lastIndexOf('-') + 1);
+  }
 
   const fetchPainting = useCallback(async () => {
     if (id) {
@@ -30,7 +35,16 @@ const Paintings = (props) => {
   }, [id]);
 
   return (
-    <CompleteArtBloc art={painting} artType='paintings' isLoading={isLoading} />
+    <>
+      <Head>
+        <title>Gainz - {painting.name}</title>
+      </Head>
+      <CompleteArtBloc
+        art={painting}
+        artType='paintings'
+        isLoading={isLoading}
+      />
+    </>
   );
 };
 

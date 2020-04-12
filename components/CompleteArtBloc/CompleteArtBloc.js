@@ -8,6 +8,8 @@ const CompleteArtBloc = ({ art, artType, isLoading }) => {
   const [displayModal, setDisplayModal] = useState(false);
   const [numberOfLoadedImg, setNumberOfLoadedImg] = useState(0);
   const [previewImgIsLoading, setPreviewImgIsLoading] = useState(true);
+  const backgroundSrc =
+    'https://res.cloudinary.com/goupil/image/upload/v1586641448/gainz/home5-empty-nogainz_ckhcwa.jpg';
 
   const getImgQty = (format) => {
     if (format === 'triptyque') {
@@ -47,7 +49,7 @@ const CompleteArtBloc = ({ art, artType, isLoading }) => {
       <TextDisplay art={art} isLoading={isLoading} artType={artType} />
       <style jsx>{`
         .main-background {
-          background-image: url('/images/home5-empty-nogainz.jpg');
+          background-image: url(${backgroundSrc});
           background-size: cover;
           background-position: center;
           height: calc(75vh - 140px);

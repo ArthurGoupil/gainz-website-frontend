@@ -1,4 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
+import Head from 'next/head';
+import data from '../languages/data.json';
+import LangContext from '../contexts/LangContext';
 
 import axios from 'axios';
 
@@ -7,6 +10,7 @@ import Filters from '../components/Utils/Filters';
 import ArtsGrid from '../components/ArtsGrid/ArtsGrid';
 
 const Papers = (props) => {
+  const lang = useContext(LangContext);
   const [papers, setPapers] = useState([]);
   const [papersGrid, setPapersGrid] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -41,6 +45,9 @@ const Papers = (props) => {
 
   return (
     <>
+      <Head>
+        <title>Gainz - {data[lang].main.papers}</title>
+      </Head>
       <Filters
         arts={papers}
         setArtsGrid={setPapersGrid}

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import axios from 'axios';
@@ -9,8 +10,11 @@ const Papers = (props) => {
   const router = useRouter();
   const [paper, setPaper] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [displayModal, setDisplayModal] = useState(false);
-  const id = router.query.id;
+  const slugAndId = router.query.id;
+  let id;
+  if (slugAndId) {
+    id = slugAndId.slice(slugAndId.lastIndexOf('-') + 1);
+  }
 
   const fetchPaper = useCallback(async () => {
     if (id) {
@@ -30,7 +34,14 @@ const Papers = (props) => {
     fetchPaper();
   }, [id]);
 
-  return <CompleteArtBloc art={paper} artType='papers' isLoading={isLoading} />;
+  return (
+    <>
+      <Head>
+        <title>Gainz - {paper.name}</title>
+      </Head>
+      <CompleteArtBloc art={paper} artType='papers' isLoading={isLoading} />;
+    </>
+  );
 };
 
 export default Papers;

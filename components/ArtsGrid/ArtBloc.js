@@ -2,8 +2,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 import 'lazysizes';
-// import a plugin
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
+import slugify from 'slugify';
 
 import ArtPreview from '../Utils/ArtPreview';
 
@@ -13,12 +13,17 @@ const ArtBloc = ({ photo, margin, artType }) => {
 
   const { _id, name, isSold, src, previewImage, width, height } = photo;
 
+  const nameSlug = slugify(name, {
+    remove: /[*+~.()'"!:@/]/g,
+    lower: true,
+  });
+
   const previewIsOn = imgIsLoading && !previewImgIsLoading;
 
   const imgIsOn = !imgIsLoading && !previewImgIsLoading;
 
   return (
-    <Link href={`/${artType}/[id]`} as={`/${artType}/${_id}`}>
+    <Link href={`/${artType}/[id]`} as={`/${artType}/${nameSlug}-${_id}`}>
       <div className='art-container d-flex d-flex justify-center align-center'>
         <div>
           <ArtPreview
