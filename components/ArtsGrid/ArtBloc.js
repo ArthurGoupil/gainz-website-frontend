@@ -27,7 +27,6 @@ const ArtBloc = ({ photo, margin, artType }) => {
             previewIsOn={previewIsOn}
             width='100%'
             height='100%'
-            contain={false}
           />
           <img
             className='lazyload art'
