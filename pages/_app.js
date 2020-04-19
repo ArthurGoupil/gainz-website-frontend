@@ -50,9 +50,20 @@ function MyApp({ Component, pageProps }) {
             line-height: 1.9rem;
             color: ${middleBlue};
           }
-          .extra-margin {
-            margin: 0 10px 0 10px;
+
+          /* EXTRA-MARGIN */
+          .static-margins {
+            margin: 0 20px 0 20px;
           }
+          .responsive-margins {
+            margin: 0 20px 0 20px;
+          }
+          @media only screen and (max-width: 769px) {
+            .responsive-margins {
+              margin: 0;
+            }
+          }
+
           /* TITLES */
           h1 {
             color: ${middleBlue};

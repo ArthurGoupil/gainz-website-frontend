@@ -41,7 +41,7 @@ const MoreInfos = (props) => {
   return (
     <>
       <Head>{!isLoading && <title>Gainz - {art.name}</title>}</Head>
-      <div className='more-infos extra-margin d-flex justify-center'>
+      <div className='more-infos responsive-margins d-flex justify-center'>
         <div className='contact-form-container d-flex justify-center'>
           <ContactForm art={art} isLoading={isLoading} artType={artType} />
         </div>
@@ -58,6 +58,11 @@ const MoreInfos = (props) => {
           width: 100%;
           opacity: ${isLoading ? 0 : 1};
           transition: 0.5s;
+        }
+        @media only screen and (max-width: 769px) {
+          .more-infos {
+            width: 100vw;
+          }
         }
       `}</style>
     </>

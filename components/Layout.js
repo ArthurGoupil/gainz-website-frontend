@@ -26,11 +26,16 @@ const Layout = ({ children, padding }) => {
         </div>
         <style jsx>{`
           main {
-            padding: ${padding ? padding : '0 10px 20px 10px'};
+            padding-bottom: 20px;
           }
           @media only screen and (min-width: 769px) {
             .mobile-menu {
               display: none;
+            }
+          }
+          @media only screen and (max-width: 769px) {
+            main {
+              padding-bottom: 0;
             }
           }
         `}</style>

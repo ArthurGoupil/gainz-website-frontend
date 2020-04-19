@@ -29,7 +29,7 @@ const CompleteArtBloc = ({ art, artType, isLoading }) => {
   }, [backgroundRef]);
 
   return (
-    <div className='extra-margin d-flex flex-column justify-center align-center'>
+    <div className='responsive-margins d-flex flex-column justify-center align-center'>
       <div className='top-container d-flex justify-center align-center'>
         <div className='background-container'>
           <BackgroundPreview

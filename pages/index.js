@@ -31,7 +31,7 @@ const Home = (props) => {
       <Head>
         <title>Gainz</title>
       </Head>
-      <div className='home extra-margin d-flex justify-center'>
+      <div className='home responsive-margins d-flex justify-center'>
         <img
           ref={backgroundRef}
           className='background'
@@ -71,7 +71,8 @@ const Home = (props) => {
 
           @media only screen and (max-width: 769px) {
             .home {
-              height: calc(100vh - 100px);
+              height: calc(100vh - 80px);
+              width: 100vw;
             }
           }
         `}

@@ -15,7 +15,7 @@ const About = (props) => {
       <Head>
         <title>Gainz - {data[lang].main.about}</title>
       </Head>
-      <div className='container extra-margin d-flex justify-center'>
+      <div className='container responsive-margins d-flex justify-center'>
         {/* <img className='background' src={backgroundSrc} alt='Mur gris' /> */}
         <div className='about-container'>
           <img className='gainz' src={gainzSrc} alt='Gaspard Pellerin' />
@@ -73,7 +73,8 @@ const About = (props) => {
 
         @media only screen and (max-width: 769px) {
           .container {
-            min-height: calc(100vh - 100px);
+            width: 100vw;
+            min-height: calc(100vh - 80px);
           }
           .about-container {
             width: calc(100vw - 80px);
