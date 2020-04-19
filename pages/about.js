@@ -8,7 +8,7 @@ const About = (props) => {
   const backgroundSrc =
     'https://res.cloudinary.com/goupil/image/upload/v1586641448/gainz/home5-empty-nogainz_ckhcwa.jpg';
   const gainzSrc =
-    'https://res.cloudinary.com/goupil/image/upload/v1586641448/gainz/gainz-about2_on6smj.png';
+    'https://res.cloudinary.com/goupil/image/upload/v1586641448/gainz/gainz-about3_vu1tgr.png';
 
   return (
     <>
