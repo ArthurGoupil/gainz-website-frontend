@@ -77,7 +77,7 @@ const About = (props) => {
             min-height: calc(100vh - 80px);
           }
           .about-container {
-            width: calc(100vw - 80px);
+            width: calc(100vw - 40px);
             max-width: 490px;
             min-height: calc(100vh - 140px);
             padding: 25px;
