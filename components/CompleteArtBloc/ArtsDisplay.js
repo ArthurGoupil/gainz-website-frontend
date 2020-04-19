@@ -1,14 +1,27 @@
 import { useState, useEffect, useCallback } from 'react';
 
-const ArtsDisplay = ({
-  art,
-  setDisplayModal,
-  displayModal,
-  setNumberOfLoadedImg,
-  numberOfLoadedImg,
-  imgIsOn,
-}) => {
+import ArtPreview from '../Utils/ArtPreview';
+
+const ArtsDisplay = ({ art, setDisplayModal, displayModal }) => {
   const [formatIsLoading, setFormatIsLoading] = useState(true);
+  const [numberOfLoadedImg, setNumberOfLoadedImg] = useState(0);
+  const [previewImgIsLoading, setPreviewImgIsLoading] = useState(true);
+
+  const getImgQty = (format) => {
+    if (format === 'triptyque') {
+      return 3;
+    } else if (format === 'diptyque') {
+      return 2;
+    } else {
+      return 1;
+    }
+  };
+
+  const previewIsOn =
+    numberOfLoadedImg !== getImgQty(art.format) && !previewImgIsLoading;
+
+  const imgIsOn =
+    numberOfLoadedImg === getImgQty(art.format) && !previewImgIsLoading;
 
   const setFormat = useCallback((format) => {
     if (format) {
@@ -48,6 +61,12 @@ const ArtsDisplay = ({
     <>
       {!formatIsLoading && (
         <>
+          <ArtPreview
+            setPreviewImgIsLoading={setPreviewImgIsLoading}
+            previewImage={art.previewImage}
+            previewIsOn={previewIsOn}
+            backgroundSize='contain'
+          />
           <img
             className='art'
             src={art.bigImage}
@@ -86,7 +105,7 @@ const ArtsDisplay = ({
           opacity: ${imgIsOn ? 1 : 0};
           transition: 0.5s;
           pointer-events: ${!imgIsOn ? 'none' : 'auto'};
-          z-index: 3;
+          z-index: 10000;
         }
         .scnd-art,
         .thrd-art {

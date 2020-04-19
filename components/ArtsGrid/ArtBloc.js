@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-import 'lazysizes';
-import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import slugify from 'slugify';
 
 import ArtPreview from '../Utils/ArtPreview';
@@ -34,8 +32,8 @@ const ArtBloc = ({ photo, margin, artType }) => {
             height='100%'
           />
           <img
-            className='lazyload art'
-            data-src={src}
+            className='art'
+            src={src}
             width={width}
             height={height}
             alt={name}

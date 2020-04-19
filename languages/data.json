@@ -23,7 +23,7 @@
     },
     "art": {
       "available": "disponible",
-      "sold": "vendu",
+      "sold": "Vendu",
       "interested": "Intéressé(e) ? Contactez-nous."
     },
     "moreInfos": {
@@ -62,7 +62,7 @@
     },
     "filters": {
       "sort": "sort",
-      "newest": "+ newest",
+      "newest": "newest",
       "oldest": "oldest",
       "show": "show",
       "all": "all",

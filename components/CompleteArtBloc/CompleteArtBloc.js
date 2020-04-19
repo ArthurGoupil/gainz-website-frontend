@@ -1,60 +1,80 @@
-import { useState } from 'react';
-import Link from 'next/link';
-import ArtPreview from '../Utils/ArtPreview';
+import { useState, useEffect, useRef } from 'react';
+
 import ArtsDisplay from './ArtsDisplay';
 import TextDisplay from './TextDisplay';
+import BackgroundPreview from '../Utils/ArtPreview';
 
 const CompleteArtBloc = ({ art, artType, isLoading }) => {
+  const [backgroundIsLoading, setBackgroundIsLoading] = useState(true);
+  const [backgroundPreviewIsLoading, setBackgroundPreviewIsLoading] = useState(
+    true
+  );
   const [displayModal, setDisplayModal] = useState(false);
-  const [numberOfLoadedImg, setNumberOfLoadedImg] = useState(0);
-  const [previewImgIsLoading, setPreviewImgIsLoading] = useState(true);
+
+  const backgroundRef = useRef();
+
   const backgroundSrc =
     'https://res.cloudinary.com/goupil/image/upload/v1586641448/gainz/home5-empty-nogainz_ckhcwa.jpg';
+  const backgroundPreviewSrc =
+    'https://res.cloudinary.com/goupil/image/upload/v1586641442/gainz/home5-empty-nogainz-preview_wjvtk7.jpg';
 
-  const getImgQty = (format) => {
-    if (format === 'triptyque') {
-      return 3;
-    } else if (format === 'diptyque') {
-      return 2;
-    } else {
-      return 1;
+  const backgroundPreviewIsOn =
+    backgroundIsLoading && !backgroundPreviewIsLoading;
+  const backgroundIsOn = !backgroundIsLoading && !backgroundPreviewIsLoading;
+
+  useEffect(() => {
+    if (backgroundRef.current.complete) {
+      setBackgroundIsLoading(false);
     }
-  };
-
-  const previewIsOn =
-    numberOfLoadedImg !== getImgQty(art.format) && !previewImgIsLoading;
-
-  const imgIsOn =
-    numberOfLoadedImg === getImgQty(art.format) && !previewImgIsLoading;
+  }, [backgroundRef]);
 
   return (
-    <div className='extra-margin d-flex flex-column align-center'>
-      <div className='main-background d-flex justify-center align-center'>
+    <div className='extra-margin d-flex flex-column justify-center align-center'>
+      <div className='top-container d-flex justify-center align-center'>
+        <div className='background-container'>
+          <BackgroundPreview
+            setPreviewImgIsLoading={setBackgroundPreviewIsLoading}
+            previewImage={backgroundPreviewSrc}
+            previewIsOn={backgroundPreviewIsOn}
+            width='100%'
+            height='100%'
+            backgroundSize='cover'
+          />
+          <img
+            ref={backgroundRef}
+            className='background'
+            src={backgroundSrc}
+            alt='Mur gris'
+            onLoad={() => setBackgroundIsLoading(false)}
+          />
+        </div>
         <div className='modal' onClick={() => setDisplayModal(false)}></div>
         <ArtsDisplay
           art={art}
           setDisplayModal={setDisplayModal}
           displayModal={displayModal}
-          setNumberOfLoadedImg={setNumberOfLoadedImg}
-          numberOfLoadedImg={numberOfLoadedImg}
-          imgIsOn={imgIsOn}
-        />
-        <ArtPreview
-          setPreviewImgIsLoading={setPreviewImgIsLoading}
-          previewImage={art.previewImage}
-          previewIsOn={previewIsOn}
-          backgroundSize='contain'
         />
       </div>
       <TextDisplay art={art} isLoading={isLoading} artType={artType} />
       <style jsx>{`
-        .main-background {
-          background-image: url(${backgroundSrc});
-          background-size: cover;
-          background-position: center;
-          height: calc(75vh - 140px);
+        .top-container {
           width: 100%;
+          height: calc(75vh - 140px);
           position: relative;
+        }
+        .background-container {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          opacity: ${backgroundIsOn ? 1 : 0};
+          transition: opacity linear 0.5s;
+          overflow: hidden;
+        }
+        .background {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
         }
         .modal {
           width: 100vw;
@@ -66,10 +86,7 @@ const CompleteArtBloc = ({ art, artType, isLoading }) => {
           opacity: ${displayModal ? '1' : '0'};
           pointer-events: ${displayModal ? 'inherit' : 'none'};
           cursor: pointer;
-          -webkit-transition: opacity 0.4s ease-in-out;
-          -moz-transition: opacity 0.4s ease-in-out;
-          -o-transition: opacity 0.4s ease-in-out;
-          transition: opacity 0.4s ease-in-out;
+          transition: opacity 0.4s ease;
         }
       `}</style>
     </div>

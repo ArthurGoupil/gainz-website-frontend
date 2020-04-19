@@ -1,6 +1,4 @@
-import 'lazysizes';
-// import a plugin
-import 'lazysizes/plugins/parent-fit/ls.parent-fit';
+import { useEffect, useRef } from 'react';
 
 const ArtPreview = ({
   setPreviewImgIsLoading,
@@ -10,10 +8,19 @@ const ArtPreview = ({
   height,
   backgroundSize,
 }) => {
+  const preloadRef = useRef();
+
+  useEffect(() => {
+    if (preloadRef.current.complete) {
+      setPreviewImgIsLoading(false);
+    }
+  }, [preloadRef]);
+
   return (
     <>
       <div className='art-preview-preload'>
         <img
+          ref={preloadRef}
           src={previewImage}
           alt='Preview image preload'
           onLoad={() => setPreviewImgIsLoading(false)}
@@ -31,7 +38,7 @@ const ArtPreview = ({
           height: ${height ? height : '75%'};
           filter: blur(5px);
           opacity: ${previewIsOn ? 1 : 0};
-          transition: opacity ease-in 0.5s;
+          transition: opacity linear 0.5s;
         }
         .art-preview-preload {
           display: none;

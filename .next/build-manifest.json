@@ -28,7 +28,15 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
+    "/more-infos/[id]": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
     "/paintings": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/paintings/[id]": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
