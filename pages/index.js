@@ -11,9 +11,9 @@ const Home = (props) => {
   );
   const backgroundRef = useRef();
 
-  const homeBackground =
+  const backgroundSrc =
     'https://res.cloudinary.com/goupil/image/upload/v1586641442/gainz/home5-empty_ridqzp.jpg';
-  const homeBackgroundPreview =
+  const backgroundPreviewSrc =
     'https://res.cloudinary.com/goupil/image/upload/v1586641442/gainz/home5-empty-preview_rkzcqe.jpg';
 
   const backgroundPreviewIsOn =
@@ -34,8 +34,8 @@ const Home = (props) => {
       <div className='home extra-margin d-flex justify-center'>
         <img
           ref={backgroundRef}
-          className='home-background'
-          src={homeBackground}
+          className='background'
+          src={backgroundSrc}
           alt='Mur gris dans la rue.'
           onLoad={() => {
             setBackgroundIsLoading(false);
@@ -43,7 +43,7 @@ const Home = (props) => {
         />
         <BackgroundPreview
           setPreviewImgIsLoading={setBackgroundPreviewIsLoading}
-          previewImage={homeBackgroundPreview}
+          previewImage={backgroundPreviewSrc}
           previewIsOn={backgroundPreviewIsOn}
           width='100%'
           height='100%'
@@ -54,12 +54,12 @@ const Home = (props) => {
       <style jsx>
         {`
           .home {
-            height: calc(100vh - 160px);
             width: calc(100vw - 40px);
+            height: calc(100vh - 160px);
             position: relative;
             overflow: hidden;
           }
-          .home-background {
+          .background {
             width: 100%;
             height: 100%;
             object-fit: cover;

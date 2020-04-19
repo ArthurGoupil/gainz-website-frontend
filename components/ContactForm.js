@@ -226,6 +226,7 @@ const ContactForm = ({ art, artType, isLoading }) => {
         @media only screen and (max-width: 600px) {
           .form-container {
             width: calc(100% - 40px);
+            padding: 25px;
           }
           .titles-container {
             flex-direction: column;

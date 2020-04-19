@@ -152,12 +152,6 @@ function MyApp({ Component, pageProps }) {
             transition: background-color 5000s ease-in-out 0s;
           }
 
-          /* CONTAINER */
-          .container {
-            width: 96vw;
-            max-width: ${container};
-          }
-
           /* FLEXBOX */
           .d-flex {
             display: flex;
