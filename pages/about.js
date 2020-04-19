@@ -55,7 +55,7 @@ const About = (props) => {
           border-radius: 10px;
           padding: 45px;
           box-shadow: 3px 3px 10px 4px rgba(42, 42, 42, 0.2);
-          min-height: calc(100vh - 180px);
+          min-height: calc(100vh - 200px);
           margin: 20px 0;
         }
         .gainz {
