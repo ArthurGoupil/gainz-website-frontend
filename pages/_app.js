@@ -6,8 +6,6 @@ import { PageTransition } from 'next-page-transitions';
 import '../styles/reset.css';
 import Layout from '../components/Layout';
 
-import 'rc-color-picker/assets/index.css';
-
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   return (
@@ -163,6 +161,13 @@ function MyApp({ Component, pageProps }) {
             border: 2px solid ${middleBlue};
             -webkit-box-shadow: 0 0 0px 1000px ${lightGrey} inset;
             transition: background-color 5000s ease-in-out 0s;
+          }
+
+          /* COLOR PICKER */
+          .color-picker input {
+            font-size: 1.2rem;
+            padding: 5px;
+            height: inherit;
           }
 
           /* FLEXBOX */

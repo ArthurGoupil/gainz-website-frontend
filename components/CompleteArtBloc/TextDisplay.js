@@ -3,7 +3,7 @@ import LangContext from '../../contexts/LangContext';
 import data from '../../languages/data.json';
 import Link from 'next/link';
 
-import ColorPicker from 'rc-color-picker';
+import InputColor from 'react-input-color';
 
 const TextDisplay = ({ art, artType, isLoading, wallColor, setWallColor }) => {
   const lang = useContext(LangContext);
@@ -40,6 +40,14 @@ const TextDisplay = ({ art, artType, isLoading, wallColor, setWallColor }) => {
         </span>
         {!art.isSold && <span className='art-info'>{art.price}&nbsp;€</span>}
       </div>
+      <div className='color-picker d-flex align-center'>
+        <span>Choisir la couleur du mur :&nbsp;</span>
+        <InputColor
+          initialValue='#ececec'
+          onChange={setWallColor}
+          placement='top'
+        />
+      </div>
       {!art.isSold && (
         <Link href='/more-infos/[id]' as={`/more-infos/${artType}-${art._id}`}>
           <a>
@@ -47,19 +55,7 @@ const TextDisplay = ({ art, artType, isLoading, wallColor, setWallColor }) => {
           </a>
         </Link>
       )}
-      <ColorPicker
-        color={wallColor}
-        onChange={(colors) => {
-          setWallColor(colors.color);
-        }}
-        placement='topRight'
-        enableAlpha={false}
-        className='test'
-      />
       <style jsx>{`
-        .test {
-          margin-bottom: 200px;
-        }
         .text-container {
           width: 70%;
           padding: 20px 0;
@@ -103,11 +99,21 @@ const TextDisplay = ({ art, artType, isLoading, wallColor, setWallColor }) => {
           background-color: ${lightGrey};
           cursor: pointer;
         }
+        .color-picker {
+          position: absolute;
+          right: 20px;
+        }
 
         @media only screen and (max-width: 920px) {
           .sub-text-container {
             flex-direction: column;
             align-items: center;
+          }
+        }
+        @media only screen and (max-width: 769px) {
+          .color-picker {
+            position: inherit;
+            margin-bottom: 20px;
           }
         }
       `}</style>

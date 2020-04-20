@@ -10,7 +10,7 @@ const CompleteArtBloc = ({ art, artType, isLoading }) => {
     true
   );
   const [displayModal, setDisplayModal] = useState(false);
-  const [wallColor, setWallColor] = useState('#ececec');
+  const [wallColor, setWallColor] = useState({});
 
   const backgroundRef = useRef();
 
@@ -94,14 +94,14 @@ const CompleteArtBloc = ({ art, artType, isLoading }) => {
         .background-color {
           width: 100%;
           height: 100%;
-          background-color: ${wallColor};
+          background-color: ${wallColor.rgba};
           position: absolute;
           mix-blend-mode: multiply;
         }
         .background-color-softener {
           width: 100%;
           height: 100%;
-          background-color: ${wallColor};
+          background-color: ${wallColor.rgba};
           position: absolute;
           opacity: 0.3;
         }

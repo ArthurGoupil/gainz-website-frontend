@@ -105,7 +105,7 @@ const ArtsDisplay = ({ art, setDisplayModal, displayModal }) => {
           opacity: ${imgIsOn ? 1 : 0};
           transition: 0.5s;
           pointer-events: ${!imgIsOn ? 'none' : 'auto'};
-          z-index: ${displayModal ? 10 : 1};
+          z-index: ${displayModal ? 10 : 0};
         }
         .scnd-art,
         .thrd-art {

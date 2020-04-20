@@ -11,12 +11,12 @@
     "lodash": "^4.17.15",
     "next": "^9.3.0",
     "next-page-transitions": "^1.0.0-beta.2",
-    "rc-color-picker": "^1.2.6",
     "react": "^16.13.0",
     "react-burger-menu": "^2.6.13",
     "react-color": "^2.18.0",
     "react-dom": "^16.13.0",
     "react-icons": "^3.9.0",
+    "react-input-color": "^3.0.0",
     "react-photo-gallery": "^8.0.0",
     "slugify": "^1.4.0"
   },
