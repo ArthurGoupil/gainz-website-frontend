@@ -10,6 +10,7 @@ const CompleteArtBloc = ({ art, artType, isLoading }) => {
     true
   );
   const [displayModal, setDisplayModal] = useState(false);
+  const [wallColor, setWallColor] = useState('#ececec');
 
   const backgroundRef = useRef();
 
@@ -40,13 +41,17 @@ const CompleteArtBloc = ({ art, artType, isLoading }) => {
             height='100%'
             backgroundSize='cover'
           />
-          <img
-            ref={backgroundRef}
-            className='background'
-            src={backgroundSrc}
-            alt='Mur gris'
-            onLoad={() => setBackgroundIsLoading(false)}
-          />
+          <div className='background-container'>
+            <div className='background-color-softener'></div>
+            <div className='background-color'></div>
+            <img
+              ref={backgroundRef}
+              className='background'
+              src={backgroundSrc}
+              alt='Mur gris'
+              onLoad={() => setBackgroundIsLoading(false)}
+            />
+          </div>
         </div>
         <div className='modal' onClick={() => setDisplayModal(false)}></div>
         <ArtsDisplay
@@ -55,7 +60,13 @@ const CompleteArtBloc = ({ art, artType, isLoading }) => {
           displayModal={displayModal}
         />
       </div>
-      <TextDisplay art={art} isLoading={isLoading} artType={artType} />
+      <TextDisplay
+        art={art}
+        isLoading={isLoading}
+        artType={artType}
+        wallColor={wallColor}
+        setWallColor={setWallColor}
+      />
       <style jsx>{`
         .top-container {
           width: 100%;
@@ -70,11 +81,29 @@ const CompleteArtBloc = ({ art, artType, isLoading }) => {
           transition: opacity linear 0.5s;
           overflow: hidden;
         }
+        .background-container {
+          width: 100%;
+          height: 100%;
+        }
         .background {
           width: 100%;
           height: 100%;
           object-fit: cover;
           object-position: center;
+        }
+        .background-color {
+          width: 100%;
+          height: 100%;
+          background-color: ${wallColor};
+          position: absolute;
+          mix-blend-mode: multiply;
+        }
+        .background-color-softener {
+          width: 100%;
+          height: 100%;
+          background-color: ${wallColor};
+          position: absolute;
+          opacity: 0.3;
         }
         .modal {
           width: 100vw;

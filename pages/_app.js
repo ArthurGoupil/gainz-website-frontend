@@ -6,6 +6,8 @@ import { PageTransition } from 'next-page-transitions';
 import '../styles/reset.css';
 import Layout from '../components/Layout';
 
+import 'rc-color-picker/assets/index.css';
+
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   return (

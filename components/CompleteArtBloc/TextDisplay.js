@@ -3,7 +3,9 @@ import LangContext from '../../contexts/LangContext';
 import data from '../../languages/data.json';
 import Link from 'next/link';
 
-const TextDisplay = ({ art, artType, isLoading }) => {
+import ColorPicker from 'rc-color-picker';
+
+const TextDisplay = ({ art, artType, isLoading, wallColor, setWallColor }) => {
   const lang = useContext(LangContext);
 
   return (
@@ -45,7 +47,19 @@ const TextDisplay = ({ art, artType, isLoading }) => {
           </a>
         </Link>
       )}
+      <ColorPicker
+        color={wallColor}
+        onChange={(colors) => {
+          setWallColor(colors.color);
+        }}
+        placement='topRight'
+        enableAlpha={false}
+        className='test'
+      />
       <style jsx>{`
+        .test {
+          margin-bottom: 200px;
+        }
         .text-container {
           width: 70%;
           padding: 20px 0;
@@ -89,6 +103,7 @@ const TextDisplay = ({ art, artType, isLoading }) => {
           background-color: ${lightGrey};
           cursor: pointer;
         }
+
         @media only screen and (max-width: 920px) {
           .sub-text-container {
             flex-direction: column;
