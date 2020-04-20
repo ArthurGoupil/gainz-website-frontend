@@ -46,6 +46,8 @@ const About = (props) => {
           min-height: calc(100vh - 160px);
           overflow: hidden;
           background-image: url(${backgroundSrc});
+          background-size: cover;
+          background-repeat: no-repeat;
         }
         .about-container {
           width: 490px;
