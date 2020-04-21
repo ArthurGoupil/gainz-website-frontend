@@ -22,7 +22,6 @@ const About = (props) => {
           <div className='about-text-container d-flex flex-column'>
             <h1>À propos</h1>
             <img className='logo' src='/logo/logo-gainz.svg' alt='logo-gainz' />
-
             <span>
               Gainz réalise ses premières peintures dans la rue, ce qui lui a
               permis d’acquérir un geste vif et précis tout en apprenant à
@@ -37,6 +36,15 @@ const About = (props) => {
               incorporent de nombreuses formes subjectives propres à
               l’interprétation de chacun.
             </span>
+            <iframe
+              src='https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FGainz-644885112313740&width=100px&layout=button&action=like&size=small&share=true&height=65&appId'
+              width='200'
+              height='200'
+              scrolling='no'
+              frameBorder='0'
+              allowtransparency='true'
+              allow='encrypted-media'
+            ></iframe>
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ import InputColor from 'react-input-color';
 
 const TextDisplay = ({ art, artType, isLoading, wallColor, setWallColor }) => {
   const lang = useContext(LangContext);
+  console.log(wallColor.rgba);
 
   return (
     <div className='text-container d-flex flex-column align-center'>
@@ -41,7 +42,12 @@ const TextDisplay = ({ art, artType, isLoading, wallColor, setWallColor }) => {
         {!art.isSold && <span className='art-info'>{art.price}&nbsp;€</span>}
       </div>
       <div className='color-picker d-flex align-center'>
-        <span>Choisir la couleur du mur :&nbsp;</span>
+        <span>
+          {wallColor.rgba === 'rgba(236,236,236,1)'
+            ? 'Choisir la couleur du mur :'
+            : 'Rétablir la valeur par défaut :'}
+          &nbsp;
+        </span>
         <InputColor
           initialValue='#ececec'
           onChange={setWallColor}
