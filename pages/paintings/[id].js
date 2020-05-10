@@ -38,6 +38,11 @@ const Paintings = ({ wallColor, setWallColor }) => {
     <>
       <Head>
         <title>Gainz - {painting.name}</title>
+        <meta
+          name='description'
+          content={`${painting.creationYear}, ${painting.type}`}
+        />
+        <meta name='og:image' content={painting.smallImage} />
       </Head>
       <CompleteArtBloc
         art={painting}
