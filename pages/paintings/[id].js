@@ -1,38 +1,16 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 
 import axios from 'axios';
 
 import CompleteArtBloc from '../../components/CompleteArtBloc/CompleteArtBloc';
 
-const Paintings = ({ wallColor, setWallColor }) => {
-  const router = useRouter();
-  const [painting, setPainting] = useState({});
+const Paintings = ({ wallColor, setWallColor, painting }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const slugAndId = router.query.id;
-  let id;
-  if (slugAndId) {
-    id = slugAndId.slice(slugAndId.lastIndexOf('-') + 1);
-  }
-
-  const fetchPainting = useCallback(async () => {
-    if (id) {
-      try {
-        const response = await axios.get(
-          `${process.env.BACKEND_URL}/paintings/${id}`
-        );
-        setPainting(response.data);
-        setIsLoading(false);
-      } catch (e) {
-        console.error(e.message);
-      }
-    }
-  });
 
   useEffect(() => {
-    fetchPainting();
-  }, [id]);
+    if (painting) setIsLoading(false);
+  }, []);
 
   return (
     <>
@@ -52,6 +30,19 @@ const Paintings = ({ wallColor, setWallColor }) => {
       )}
     </>
   );
+};
+
+Paintings.getInitialProps = async (ctx) => {
+  const slugAndId = ctx.query.id;
+  const id = slugAndId.slice(slugAndId.lastIndexOf('-') + 1);
+  try {
+    const response = await axios.get(
+      `${process.env.BACKEND_URL}/paintings/${id}`
+    );
+    return { painting: response.data };
+  } catch (e) {
+    console.error(e.message);
+  }
 };
 
 export default Paintings;
