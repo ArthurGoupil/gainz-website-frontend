@@ -3,11 +3,11 @@ import LangContext from '../../contexts/LangContext';
 import data from '../../languages/data.json';
 import Link from 'next/link';
 
+import { MdClose, MdChevronRight } from 'react-icons/md';
 import InputColor from 'react-input-color';
 
 const TextDisplay = ({ art, artType, isLoading, wallColor, setWallColor }) => {
   const lang = useContext(LangContext);
-  console.log(wallColor.rgba);
 
   return (
     <div className='text-container d-flex flex-column align-center'>
@@ -42,14 +42,30 @@ const TextDisplay = ({ art, artType, isLoading, wallColor, setWallColor }) => {
         {!art.isSold && <span className='art-info'>{art.price}&nbsp;€</span>}
       </div>
       <div className='color-picker d-flex align-center'>
-        <span>
-          {wallColor.rgba === 'rgba(236,236,236,1)'
-            ? 'Choisir la couleur du mur :'
-            : 'Rétablir la valeur par défaut :'}
-          &nbsp;
-        </span>
+        {wallColor.rgba === 'rgba(236,236,236,1)' ? (
+          <div className='d-flex align-center'>
+            {data[lang].art.defaultColor}&nbsp;
+            <MdChevronRight />
+          </div>
+        ) : (
+          <div
+            className='set-default-color d-flex align-center'
+            onClick={() =>
+              setWallColor({
+                rgba: 'rgba(236,236,236,1)',
+                hex: '#ececec',
+              })
+            }
+          >
+            <div className='close-icon d-flex align-center'>
+              <MdClose />
+              &nbsp;{data[lang].art.colorSelected}
+            </div>
+          </div>
+        )}
+        &nbsp;&nbsp;
         <InputColor
-          initialValue='#ececec'
+          initialValue={wallColor.hex}
           onChange={setWallColor}
           placement='top'
         />
@@ -108,6 +124,9 @@ const TextDisplay = ({ art, artType, isLoading, wallColor, setWallColor }) => {
         .color-picker {
           position: absolute;
           right: 20px;
+        }
+        .set-default-color {
+          cursor: pointer;
         }
 
         @media only screen and (max-width: 920px) {

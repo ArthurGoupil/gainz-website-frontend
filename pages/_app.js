@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
@@ -7,6 +8,11 @@ import '../styles/reset.css';
 import Layout from '../components/Layout';
 
 function MyApp({ Component, pageProps }) {
+  const [wallColor, setWallColor] = useState({
+    rgba: 'rgba(236,236,236,1)',
+    hex: '#ececec',
+  });
+
   const router = useRouter();
   return (
     <Layout>
@@ -15,7 +21,12 @@ function MyApp({ Component, pageProps }) {
         <title>Gainz</title>
       </Head>
       <PageTransition timeout={300} classNames='page-transition'>
-        <Component {...pageProps} key={router.pathname} />
+        <Component
+          {...pageProps}
+          wallColor={wallColor}
+          setWallColor={setWallColor}
+          key={router.pathname}
+        />
       </PageTransition>
       <style jsx global>
         {`

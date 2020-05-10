@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import Link from 'next/link';
 import Head from 'next/head';
 import data from '../languages/data.json';
 import LangContext from '../contexts/LangContext';
@@ -22,7 +23,7 @@ const About = (props) => {
           <div className='about-text-container d-flex flex-column'>
             <h1>À propos</h1>
             <img className='logo' src='/logo/logo-gainz.svg' alt='logo-gainz' />
-            <span>
+            <span className='description'>
               Gainz réalise ses premières peintures dans la rue, ce qui lui a
               permis d’acquérir un geste vif et précis tout en apprenant à
               composer dans de grands espaces. Son travail sur toile a commencé
@@ -36,13 +37,21 @@ const About = (props) => {
               incorporent de nombreuses formes subjectives propres à
               l’interprétation de chacun.
             </span>
+            <span className='inquiry'>
+              {data[lang].main.inquiry} :{' '}
+              <Link href='mailto: contact@gainz-art.com'>
+                <a className='email' target='_blank'>
+                  contact@gainz-art.com
+                </a>
+              </Link>
+            </span>
             <iframe
-              src='https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FGainz-644885112313740&width=100px&layout=button&action=like&size=small&share=true&height=65&appId'
+              src='https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FGainz-644885112313740%2F&width=200&layout=button&action=like&size=large&share=true&height=65&appId'
               width='200'
-              height='200'
+              height='29'
               scrolling='no'
-              frameBorder='0'
-              allowtransparency='true'
+              frameborder='0'
+              allowTransparency='true'
               allow='encrypted-media'
             ></iframe>
           </div>
@@ -79,6 +88,13 @@ const About = (props) => {
         .logo {
           width: 70%;
           margin: 10px 0 30px 0;
+        }
+        .description,
+        .inquiry {
+          margin-bottom: 20px;
+        }
+        .email {
+          text-decoration: underline;
         }
 
         @media only screen and (max-width: 769px) {

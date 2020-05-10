@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import CompleteArtBloc from '../../components/CompleteArtBloc/CompleteArtBloc';
 
-const Paintings = (props) => {
+const Paintings = ({ wallColor, setWallColor }) => {
   const router = useRouter();
   const [painting, setPainting] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -43,6 +43,8 @@ const Paintings = (props) => {
         art={painting}
         artType='paintings'
         isLoading={isLoading}
+        wallColor={wallColor}
+        setWallColor={setWallColor}
       />
     </>
   );

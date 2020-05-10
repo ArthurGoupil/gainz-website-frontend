@@ -3,7 +3,8 @@
     "main": {
       "paintings": "Peinture",
       "papers": "Travail sur papier",
-      "about": "À propos"
+      "about": "À propos",
+      "inquiry": "Pour toute demande"
     },
     "nav": {
       "home": "accueil",
@@ -22,9 +23,11 @@
       "sold": "vendus"
     },
     "art": {
-      "available": "disponible",
+      "available": "Disponible",
       "sold": "Vendu",
-      "interested": "Intéressé(e) ? Contactez-nous."
+      "interested": "Intéressé(e) ? Contactez-nous.",
+      "defaultColor": "Choisir la couleur du mur",
+      "colorSelected": "Rétablir la couleur par défaut"
     },
     "moreInfos": {
       "about": "À propos de",
@@ -52,7 +55,8 @@
     "main": {
       "paintings": "Paintings",
       "papers": "Work on paper",
-      "about": "About"
+      "about": "About",
+      "inquiry": "Further information"
     },
     "nav": {
       "home": "home",
@@ -73,7 +77,9 @@
     "art": {
       "available": "Available",
       "sold": "Sold",
-      "interested": "Interested ? Contact us."
+      "interested": "Interested ? Contact us.",
+      "defaultColor": "Choose wall color",
+      "colorSelected": "Reset wall color"
     },
     "moreInfos": {
       "about": "About",

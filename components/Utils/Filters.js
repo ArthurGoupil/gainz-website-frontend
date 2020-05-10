@@ -184,7 +184,7 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
         {`
           .filters {
             width: 100%;
-            padding: 0 10px;
+            padding: 0 20px;
           }
           .sort {
             margin-right: 20px;
@@ -241,7 +241,6 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
           @media only screen and (max-width: 600px) {
             .filters {
               flex-direction: column;
-              padding: 0 20px;
             }
             .show {
               margin-right: 20px;

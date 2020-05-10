@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import CompleteArtBloc from '../../components/CompleteArtBloc/CompleteArtBloc';
 
-const Papers = (props) => {
+const Papers = ({ wallColor, setWallColor }) => {
   const router = useRouter();
   const [paper, setPaper] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -39,7 +39,14 @@ const Papers = (props) => {
       <Head>
         <title>Gainz - {paper.name}</title>
       </Head>
-      <CompleteArtBloc art={paper} artType='papers' isLoading={isLoading} />;
+      <CompleteArtBloc
+        art={paper}
+        artType='papers'
+        isLoading={isLoading}
+        wallColor={wallColor}
+        setWallColor={setWallColor}
+      />
+      ;
     </>
   );
 };

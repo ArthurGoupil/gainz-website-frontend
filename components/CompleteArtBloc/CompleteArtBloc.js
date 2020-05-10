@@ -4,15 +4,18 @@ import ArtsDisplay from './ArtsDisplay';
 import TextDisplay from './TextDisplay';
 import BackgroundPreview from '../Utils/ArtPreview';
 
-const CompleteArtBloc = ({ art, artType, isLoading }) => {
+const CompleteArtBloc = ({
+  art,
+  artType,
+  isLoading,
+  wallColor,
+  setWallColor,
+}) => {
   const [backgroundIsLoading, setBackgroundIsLoading] = useState(true);
   const [backgroundPreviewIsLoading, setBackgroundPreviewIsLoading] = useState(
     true
   );
   const [displayModal, setDisplayModal] = useState(false);
-  const [wallColor, setWallColor] = useState({
-    rgba: 'rgba(236,236,236,1)',
-  });
 
   const backgroundRef = useRef();
 
@@ -43,17 +46,15 @@ const CompleteArtBloc = ({ art, artType, isLoading }) => {
             height='100%'
             backgroundSize='cover'
           />
-          <div className='background-container'>
-            <div className='background-color-softener'></div>
-            <div className='background-color'></div>
-            <img
-              ref={backgroundRef}
-              className='background'
-              src={backgroundSrc}
-              alt='Mur gris'
-              onLoad={() => setBackgroundIsLoading(false)}
-            />
-          </div>
+          <div className='background-color-softener'></div>
+          <div className='background-color'></div>
+          <img
+            ref={backgroundRef}
+            className='background'
+            src={backgroundSrc}
+            alt='Mur gris'
+            onLoad={() => setBackgroundIsLoading(false)}
+          />
         </div>
         <div className='modal' onClick={() => setDisplayModal(false)}></div>
         <ArtsDisplay
