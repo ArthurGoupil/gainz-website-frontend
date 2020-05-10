@@ -18,7 +18,6 @@ function MyApp({ Component, pageProps }) {
     <Layout>
       <Head>
         <link rel='shortcut icon' href='/favicon.ico' />
-        <title>Gainz</title>
       </Head>
       <PageTransition timeout={300} classNames='page-transition'>
         <Component

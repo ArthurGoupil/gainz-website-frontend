@@ -15,6 +15,7 @@ const Paintings = ({ wallColor, setWallColor }) => {
   if (slugAndId) {
     id = slugAndId.slice(slugAndId.lastIndexOf('-') + 1);
   }
+  let metaDesc;
 
   const fetchPainting = useCallback(async () => {
     if (id) {
@@ -22,6 +23,7 @@ const Paintings = ({ wallColor, setWallColor }) => {
         const response = await axios.get(
           `${process.env.BACKEND_URL}/paintings/${id}`
         );
+        metaDesc = `${response.data.creationYear}, ${response.data.type}`;
         setPainting(response.data);
         setIsLoading(false);
       } catch (e) {
@@ -39,10 +41,7 @@ const Paintings = ({ wallColor, setWallColor }) => {
       <>
         <Head>
           <title>Gainz - {painting.name}</title>
-          <meta
-            name='description'
-            content={`${painting.creationYear}, ${painting.type}`}
-          />
+          <meta name='description' content={metaDesc} />
           <meta name='og:image' content={painting.smallImage} />
         </Head>
         <CompleteArtBloc
