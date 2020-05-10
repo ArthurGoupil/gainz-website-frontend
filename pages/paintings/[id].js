@@ -3,7 +3,6 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import axios from 'axios';
-import { NextSeo } from 'next-seo';
 
 import CompleteArtBloc from '../../components/CompleteArtBloc/CompleteArtBloc';
 
@@ -38,18 +37,11 @@ const Paintings = ({ wallColor, setWallColor }) => {
   return (
     !isLoading && (
       <>
-        <NextSeo
-          title={`Gainz - ${painting.name}`}
-          description={`${painting.creationYear}, ${painting.type}`}
-        />
-        {/* <Head>
+        <Head>
           <title>Gainz - {painting.name}</title>
-          <meta
-            name='description'
-            content={`${painting.creationYear}, ${painting.type}`}
-          />
+          <meta name='description' content='test-fb-desc' />
           <meta name='og:image' content={painting.smallImage} />
-        </Head> */}
+        </Head>
         <CompleteArtBloc
           art={painting}
           artType='paintings'
