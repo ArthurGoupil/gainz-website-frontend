@@ -6,40 +6,26 @@ import axios from 'axios';
 
 import CompleteArtBloc from '../../components/CompleteArtBloc/CompleteArtBloc';
 
-const Papers = ({ wallColor, setWallColor }) => {
-  const router = useRouter();
-  const [paper, setPaper] = useState({});
+const Papers = ({ wallColor, setWallColor, paper }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const slugAndId = router.query.id;
-  let id;
-  if (slugAndId) {
-    id = slugAndId.slice(slugAndId.lastIndexOf('-') + 1);
-  }
-
-  const fetchPaper = useCallback(async () => {
-    if (id) {
-      try {
-        const response = await axios.get(
-          `${process.env.BACKEND_URL}/papers/${id}`
-        );
-        setPaper(response.data);
-        setIsLoading(false);
-      } catch (e) {
-        console.error(e.message);
-      }
-    }
-  });
 
   useEffect(() => {
-    fetchPaper();
-  }, [id]);
+    if (paper) setIsLoading(false);
+  }, []);
+
+  console.log(paper);
 
   return (
-    !isLoading && (
-      <>
-        <Head>
-          <title>Gainz - {paper.name}</title>
-        </Head>
+    <>
+      <Head>
+        <title>Gainz - {paper.name}</title>
+        <meta
+          property='og:description'
+          content={`${paper.creationYear}, ${paper.type}`}
+        />
+        <meta property='og:image' content={paper.smallImage} />
+      </Head>
+      {!isLoading && (
         <CompleteArtBloc
           art={paper}
           artType='papers'
@@ -47,10 +33,20 @@ const Papers = ({ wallColor, setWallColor }) => {
           wallColor={wallColor}
           setWallColor={setWallColor}
         />
-        ;
-      </>
-    )
+      )}
+    </>
   );
+};
+
+Papers.getInitialProps = async (ctx) => {
+  const slugAndId = ctx.query.id;
+  const id = slugAndId.slice(slugAndId.lastIndexOf('-') + 1);
+  try {
+    const response = await axios.get(`${process.env.BACKEND_URL}/papers/${id}`);
+    return { paper: response.data };
+  } catch (e) {
+    console.error(e.message);
+  }
 };
 
 export default Papers;

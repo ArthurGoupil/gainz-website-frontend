@@ -14,10 +14,15 @@ function MyApp({ Component, pageProps }) {
   });
 
   const router = useRouter();
+
   return (
     <Layout>
       <Head>
         <link rel='shortcut icon' href='/favicon.ico' />
+        <meta
+          property='og:url'
+          content={`https://gainz-art.com${router.asPath}`}
+        />
       </Head>
       <PageTransition timeout={300} classNames='page-transition'>
         <Component

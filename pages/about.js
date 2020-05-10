@@ -39,7 +39,7 @@ const About = (props) => {
             </span>
             <span className='inquiry'>
               {data[lang].main.inquiry} :{' '}
-              <Link href='mailto: contact@gainz-art.com'>
+              <Link href='mailto:contact@gainz-art.com' prefetch={false}>
                 <a className='email' target='_blank'>
                   contact@gainz-art.com
                 </a>
@@ -50,8 +50,8 @@ const About = (props) => {
               width='200'
               height='29'
               scrolling='no'
-              frameborder='0'
-              allowTransparency='true'
+              frameBorder='0'
+              allowtransparency='true'
               allow='encrypted-media'
             ></iframe>
           </div>
