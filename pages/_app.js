@@ -21,8 +21,9 @@ function MyApp({ Component, pageProps }) {
         <link rel='shortcut icon' href='/favicon.ico' />
         <meta
           property='og:url'
-          content={`https://gainz-art.com${router.asPath}`}
+          content={`https://www.gainz-art.com${router.asPath}`}
         />
+        <meta property='og:type' content='website' />
       </Head>
       <PageTransition timeout={300} classNames='page-transition'>
         <Component
