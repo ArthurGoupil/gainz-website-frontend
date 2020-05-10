@@ -35,19 +35,21 @@ const Papers = ({ wallColor, setWallColor }) => {
   }, [id]);
 
   return (
-    <>
-      <Head>
-        <title>Gainz - {paper.name}</title>
-      </Head>
-      <CompleteArtBloc
-        art={paper}
-        artType='papers'
-        isLoading={isLoading}
-        wallColor={wallColor}
-        setWallColor={setWallColor}
-      />
-      ;
-    </>
+    !isLoading && (
+      <>
+        <Head>
+          <title>Gainz - {paper.name}</title>
+        </Head>
+        <CompleteArtBloc
+          art={paper}
+          artType='papers'
+          isLoading={isLoading}
+          wallColor={wallColor}
+          setWallColor={setWallColor}
+        />
+        ;
+      </>
+    )
   );
 };
 

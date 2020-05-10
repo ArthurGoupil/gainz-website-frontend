@@ -35,15 +35,25 @@ const Paintings = ({ wallColor, setWallColor }) => {
   }, [id]);
 
   return (
-    <>
-      <CompleteArtBloc
-        art={painting}
-        artType='paintings'
-        isLoading={isLoading}
-        wallColor={wallColor}
-        setWallColor={setWallColor}
-      />
-    </>
+    !isLoading && (
+      <>
+        <Head>
+          <title>Gainz - {painting.name}</title>
+          <meta
+            property='og:description'
+            content={`${painting.creationYear}`}
+          />
+          <meta property='og:image' content={painting.smallImage} />
+        </Head>
+        <CompleteArtBloc
+          art={painting}
+          artType='paintings'
+          isLoading={isLoading}
+          wallColor={wallColor}
+          setWallColor={setWallColor}
+        />
+      </>
+    )
   );
 };
 
