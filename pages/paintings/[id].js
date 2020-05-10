@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import axios from 'axios';
+import { NextSeo } from 'next-seo';
 
 import CompleteArtBloc from '../../components/CompleteArtBloc/CompleteArtBloc';
 
@@ -15,7 +16,6 @@ const Paintings = ({ wallColor, setWallColor }) => {
   if (slugAndId) {
     id = slugAndId.slice(slugAndId.lastIndexOf('-') + 1);
   }
-  let metaDesc;
 
   const fetchPainting = useCallback(async () => {
     if (id) {
@@ -23,7 +23,6 @@ const Paintings = ({ wallColor, setWallColor }) => {
         const response = await axios.get(
           `${process.env.BACKEND_URL}/paintings/${id}`
         );
-        metaDesc = `${response.data.creationYear}, ${response.data.type}`;
         setPainting(response.data);
         setIsLoading(false);
       } catch (e) {
@@ -39,11 +38,18 @@ const Paintings = ({ wallColor, setWallColor }) => {
   return (
     !isLoading && (
       <>
-        <Head>
+        <NextSeo
+          title={`Gainz - ${painting.name}`}
+          description={`${painting.creationYear}, ${painting.type}`}
+        />
+        {/* <Head>
           <title>Gainz - {painting.name}</title>
-          <meta name='description' content={metaDesc} />
+          <meta
+            name='description'
+            content={`${painting.creationYear}, ${painting.type}`}
+          />
           <meta name='og:image' content={painting.smallImage} />
-        </Head>
+        </Head> */}
         <CompleteArtBloc
           art={painting}
           artType='paintings'
