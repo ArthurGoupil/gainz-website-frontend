@@ -38,7 +38,7 @@ const Paintings = ({ wallColor, setWallColor }) => {
     <>
       <Head>
         <title>Gainz - {painting.name}</title>
-        <meta name='description' content='test-fb-desc' />
+        <meta name='og:description' content='test-fb-desc' />
         <meta name='og:image' content={painting.smallImage} />
       </Head>
       <CompleteArtBloc
