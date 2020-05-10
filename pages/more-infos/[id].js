@@ -1,19 +1,13 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 
 import axios from 'axios';
 
 import ContactForm from '../../components/ContactForm';
 import BackgroundPreview from '../../components/Utils/ArtPreview';
 
-const MoreInfos = (props) => {
-  const router = useRouter();
-  const artTypeId = router.query.id;
-  const [art, setArt] = useState(null);
+const MoreInfos = ({ art, artType }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [artType, setArtType] = useState(null);
-  const [id, setId] = useState(null);
 
   const [backgroundIsLoading, setBackgroundIsLoading] = useState(true);
   const [backgroundPreviewIsLoading, setBackgroundPreviewIsLoading] = useState(
@@ -36,31 +30,21 @@ const MoreInfos = (props) => {
     }
   }, [backgroundRef]);
 
-  const fetchArt = useCallback(async () => {
-    if (artTypeId) {
-      setArtType(artTypeId.substr(0, artTypeId.indexOf('-')));
-      setId(artTypeId.substr(artTypeId.indexOf('-') + 1, artTypeId.length - 1));
-      if (id && artType) {
-        try {
-          const response = await axios.get(
-            `${process.env.BACKEND_URL}/${artType}/${id}`
-          );
-          setArt(response.data);
-          setIsLoading(false);
-        } catch (e) {
-          console.error(e.message);
-        }
-      }
-    }
-  });
-
   useEffect(() => {
-    fetchArt();
-  }, [artTypeId, id, artType]);
+    if (art) setIsLoading(false);
+  }, []);
 
   return (
     <>
-      <Head>{!isLoading && <title>Gainz - {art.name}</title>}</Head>
+      <Head>
+        <title>Gainz - {art.name}</title>
+        <meta property='og:title' content={`Gainz - ${art.name}`} />
+        <meta
+          property='og:description'
+          content={`${art.creationYear}, ${art.type}`}
+        />
+        <meta property='og:image' content={art.smallImage} />
+      </Head>
       <div className='more-infos responsive-margins d-flex justify-center'>
         <div className='contact-form-container d-flex justify-center'>
           <ContactForm art={art} isLoading={isLoading} artType={artType} />
@@ -113,6 +97,23 @@ const MoreInfos = (props) => {
       `}</style>
     </>
   );
+};
+
+MoreInfos.getInitialProps = async (ctx) => {
+  const artTypeId = ctx.query.id;
+  const id = artTypeId.substr(artTypeId.indexOf('-') + 1, artTypeId.length - 1);
+  const artType = artTypeId.substr(0, artTypeId.indexOf('-'));
+  try {
+    const response = await axios.get(
+      `${process.env.BACKEND_URL}/${artType}/${id}`
+    );
+    return {
+      art: response.data,
+      artType: artTypeId.substr(0, artTypeId.indexOf('-')),
+    };
+  } catch (e) {
+    console.error(e.message);
+  }
 };
 
 export default MoreInfos;

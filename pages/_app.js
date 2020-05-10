@@ -24,6 +24,7 @@ function MyApp({ Component, pageProps }) {
           content={`https://www.gainz-art.com${router.asPath}`}
         />
         <meta property='og:type' content='website' />
+        <meta property='fb:app_id' content='1078456695887562' />
       </Head>
       <PageTransition timeout={300} classNames='page-transition'>
         <Component

@@ -15,9 +15,14 @@ const About = (props) => {
     <>
       <Head>
         <title>Gainz - {data[lang].main.about}</title>
+        <meta
+          property='og:title'
+          content={`Gainz - ${data[lang].main.about}`}
+        />
+        <meta property='og:description' content='En savoir plus sur Gainz.' />
+        <meta property='og:image' content={backgroundSrc} />
       </Head>
       <div className='container responsive-margins d-flex justify-center'>
-        {/* <img className='background' src={backgroundSrc} alt='Mur gris' /> */}
         <div className='about-container'>
           <img className='gainz' src={gainzSrc} alt='Gaspard Pellerin' />
           <div className='about-text-container d-flex flex-column'>

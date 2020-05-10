@@ -43,10 +43,22 @@ const Papers = (props) => {
     fetchPapers();
   }, []);
 
+  const metaImage =
+    'https://res.cloudinary.com/goupil/image/upload/v1586641448/gainz/home5-empty-nogainz_ckhcwa.jpg';
+
   return (
     <>
       <Head>
         <title>Gainz - {data[lang].main.papers}</title>
+        <meta
+          property='og:title'
+          content={`Gainz - ${data[lang].main.papers}`}
+        />
+        <meta
+          property='og:description'
+          content='Collages, encre de chine, posca ...'
+        />
+        <meta property='og:image' content={metaImage} />
       </Head>
       <Filters
         arts={papers}

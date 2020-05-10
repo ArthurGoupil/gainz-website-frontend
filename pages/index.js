@@ -30,6 +30,12 @@ const Home = (props) => {
     <>
       <Head>
         <title>Gainz</title>
+        <meta property='og:title' content='Gainz' />
+        <meta
+          property='og:description'
+          content='Peinture, travail sur papier.'
+        />
+        <meta property='og:image' content={backgroundSrc} />
       </Head>
       <div className='home responsive-margins d-flex justify-center'>
         <img
