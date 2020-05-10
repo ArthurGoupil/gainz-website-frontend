@@ -37,11 +37,6 @@ const Paintings = ({ wallColor, setWallColor }) => {
   return (
     !isLoading && (
       <>
-        <Head>
-          <title>Gainz - {painting.name}</title>
-          <meta name='og:description' content='test-fb-desc' />
-          <meta name='og:image' content={painting.smallImage} />
-        </Head>
         <CompleteArtBloc
           art={painting}
           artType='paintings'
