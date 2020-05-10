@@ -35,17 +35,15 @@ const Paintings = ({ wallColor, setWallColor }) => {
   }, [id]);
 
   return (
-    !isLoading && (
-      <>
-        <CompleteArtBloc
-          art={painting}
-          artType='paintings'
-          isLoading={isLoading}
-          wallColor={wallColor}
-          setWallColor={setWallColor}
-        />
-      </>
-    )
+    <>
+      <CompleteArtBloc
+        art={painting}
+        artType='paintings'
+        isLoading={isLoading}
+        wallColor={wallColor}
+        setWallColor={setWallColor}
+      />
+    </>
   );
 };
 
