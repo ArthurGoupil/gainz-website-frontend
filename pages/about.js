@@ -26,7 +26,7 @@ const About = (props) => {
         <div className='about-container d-flex'>
           <img className='gainz' src={gainzSrc} alt='Gaspard Pellerin' />
           <div className='about-text-container d-flex flex-column'>
-            <h1>À propos</h1>
+            <h1>{data[lang].main.about}</h1>
             <img className='logo' src='/logo/logo-gainz.svg' alt='logo-gainz' />
             <span className='description'>
               Gainz réalise ses premières peintures dans la rue, ce qui lui a
