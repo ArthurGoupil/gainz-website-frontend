@@ -1,34 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import { PageTransition } from 'next-page-transitions';
+import ReactGA from 'react-ga';
 
 import '../styles/reset.css';
 import Layout from '../components/Layout';
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
   const [wallColor, setWallColor] = useState({
     rgba: 'rgba(236,236,236,1)',
     hex: '#ececec',
   });
 
-  const router = useRouter();
+  useEffect(() => {
+    ReactGA.initialize('UA-55980200-2');
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
 
   return (
     <Layout>
       <Head>
-        {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-        <script
-          async
-          src='https://www.googletagmanager.com/gtag/js?id=UA-55980200-2'
-        ></script>
-        <script>
-          window.dataLayer = window.dataLayer || []; function gtag()
-          {dataLayer.push(arguments)}
-          gtag('js', new Date()); gtag('config', 'UA-55980200-2');
-        </script>
-
         <link rel='shortcut icon' href='/favicon.ico' />
         <meta
           property='og:url'
