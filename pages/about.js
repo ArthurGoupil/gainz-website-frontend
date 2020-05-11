@@ -23,7 +23,7 @@ const About = (props) => {
         <meta property='og:image' content={backgroundSrc} />
       </Head>
       <div className='container responsive-margins d-flex justify-center'>
-        <div className='about-container'>
+        <div className='about-container d-flex'>
           <img className='gainz' src={gainzSrc} alt='Gaspard Pellerin' />
           <div className='about-text-container d-flex flex-column'>
             <h1>À propos</h1>
@@ -79,7 +79,6 @@ const About = (props) => {
           border-radius: 10px;
           padding: 45px;
           box-shadow: 3px 3px 10px 4px rgba(42, 42, 42, 0.2);
-          min-height: calc(100vh - 200px);
           margin: 20px 0;
         }
         .gainz {
@@ -110,7 +109,6 @@ const About = (props) => {
           .about-container {
             width: calc(100vw - 40px);
             max-width: 490px;
-            min-height: calc(100vh - 140px);
             padding: 25px;
           }
           .gainz {

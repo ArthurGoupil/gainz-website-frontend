@@ -16,24 +16,24 @@ const Header = ({ lang, setLang }) => {
       <header className='d-flex flex-column align-center justify-center'>
         <ActiveLink href='/'>
           <div className='logo-container d-flex justify-center align-center'>
-            <img className='logo' src='/logo/logo-gainz.svg' alt='logo-gainz' />
-            <div className='gainz-text d-flex justify-center'>GAINZ</div>
+            <img className='logo' src='/logo/logo-gainz.svg' alt='Gainz Art' />
+            <h1 className='d-flex justify-center'>GAINZ</h1>
           </div>
         </ActiveLink>
       </header>
       <nav className='d-flex justify-center align-center'>
         <div className='nav-elements d-flex space-between'>
           <ActiveLink activeClassName='active-link' href='/'>
-            <span>{data[lang].nav.home}</span>
+            <h2>{data[lang].nav.home}</h2>
           </ActiveLink>
           <ActiveLink activeClassName='active-link' href='/paintings'>
-            <span>{data[lang].nav.paintings}</span>
+            <h2>{data[lang].nav.paintings}</h2>
           </ActiveLink>
           <ActiveLink activeClassName='active-link' href='/papers'>
-            <span>{data[lang].nav.papers}</span>
+            <h2>{data[lang].nav.papers}</h2>
           </ActiveLink>
           <ActiveLink activeClassName='active-link' href='/about'>
-            <span>{data[lang].nav.about}</span>
+            <h2>{data[lang].nav.about}</h2>
           </ActiveLink>
           <div className='language-container d-flex'>
             <div className='language'>
@@ -97,13 +97,19 @@ const Header = ({ lang, setLang }) => {
             transition: 0.4s;
             filter: blur(2px);
           }
-          .gainz-text {
+          h1 {
             width: 100%;
             line-height: 5.5rem;
             font-size: 2.3rem;
             transition: 0.4s;
+            font-weight: normal;
+            margin-bottom: 0;
           }
-          .logo-container:hover .gainz-text {
+          h2 {
+            font-size: 1.4rem;
+            line-height: 1.9rem;
+          }
+          .logo-container:hover h1 {
             opacity: 0;
             transition: 0.4s;
           }

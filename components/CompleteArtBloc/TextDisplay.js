@@ -12,14 +12,14 @@ const TextDisplay = ({ art, artType, isLoading, wallColor, setWallColor }) => {
   return (
     <div className='text-container d-flex flex-column align-center'>
       <div className='d-flex flex-column align-center'>
-        <span className='name'>{art.name}</span>
+        <h1 className='name'>{art.name}</h1>
         <span className='details'>
           {art.creationYear}
           {art.details && ` - ${art.details}`}
         </span>
       </div>
       <div className='sub-text-container d-flex space-around flex-wrap'>
-        <span className='art-info'>{art.type}</span>
+        <h2 className='art-info'>{art.type}</h2>
         <span className='art-info'>
           {art.format === 'normal' ? (
             `${art.width}cm x ${art.height}cm`
@@ -57,7 +57,7 @@ const TextDisplay = ({ art, artType, isLoading, wallColor, setWallColor }) => {
               })
             }
           >
-            <div className='close-icon d-flex align-center'>
+            <div className='d-flex align-center'>
               <MdClose />
               &nbsp;{data[lang].art.colorSelected}
             </div>
@@ -85,6 +85,8 @@ const TextDisplay = ({ art, artType, isLoading, wallColor, setWallColor }) => {
         }
         .art-info {
           width: 150px;
+          font-size: 1.4rem;
+          line-height: 1.9rem;
           text-align: center;
           display: flex;
           justify-content: center;
