@@ -23,7 +23,7 @@ const Papers = (props) => {
       setPapers(response.data);
       response.data.forEach((paper) => {
         papersArr.push({
-          _id: paper._id,
+          shortId: paper.shortId,
           name: paper.name,
           isSold: paper.isSold,
           src: paper.smallImage,

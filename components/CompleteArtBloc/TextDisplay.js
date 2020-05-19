@@ -71,7 +71,10 @@ const TextDisplay = ({ art, artType, isLoading, wallColor, setWallColor }) => {
         />
       </div>
       {!art.isSold && (
-        <Link href='/more-infos/[id]' as={`/more-infos/${artType}-${art._id}`}>
+        <Link
+          href='/more-infos/[id]'
+          as={`/more-infos/${artType}-${art.shortId}`}
+        >
           <a>
             <button className='more'>{data[lang].art.interested}</button>
           </a>

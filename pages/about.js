@@ -41,8 +41,6 @@ const About = (props) => {
     }
   }, [gainzRef]);
 
-  console.log(gainzIsLoading);
-
   return (
     <>
       <Head>

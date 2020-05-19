@@ -9,7 +9,7 @@ const ArtBloc = ({ photo, margin, artType }) => {
   const [imgIsLoading, setImgIsLoading] = useState(true);
   const [previewImgIsLoading, setPreviewImgIsLoading] = useState(true);
 
-  const { _id, name, isSold, src, previewImage, width, height } = photo;
+  const { shortId, name, isSold, src, previewImage, width, height } = photo;
 
   const nameSlug = slugify(name, {
     remove: /[*+~.()'"!:@/]/g,
@@ -21,7 +21,7 @@ const ArtBloc = ({ photo, margin, artType }) => {
   const imgIsOn = !imgIsLoading && !previewImgIsLoading;
 
   return (
-    <Link href={`/${artType}/[id]`} as={`/${artType}/${nameSlug}-${_id}`}>
+    <Link href={`/${artType}/[id]`} as={`/${artType}/${nameSlug}-${shortId}`}>
       <div className='art-container d-flex d-flex justify-center align-center'>
         <div>
           <ArtPreview

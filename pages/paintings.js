@@ -23,7 +23,7 @@ const Paintings = (props) => {
       setPaintings(response.data);
       response.data.forEach((painting) => {
         paintingsArr.push({
-          _id: painting._id,
+          shortId: painting.shortId,
           name: painting.name,
           isSold: painting.isSold,
           src: painting.smallImage,

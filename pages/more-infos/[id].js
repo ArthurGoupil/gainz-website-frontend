@@ -100,16 +100,20 @@ const MoreInfos = ({ art, artType }) => {
 };
 
 MoreInfos.getInitialProps = async (ctx) => {
-  const artTypeId = ctx.query.id;
-  const id = artTypeId.substr(artTypeId.indexOf('-') + 1, artTypeId.length - 1);
-  const artType = artTypeId.substr(0, artTypeId.indexOf('-'));
+  const artTypeAndShortId = ctx.query.id;
+
+  const shortId = artTypeAndShortId.substr(
+    artTypeAndShortId.indexOf('-') + 1,
+    artTypeAndShortId.length - 1
+  );
+  const artType = artTypeAndShortId.substr(0, artTypeAndShortId.indexOf('-'));
   try {
     const response = await axios.get(
-      `${process.env.BACKEND_URL}/${artType}/${id}`
+      `${process.env.BACKEND_URL}/${artType}/${shortId}`
     );
     return {
       art: response.data,
-      artType: artTypeId.substr(0, artTypeId.indexOf('-')),
+      artType,
     };
   } catch (e) {
     console.error(e.message);

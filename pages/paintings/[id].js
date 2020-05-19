@@ -37,12 +37,14 @@ const Paintings = ({ wallColor, setWallColor, painting }) => {
 };
 
 Paintings.getInitialProps = async (ctx) => {
-  const slugAndId = ctx.query.id;
-  const id = slugAndId.slice(slugAndId.lastIndexOf('-') + 1);
+  const slugAndShortId = ctx.query.id;
+  const shortId = slugAndShortId.slice(slugAndShortId.lastIndexOf('-') + 1);
+
   try {
     const response = await axios.get(
-      `${process.env.BACKEND_URL}/paintings/${id}`
+      `${process.env.BACKEND_URL}/paintings/${shortId}`
     );
+
     return { painting: response.data };
   } catch (e) {
     console.error(e.message);

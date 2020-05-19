@@ -13,8 +13,6 @@ const Papers = ({ wallColor, setWallColor, paper }) => {
     if (paper) setIsLoading(false);
   }, []);
 
-  console.log(paper);
-
   return (
     <>
       <Head>
@@ -40,10 +38,13 @@ const Papers = ({ wallColor, setWallColor, paper }) => {
 };
 
 Papers.getInitialProps = async (ctx) => {
-  const slugAndId = ctx.query.id;
-  const id = slugAndId.slice(slugAndId.lastIndexOf('-') + 1);
+  const slugAndShortId = ctx.query.id;
+  const shortId = slugAndShortId.slice(slugAndShortId.lastIndexOf('-') + 1);
+
   try {
-    const response = await axios.get(`${process.env.BACKEND_URL}/papers/${id}`);
+    const response = await axios.get(
+      `${process.env.BACKEND_URL}/papers/${shortId}`
+    );
     return { paper: response.data };
   } catch (e) {
     console.error(e.message);
