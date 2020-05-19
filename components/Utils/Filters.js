@@ -31,7 +31,7 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
     const sortedArtsGrid = [];
     sortedArts.forEach((art) => {
       sortedArtsGrid.push({
-        _id: art._id,
+        shortId: art.shortId,
         name: art.name,
         isSold: art.isSold,
         src: art.smallImage,
@@ -52,7 +52,7 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
       const sortedArtsGrid = [];
       sortedArts.forEach((art) => {
         sortedArtsGrid.push({
-          _id: art._id,
+          shortId: art.shortId,
           name: art.name,
           isSold: art.isSold,
           src: art.smallImage,
@@ -72,7 +72,7 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
       const sortedArtsGrid = [];
       sortedArts.forEach((art) => {
         sortedArtsGrid.push({
-          _id: art._id,
+          shortId: art.shortId,
           name: art.name,
           isSold: art.isSold,
           src: art.smallImage,
@@ -92,7 +92,7 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
       const sortedArtsGrid = [];
       sortedArts.forEach((art) => {
         sortedArtsGrid.push({
-          _id: art._id,
+          shortId: art.shortId,
           name: art.name,
           isSold: art.isSold,
           src: art.smallImage,
