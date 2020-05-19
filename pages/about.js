@@ -1,15 +1,47 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import data from '../languages/data.json';
 import LangContext from '../contexts/LangContext';
 
+import BackgroundPreview from '../components/Utils/ArtPreview';
+
 const About = (props) => {
   const lang = useContext(LangContext);
+  const [gainzIsLoading, setGainzIsLoading] = useState(true);
+  const gainzRef = useRef();
+
+  const [backgroundIsLoading, setBackgroundIsLoading] = useState(true);
+  const [backgroundPreviewIsLoading, setBackgroundPreviewIsLoading] = useState(
+    true
+  );
+  const backgroundRef = useRef();
+
   const backgroundSrc =
     'https://res.cloudinary.com/goupil/image/upload/v1586641448/gainz/home5-empty-nogainz_ckhcwa.jpg';
+  const backgroundPreviewSrc =
+    'https://res.cloudinary.com/goupil/image/upload/v1586641442/gainz/home5-empty-nogainz-preview_wjvtk7.jpg';
+
+  const backgroundPreviewIsOn =
+    backgroundIsLoading && !backgroundPreviewIsLoading;
+  const backgroundIsOn = !backgroundIsLoading && !backgroundPreviewIsLoading;
+
+  useEffect(() => {
+    if (backgroundRef.current.complete) {
+      setBackgroundIsLoading(false);
+    }
+  }, [backgroundRef]);
+
   const gainzSrc =
     'https://res.cloudinary.com/goupil/image/upload/v1586641448/gainz/gainz-about3_wgz1mf.png';
+
+  useEffect(() => {
+    if (gainzRef.current.complete) {
+      setGainzIsLoading(false);
+    }
+  }, [gainzRef]);
+
+  console.log(gainzIsLoading);
 
   return (
     <>
@@ -23,8 +55,31 @@ const About = (props) => {
         <meta property='og:image' content={backgroundSrc} />
       </Head>
       <div className='container responsive-margins d-flex justify-center'>
+        <img
+          ref={backgroundRef}
+          className='background'
+          src={backgroundSrc}
+          alt='Mur gris dans la rue.'
+          onLoad={() => {
+            setBackgroundIsLoading(false);
+          }}
+        />
+        <BackgroundPreview
+          setPreviewImgIsLoading={setBackgroundPreviewIsLoading}
+          previewImage={backgroundPreviewSrc}
+          previewIsOn={backgroundPreviewIsOn}
+          width='100%'
+          height='100%'
+          backgroundSize='cover'
+        />
         <div className='about-container d-flex'>
-          <img className='gainz' src={gainzSrc} alt='Gaspard Pellerin' />
+          <img
+            ref={gainzRef}
+            className='gainz'
+            src={gainzSrc}
+            alt='Gaspard Pellerin'
+            onLoad={() => setGainzIsLoading(false)}
+          />
           <div className='about-text-container d-flex flex-column'>
             <h1>{data[lang].main.about}</h1>
             <img className='logo' src='/logo/logo-gainz.svg' alt='logo-gainz' />
@@ -66,10 +121,17 @@ const About = (props) => {
         .container {
           width: calc(100vw - 40px);
           min-height: calc(100vh - 160px);
+          position: relative;
           overflow: hidden;
-          background-image: url(${backgroundSrc});
-          background-size: cover;
-          background-repeat: no-repeat;
+        }
+        .background {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          position: absolute;
+          opacity: ${backgroundIsOn ? 1 : 0};
+          transition: opacity linear 0.5s;
         }
         .about-container {
           width: 490px;
@@ -85,6 +147,8 @@ const About = (props) => {
           position: absolute;
           right: -200px;
           bottom: -40px;
+          opacity: ${gainzIsLoading ? 0 : 1};
+          transition: opacity linear 0.5s;
         }
         .about-text-container {
           margin-right: 13%;
