@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useContext } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import Head from 'next/head';
 import data from '../languages/data.json';
 import LangContext from '../contexts/LangContext';

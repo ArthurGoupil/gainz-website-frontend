@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import data from '../languages/data.json';
 
 import { push as Menu } from 'react-burger-menu';

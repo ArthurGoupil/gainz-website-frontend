@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, useRef } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import data from '../languages/data.json';

@@ -1,3 +1,4 @@
+import React from 'react';
 import Gallery from 'react-photo-gallery';
 
 import ArtBloc from './ArtBloc';

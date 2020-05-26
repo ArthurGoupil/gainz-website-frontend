@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
     ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);
 
-  return (
+  return router.pathname !== '/sitemap.xml' ? (
     <Layout>
       <Head>
         <link rel='shortcut icon' href='/favicon.ico' />
@@ -233,6 +233,8 @@ function MyApp({ Component, pageProps }) {
         `}
       </style>
     </Layout>
+  ) : (
+    <Component {...pageProps} />
   );
 }
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import LangContext from '../contexts/LangContext';
 
 import '../styles/StylingVariables';

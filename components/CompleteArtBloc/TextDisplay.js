@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import LangContext from '../../contexts/LangContext';
 import data from '../../languages/data.json';
 import Link from 'next/link';

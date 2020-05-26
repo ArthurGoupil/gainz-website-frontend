@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import ArtsDisplay from './ArtsDisplay';
 import TextDisplay from './TextDisplay';
