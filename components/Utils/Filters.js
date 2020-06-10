@@ -8,7 +8,8 @@ import { MdAdjust, MdRadioButtonUnchecked } from 'react-icons/md';
 
 const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
   const lang = useContext(LangContext);
-  const [yearFilterType, setYearFilterType] = useState('desc');
+  const [yearFilterType, setYearFilterType] = useState('availability');
+  const [availabilitySort, setAvailabilitySort] = useState(true);
   const [showArts, setShowArts] = useState('all');
 
   const handleIsSoldWhenYearSort = (showArts) => {
@@ -21,11 +22,11 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
     }
   };
 
-  const sortArtsByYear = (arts, sortType) => {
+  const sortArts = (arts, sort, sortType) => {
     setFiltersAreChanging(true);
     const sortedArts = _.orderBy(
       _.filter(arts, handleIsSoldWhenYearSort(showArts)),
-      ['creationYear'],
+      [sort],
       [sortType]
     );
     const sortedArtsGrid = [];
@@ -40,7 +41,12 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
         height: art.height,
       });
     });
-    setYearFilterType(`${sortType}`);
+    if (sort === 'isSold') {
+      setYearFilterType('availability');
+    } else {
+      setYearFilterType(sortType);
+    }
+
     setArtsGrid(sortedArtsGrid);
     setTimeout(() => setFiltersAreChanging(false), 100);
   };
@@ -64,10 +70,11 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
       setShowArts('all');
       setArtsGrid(sortedArtsGrid);
     } else if (sortType === 'available') {
+      setYearFilterType('desc');
       const sortedArts = _.orderBy(
         _.filter(arts, { isSold: false }),
         ['creationYear'],
-        [yearFilterType]
+        ['desc']
       );
       const sortedArtsGrid = [];
       sortedArts.forEach((art) => {
@@ -84,10 +91,11 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
       setShowArts('available');
       setArtsGrid(sortedArtsGrid);
     } else if (sortType === 'sold') {
+      setYearFilterType('desc');
       const sortedArts = _.orderBy(
         _.filter(arts, { isSold: true }),
         ['creationYear'],
-        [yearFilterType]
+        ['desc']
       );
       const sortedArtsGrid = [];
       sortedArts.forEach((art) => {
@@ -114,8 +122,25 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
           <b>{data[lang].filters.sort}&nbsp;&nbsp;</b>|
         </div>
         <div
+          className='sort-element availability d-flex align-center'
+          onClick={() => sortArts(arts, 'isSold', 'asc')}
+          style={{
+            opacity: showArts === 'all' ? 1 : 0.3,
+            pointerEvents: showArts === 'all' ? 'auto' : 'none',
+          }}
+        >
+          <div className='icons d-flex align-center'>
+            {yearFilterType === 'availability' ? (
+              <MdAdjust />
+            ) : (
+              <MdRadioButtonUnchecked />
+            )}
+          </div>
+          <span>{data[lang].filters.availability}</span>
+        </div>
+        <div
           className='sort-element desc d-flex align-center'
-          onClick={() => sortArtsByYear(arts, 'desc')}
+          onClick={() => sortArts(arts, 'creationYear', 'desc')}
         >
           <div className='icons d-flex align-center'>
             {yearFilterType === 'desc' ? (
@@ -128,7 +153,7 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
         </div>
         <div
           className='sort-element asc d-flex align-center'
-          onClick={() => sortArtsByYear(arts, 'asc')}
+          onClick={() => sortArts(arts, 'creationYear', 'asc')}
         >
           <div className='icons d-flex align-center'>
             {yearFilterType === 'asc' ? (
@@ -201,6 +226,11 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
             margin-right: 15px;
             color: ${greyBlue};
             cursor: pointer;
+          }
+          .sort-element.availability {
+            font-weight: ${yearFilterType === 'availability' &&
+            showArts === 'all' &&
+            'bold'};
           }
           .sort-element.asc {
             font-weight: ${yearFilterType === 'asc' && 'bold'};
