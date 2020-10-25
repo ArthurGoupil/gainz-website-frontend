@@ -53,7 +53,6 @@ const ContactForm = ({ art, artType, isLoading }) => {
             artName: art.name,
           }
         );
-        console.log(response.data);
         setFormLoading(false);
         setCounter(5);
         setFormStep(2);
