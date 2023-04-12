@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import LangContext from '../../contexts/LangContext';
 import data from '../../languages/data.json';
 
@@ -8,8 +8,7 @@ import { MdAdjust, MdRadioButtonUnchecked } from 'react-icons/md';
 
 const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
   const lang = useContext(LangContext);
-  const [yearFilterType, setYearFilterType] = useState('availability');
-  const [availabilitySort, setAvailabilitySort] = useState(true);
+  const [yearFilterType, setYearFilterType] = useState('desc');
   const [showArts, setShowArts] = useState('all');
 
   const handleIsSoldWhenYearSort = (showArts) => {
@@ -41,12 +40,8 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
         height: art.height,
       });
     });
-    if (sort === 'isSold') {
-      setYearFilterType('availability');
-    } else {
-      setYearFilterType(sortType);
-    }
-
+  
+    setYearFilterType(sortType);
     setArtsGrid(sortedArtsGrid);
     setTimeout(() => setFiltersAreChanging(false), 100);
   };
@@ -120,23 +115,6 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
       <div className='sort-container d-flex'>
         <div className='sort'>
           <b>{data[lang].filters.sort}&nbsp;&nbsp;</b>|
-        </div>
-        <div
-          className='sort-element availability d-flex align-center'
-          onClick={() => sortArts(arts, 'isSold', 'asc')}
-          style={{
-            opacity: showArts === 'all' ? 1 : 0.3,
-            pointerEvents: showArts === 'all' ? 'auto' : 'none',
-          }}
-        >
-          <div className='icons d-flex align-center'>
-            {yearFilterType === 'availability' ? (
-              <MdAdjust />
-            ) : (
-              <MdRadioButtonUnchecked />
-            )}
-          </div>
-          <span>{data[lang].filters.availability}</span>
         </div>
         <div
           className='sort-element desc d-flex align-center'

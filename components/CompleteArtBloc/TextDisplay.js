@@ -75,9 +75,7 @@ const TextDisplay = ({ art, artType, isLoading, wallColor, setWallColor }) => {
           href='/more-infos/[id]'
           as={`/more-infos/${artType}-${art.shortId}`}
         >
-          <a>
-            <button className='more'>{data[lang].art.interested}</button>
-          </a>
+          <button className='more'>{data[lang].art.interested}</button>
         </Link>
       )}
       <style jsx>{`

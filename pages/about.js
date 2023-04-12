@@ -8,8 +8,6 @@ import BackgroundPreview from '../components/Utils/ArtPreview';
 
 const About = (props) => {
   const lang = useContext(LangContext);
-  const [gainzIsLoading, setGainzIsLoading] = useState(true);
-  const gainzRef = useRef();
 
   const [backgroundIsLoading, setBackgroundIsLoading] = useState(true);
   const [backgroundPreviewIsLoading, setBackgroundPreviewIsLoading] = useState(
@@ -34,12 +32,6 @@ const About = (props) => {
 
   const gainzSrc =
     'https://res.cloudinary.com/goupil/image/upload/v1586641448/gainz/gainz-about3_wgz1mf.png';
-
-  useEffect(() => {
-    if (gainzRef.current.complete) {
-      setGainzIsLoading(false);
-    }
-  }, [gainzRef]);
 
   return (
     <>
@@ -71,13 +63,6 @@ const About = (props) => {
           backgroundSize='cover'
         />
         <div className='about-container d-flex'>
-          <img
-            ref={gainzRef}
-            className='gainz'
-            src={gainzSrc}
-            alt='Gaspard Pellerin'
-            onLoad={() => setGainzIsLoading(false)}
-          />
           <div className='about-text-container d-flex flex-column'>
             <h1>{data[lang].main.about}</h1>
             <img className='logo' src='/logo/logo-gainz.svg' alt='logo-gainz' />
@@ -97,10 +82,8 @@ const About = (props) => {
             </span>
             <span className='inquiry'>
               {data[lang].main.inquiry} :{' '}
-              <Link href='mailto:contact@gainz-art.com' prefetch={false}>
-                <a className='email' target='_blank'>
-                  contact@gainz-art.com
-                </a>
+              <Link className='email' href='mailto:contact@gainz-art.com' prefetch={false} target='_blank'>
+                contact@gainz-art.com
               </Link>
             </span>
             <iframe
@@ -140,13 +123,6 @@ const About = (props) => {
           padding: 45px;
           box-shadow: 3px 3px 10px 4px rgba(42, 42, 42, 0.2);
           margin: 20px 0;
-        }
-        .gainz {
-          position: absolute;
-          right: -200px;
-          bottom: -40px;
-          opacity: ${gainzIsLoading ? 0 : 1};
-          transition: opacity linear 0.5s;
         }
         .about-text-container {
           margin-right: 13%;
