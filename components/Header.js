@@ -16,7 +16,7 @@ const Header = ({ lang, setLang }) => {
       <header className='d-flex flex-column align-center justify-center'>
         <ActiveLink href='/'>
           <div className='logo-container d-flex justify-center align-center'>
-            <img className='logo' src='/logo/logo-gainz.svg' alt='Gainz Art' />
+            <img className='logo' src='/logo/logo-gainz.png' alt='Gainz Art' />
             <h1 className='d-flex justify-center'>GAINZ</h1>
           </div>
         </ActiveLink>
@@ -91,7 +91,6 @@ const Header = ({ lang, setLang }) => {
           }
           .logo {
             width: 65%;
-            height: 65%;
             opacity: 0;
             position: absolute;
             transition: 0.4s;

@@ -65,7 +65,7 @@ const About = (props) => {
         <div className='about-container d-flex'>
           <div className='about-text-container d-flex flex-column'>
             <h1>{data[lang].main.about}</h1>
-            <img className='logo' src='/logo/logo-gainz.svg' alt='logo-gainz' />
+            <img className='logo' src='/logo/logo-gainz.png' alt='logo-gainz' />
             <span className='description'>
               Gainz réalise ses premières peintures dans la rue, ce qui lui a
               permis d’acquérir un geste vif et précis tout en apprenant à
