@@ -20,8 +20,11 @@ const Paintings = (props) => {
   const fetchPaintings = useCallback(async () => {
     try {
       const response = await axios.get(`${process.env.BACKEND_URL}/paintings`);
-      setPaintings(response.data);
-      response.data.forEach((painting) => {
+
+      const temporarilyFilteredPaintings = response.data.filter(painting => !painting.name.toLowerCase().includes("new") && !painting.name.toLowerCase().includes("old"))
+
+      setPaintings(temporarilyFilteredPaintings);
+      temporarilyFilteredPaintings.forEach((painting) => {
         paintingsArr.push({
           shortId: painting.shortId,
           name: painting.name,

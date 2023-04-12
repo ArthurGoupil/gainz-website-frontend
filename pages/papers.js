@@ -20,8 +20,11 @@ const Papers = (props) => {
   const fetchPapers = useCallback(async () => {
     try {
       const response = await axios.get(`${process.env.BACKEND_URL}/papers`);
-      setPapers(response.data);
-      response.data.forEach((paper) => {
+
+      const temporarilyFilteredPaintings = response.data.filter(paper => !paper.name.toLowerCase().includes("new") && !paper.name.toLowerCase().includes("old"))
+
+      setPapers(temporarilyFilteredPaintings);
+      temporarilyFilteredPaintings.forEach((paper) => {
         papersArr.push({
           shortId: paper.shortId,
           name: paper.name,
