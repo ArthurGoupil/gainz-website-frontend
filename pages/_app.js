@@ -28,9 +28,6 @@ function MyApp({ Component, pageProps }) {
           property='og:url'
           content={`https://www.gainz-art.com${router.asPath}`}
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet"/>
         <meta property='og:type' content='website' />
         <meta property='fb:app_id' content='1078456695887562' />
       </Head>

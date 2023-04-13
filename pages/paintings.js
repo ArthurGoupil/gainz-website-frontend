@@ -23,8 +23,15 @@ const Paintings = (props) => {
 
       const temporarilyFilteredPaintings = response.data.filter(painting => !painting.name.toLowerCase().includes("new") && !painting.name.toLowerCase().includes("old"))
 
-      setPaintings(temporarilyFilteredPaintings);
-      temporarilyFilteredPaintings.forEach((painting) => {
+      const sortedPaintings = _.orderBy(
+        temporarilyFilteredPaintings,
+        ['creationYear', "name"],
+        ['desc']
+      )
+
+      setPaintings(sortedPaintings);
+
+      sortedPaintings.forEach((painting) => {
         paintingsArr.push({
           shortId: painting.shortId,
           name: painting.name,
@@ -52,7 +59,7 @@ const Paintings = (props) => {
   return (
     <>
       <Head>
-        <title>Gainz - {data[lang].main.paintings}</title>
+        <title>{`Gainz - ${data[lang].main.paintings}`}</title>
         <meta
           property='og:title'
           content={`Gainz - ${data[lang].main.paintings}`}

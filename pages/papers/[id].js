@@ -15,7 +15,7 @@ const Papers = ({ wallColor, setWallColor, paper }) => {
   return (
     <>
       <Head>
-        <title>Gainz - {paper.name}</title>
+        <title>{`Gainz - ${paper.name}`}</title>
         <meta property='og:title' content={`Gainz - ${paper.name}`} />
         <meta
           property='og:description'

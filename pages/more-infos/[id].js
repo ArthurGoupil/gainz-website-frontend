@@ -37,7 +37,7 @@ const MoreInfos = ({ art, artType }) => {
   return (
     <>
       <Head>
-        <title>Gainz - {art.name}</title>
+        <title>{`Gainz - ${art.name}`}</title>
         <meta property='og:title' content={`Gainz - ${art.name}`} />
         <meta
           property='og:description'

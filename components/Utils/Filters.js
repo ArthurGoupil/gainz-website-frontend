@@ -25,7 +25,7 @@ const Filters = ({ arts, setArtsGrid, setFiltersAreChanging }) => {
     setFiltersAreChanging(true);
     const sortedArts = _.orderBy(
       _.filter(arts, handleIsSoldWhenYearSort(showArts)),
-      [sort],
+      [sort, "name"],
       [sortType]
     );
     const sortedArtsGrid = [];

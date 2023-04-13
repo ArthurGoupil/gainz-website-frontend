@@ -21,10 +21,17 @@ const Papers = (props) => {
     try {
       const response = await axios.get(`${process.env.BACKEND_URL}/papers`);
 
-      const temporarilyFilteredPaintings = response.data.filter(paper => !paper.name.toLowerCase().includes("new") && !paper.name.toLowerCase().includes("old"))
+      const temporarilyFilteredPapers = response.data.filter(paper => !paper.name.toLowerCase().includes("new") && !paper.name.toLowerCase().includes("old"))
 
-      setPapers(temporarilyFilteredPaintings);
-      temporarilyFilteredPaintings.forEach((paper) => {
+      const sortedPapers = _.orderBy(
+        temporarilyFilteredPapers,
+        ['creationYear', "name"],
+        ['desc']
+      )
+
+      setPapers(sortedPapers);
+
+      sortedPapers.forEach((paper) => {
         papersArr.push({
           shortId: paper.shortId,
           name: paper.name,
@@ -52,7 +59,7 @@ const Papers = (props) => {
   return (
     <>
       <Head>
-        <title>Gainz - {data[lang].main.papers}</title>
+        <title>{`Gainz - ${data[lang].main.papers}`}</title>
         <meta
           property='og:title'
           content={`Gainz - ${data[lang].main.papers}`}

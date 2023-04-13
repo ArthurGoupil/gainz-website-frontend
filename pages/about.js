@@ -36,7 +36,7 @@ const About = (props) => {
   return (
     <>
       <Head>
-        <title>Gainz - {data[lang].main.about}</title>
+        <title>{`Gainz - ${data[lang].main.about}`}</title>
         <meta
           property='og:title'
           content={`Gainz - ${data[lang].main.about}`}

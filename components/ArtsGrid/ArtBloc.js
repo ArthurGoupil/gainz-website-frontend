@@ -45,7 +45,7 @@ const ArtBloc = ({ photo, margin, artType }) => {
         <div className='art-infos d-flex flex-column align-center'>
           <div className='art-name'>{name.toUpperCase()}</div>
         </div>
-        {!imgIsLoading && <div className='tag'></div>}
+        {(!imgIsLoading && isSold) && <div className='tag'/>}
         <style jsx>
           {`
             .art-container {
@@ -83,7 +83,7 @@ const ArtBloc = ({ photo, margin, artType }) => {
               position: absolute;
               bottom: 20px;
               right: 20px;
-              background-color: ${isSold ? 'red' : 'green'};
+              background-color: red;
             }
           `}
         </style>
