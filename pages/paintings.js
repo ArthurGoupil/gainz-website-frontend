@@ -21,10 +21,8 @@ const Paintings = (props) => {
     try {
       const response = await axios.get(`${process.env.BACKEND_URL}/paintings`);
 
-      const temporarilyFilteredPaintings = response.data.filter(painting => !painting.name.toLowerCase().includes("new") && !painting.name.toLowerCase().includes("old"))
-
       const sortedPaintings = _.orderBy(
-        temporarilyFilteredPaintings,
+        response.data,
         ['creationYear', "name"],
         ['desc']
       )

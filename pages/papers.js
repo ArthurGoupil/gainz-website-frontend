@@ -21,10 +21,9 @@ const Papers = (props) => {
     try {
       const response = await axios.get(`${process.env.BACKEND_URL}/papers`);
 
-      const temporarilyFilteredPapers = response.data.filter(paper => !paper.name.toLowerCase().includes("new") && !paper.name.toLowerCase().includes("old"))
 
       const sortedPapers = _.orderBy(
-        temporarilyFilteredPapers,
+        response.data,
         ['creationYear', "name"],
         ['desc']
       )
